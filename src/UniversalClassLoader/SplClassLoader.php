@@ -79,16 +79,20 @@ class SplClassLoader
     public function findClassFile($fullclass)
     {
         $fullclass = ltrim($fullclass,'\\');
+        # echo "Fullclass: " . $fullclass . "\n";
+
+        $subpath = null;
         if( ($r = strrpos($fullclass,'\\')) !== false ) {
             $namespace = substr($fullclass,0,$r);
-            $class = substr($fullclass,$r + 1);
+            $classname = substr($fullclass,$r + 1);
+            $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace )
+                    . DIRECTORY_SEPARATOR . str_replace( '_' , DIRECTORY_SEPARATOR , $classname ) 
+                    . '.php';
             foreach( $this->namespaces as $ns => $dirs ) {
                 if( strpos($ns,$namespace) !== 0 )
                     continue;
 
-                $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace )
-                    . DIRECTORY_SEPARATOR . str_replace( '_' , DIRECTORY_SEPARATOR , $class ) 
-                    . '.php';
+
                 foreach( $dirs as $d ) {
                     $path = $d . DIRECTORY_SEPARATOR . $subpath;
                     if( file_exists($path) )
@@ -98,9 +102,9 @@ class SplClassLoader
         }
         else {
             // use prefix to load class (pear style), convert _ to DIRECTORY_SEPARATOR.
-            $subpath = str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+            $subpath = str_replace('_', DIRECTORY_SEPARATOR, $fullclass).'.php';
             foreach ($this->prefixes as $p => $dirs) {
-                if (strpos($class, $p) !== 0)
+                if (strpos($fullclass, $p) !== 0)
                     continue;
                 foreach ($dirs as $dir) {
                     $file = $dir.DIRECTORY_SEPARATOR.$subpath;
@@ -110,14 +114,16 @@ class SplClassLoader
             }
         }
 
-        if ($this->useIncludePaths && $file = stream_resolve_include_path($class))
+        if ($this->useIncludePaths && $file = stream_resolve_include_path($subpath))
             return $file;
     }
 
     public function loadClass($class)
     {
-        if ($file = $this->findClassFile($class))
+        if ($file = $this->findClassFile($class)) {
+            # echo "File: $file.\n";
             require $file;
+        }
     }
 
 }
