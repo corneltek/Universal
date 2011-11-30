@@ -9,74 +9,111 @@
  *
  *
  *      $loader = new \UniversalClassLoader\SplClassLoader( array(  
- *               'Onion' => 'path/to/Onion',
- *               'CLIFramework' => 'path/to/CLIFramework',
- *           ));
+ *               'Vendor\Onion' => 'path/to/Onion',
+ *               'Vendor\CLIFramework' => 'path/to/CLIFramework',
+ *      ));
+ *
+ *      $loader->addNamespace(array( 
+ *          'NS' => 
+ *      ));
+ *
+ *      $loader->useIncludePath();
  *      $loader->register();
  *
  */
 namespace UniversalClassLoader;
+use Exception;
 
 class SplClassLoader
 {
-    public $prefixes;
-    public $systemWidePaths;
+    public $namespaces = array();
+    public $prefixes = array();
+    public $useIncludePath;
 
-    public function __construct( $prefixes = array() )
+    public function __construct($namespaces = null)
     {
-        $this->prefixes = $prefixes;
+        if( $namespaces )
+            $this->addNamespace( $namespaces );
     }
 
-    public function includeSystemWide()
+    public function addNamespace($ns = array())
     {
-        $this->systemWidePaths = explode(':',get_include_path());
+        if( is_array($ns) ) {
+            foreach( $ns as $n => $dirs )
+                $this->namespaces[ $n ] = (array) $dirs;
+        } 
+        elseif( $args = func_get_args() && count($args) == 2 ) {
+            $this->namespaces[ $args[0] ] = $args[1];
+        }
+        else {
+            throw new Exception;
+        }
     }
 
-    public function register()
+    public function addPrefix($ps = array())
     {
-        spl_autoload_register(array($this, 'loadClass'));
+        foreach ($ps as $prefix => $dirs) {
+            $this->prefixes[$prefix] = (array) $dirs;
+        }
     }
 
-    /**
-     * Uninstalls this class loader from the SPL autoloader stack.
-     */
+    public function useIncludePath($bool)
+    {
+        $this->useIncludePaths = $bool;
+    }
+
+    public function register($prepend = false)
+    {
+        spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+    }
+
     public function unregister()
     {
         spl_autoload_unregister(array($this, 'loadClass'));
     }
 
-    /**
-     * Loads the given class or interface.
-     *
-     * @param string $className The name of the class to load.
-     * @return void
-     */
-    public function loadClass($class)
+    public function findClassFile($fullclass)
     {
-        $class = ltrim($class,'\\');
-        if( ($r = strpos($class,'\\')) !== false ) {
-            $p = substr($class,0,($r-1));
-            if( isset($this->prefixes[ $p ] ) ) {
-                $path = $this->prefixes[ $p ];
-                $filename = $path . str_replace(array('\\'), DIRECTORY_SEPARATOR, $class ) . '.php';
+        $fullclass = ltrim($fullclass,'\\');
+        if( ($r = strrpos($fullclass,'\\')) !== false ) {
+            $namespace = substr($fullclass,0,($r-1));
+            $class = substr($fullclass,$r);
+            foreach( $this->namespaces as $ns => $dirs ) {
+                if( strpos($ns,$namespace) !== 0 )
+                    continue;
+
+                $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace )
+                    . DIRECTORY_SEPARATOR . str_replace( '_' , DIRECTORY_SEPARATOR , $class ) 
+                    . '.php';
+                foreach( $dirs as $d ) {
+                    $path = $d . DIRECTORY_SEPARATOR . $subpath;
+                    if( file_exists($path) )
+                        return $path;
+                }
+            }
+        }
+        else {
+            // use prefix to load class (pear style), convert _ to DIRECTORY_SEPARATOR.
+            $subpath = str_replace('_', DIRECTORY_SEPARATOR, $class).'.php';
+            foreach ($this->prefixes as $p => $dirs) {
+                if (strpos($class, $p) !== 0)
+                    continue;
+                foreach ($dirs as $dir) {
+                    $file = $dir.DIRECTORY_SEPARATOR.$subpath;
+                    if (file_exists($file))
+                        return $file;
+                }
             }
         }
 
-        if (null === $this->_namespace || 
-                $this->_namespace.$this->_namespaceSeparator === substr($className, 0, strlen($this->_namespace.$this->_namespaceSeparator))) {
-            $fileName = '';
-            $namespace = '';
-            if (false !== ($lastNsPos = strripos($className, $this->_namespaceSeparator))) {
-                $namespace = substr($className, 0, $lastNsPos);
-                $className = substr($className, $lastNsPos + 1);
-                $fileName = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
-            }
-            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
-            $target = ($this->_includePath !== null 
-                        ?  $this->_includePath . DIRECTORY_SEPARATOR 
-                        : '') 
-                        . $fileName;
-            require $target;
-        }
+        if ($this->useIncludePaths && $file = stream_resolve_include_path($class))
+            return $file;
     }
+
+    public function loadClass($class)
+    {
+        if ($file = $this->findFile($class))
+            require $file;
+    }
+
 }
