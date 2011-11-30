@@ -29,6 +29,7 @@ class SplClassLoader
     public $namespaces = array();
     public $prefixes = array();
     public $useIncludePath;
+    public $mode;
 
     public function __construct($namespaces = null)
     {
@@ -41,13 +42,16 @@ class SplClassLoader
         if( is_array($ns) ) {
             foreach( $ns as $n => $dirs )
                 $this->namespaces[ $n ] = (array) $dirs;
+            return;
         } 
-        elseif( $args = func_get_args() && count($args) == 2 ) {
-            $this->namespaces[ $args[0] ] = $args[1];
-        }
         else {
-            throw new Exception;
+            $args = func_get_args();
+            if( count( $args ) == 2 ) {
+                $this->namespaces[ $args[0] ] = (array) $args[1];
+                return;
+            }
         }
+        throw new Exception;
     }
 
     public function addPrefix($ps = array())
@@ -76,8 +80,8 @@ class SplClassLoader
     {
         $fullclass = ltrim($fullclass,'\\');
         if( ($r = strrpos($fullclass,'\\')) !== false ) {
-            $namespace = substr($fullclass,0,($r-1));
-            $class = substr($fullclass,$r);
+            $namespace = substr($fullclass,0,$r);
+            $class = substr($fullclass,$r + 1);
             foreach( $this->namespaces as $ns => $dirs ) {
                 if( strpos($ns,$namespace) !== 0 )
                     continue;
@@ -112,7 +116,7 @@ class SplClassLoader
 
     public function loadClass($class)
     {
-        if ($file = $this->findFile($class))
+        if ($file = $this->findClassFile($class))
             require $file;
     }
 
