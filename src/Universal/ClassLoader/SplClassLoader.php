@@ -78,6 +78,7 @@ class SplClassLoader
 
     public function findClassFile($fullclass)
     {
+        $class = null;
         $fullclass = ltrim($fullclass,'\\');
         if( ($r = strrpos($fullclass,'\\')) !== false ) {
             $namespace = substr($fullclass,0,$r);
