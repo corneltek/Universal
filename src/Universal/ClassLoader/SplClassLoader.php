@@ -89,9 +89,10 @@ class SplClassLoader
                     . DIRECTORY_SEPARATOR . str_replace( '_' , DIRECTORY_SEPARATOR , $classname ) 
                     . '.php';
             foreach( $this->namespaces as $ns => $dirs ) {
-                if( strpos($ns,$namespace) !== 0 )
-                    continue;
 
+                # echo "namespace: $ns in $namespace\n";
+                if( strpos($namespace,$ns) !== 0 )
+                    continue;
 
                 foreach( $dirs as $d ) {
                     $path = $d . DIRECTORY_SEPARATOR . $subpath;
