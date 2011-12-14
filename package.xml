@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                                 http://pear.php.net/dtd/tasks-1.0.xsd                                 http://pear.php.net/dtd/package-2.0                                 http://pear.php.net/dtd/package-2.0.xsd">
+  <name>Universal</name>
+  <channel>pear.corneltek.com</channel>
+  <summary>Universal PHP Library</summary>
+  <description>Universal PHP Library</description>
+  <lead>
+    <name>Yo-An Lin</name>
+    <user/>
+    <email>cornelius.howl@gmail.com</email>
+    <active>1</active>
+  </lead>
+  <date>2011-12-14</date>
+  <time>21:51:25</time>
+  <version>
+    <release>0.0.1</release>
+    <api>0.0.1</api>
+  </version>
+  <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+  </stability>
+  <license>PHP LICENSE</license>
+  <notes>-</notes>
+  <contents>
+    <dir name="/">
+      <file install-as="Universal/ClassLoader/SplClassLoader.php" name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="480bb376638da0f51905c8743f416966"/>
+      <file install-as="UniversalClassLoader/SplClassLoaderTest.php" name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="e75909d8e05e302cb09e1bc7524bd0f1"/>
+      <file install-as="bootstrap.php" name="tests/bootstrap.php" role="test" md5sum="c576ee1ccb5ee8c514254b1aa082d334"/>
+      <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
+      <file install-as="lib/Foo/Bar.php" name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
+      <file install-as="lib/Foo/Foo.php" name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
+      <file install-as="README.md" name="README.md" role="doc" md5sum="1541f19b394ddf89b73ec4b1d5a8bd0c"/>
+    </dir>
+  </contents>
+  <dependencies>
+    <required>
+      <php>
+        <min>5.3</min>
+      </php>
+      <pearinstaller>
+        <min>1.4</min>
+      </pearinstaller>
+    </required>
+  </dependencies>
+  <phprelease/>
+</package>
