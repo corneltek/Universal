@@ -13,7 +13,7 @@ class SplClassLoaderTest extends PHPUnit_Framework_TestCase
 {
     function test()
     {
-        $loader = new \UniversalClassLoader\SplClassLoader;
+        $loader = new \Universal\ClassLoader\SplClassLoader;
         ok( $loader );
         $loader->addNamespace('Foo', 'tests' . DIRECTORY_SEPARATOR . 'lib');
         $loader->register();

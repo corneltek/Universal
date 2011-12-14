@@ -21,7 +21,7 @@
  *      $loader->register();
  *
  */
-namespace UniversalClassLoader;
+namespace Universal\ClassLoader;
 use Exception;
 
 class SplClassLoader
@@ -63,7 +63,7 @@ class SplClassLoader
 
     public function useIncludePath($bool)
     {
-        $this->useIncludePaths = $bool;
+        $this->useIncludePath = $bool;
     }
 
     public function register($prepend = false)
@@ -110,7 +110,7 @@ class SplClassLoader
             }
         }
 
-        if ($this->useIncludePaths && $file = stream_resolve_include_path($class))
+        if ($this->useIncludePath && $file = stream_resolve_include_path($class))
             return $file;
     }
 
@@ -119,5 +119,4 @@ class SplClassLoader
         if ($file = $this->findClassFile($class))
             require $file;
     }
-
 }
