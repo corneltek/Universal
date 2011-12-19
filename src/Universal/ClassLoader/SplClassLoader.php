@@ -1,12 +1,13 @@
 <?php
-/*
- * This file is part of the UniversalClassLoader package.
+/**
+ * This file is part of the Universal package.
  *
  * (c) Yo-An Lin <cornelius.howl@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
+ * Load Class with namespaces
  *
  *      $loader = new \UniversalClassLoader\SplClassLoader( array(  
  *               'Vendor\Onion' => 'path/to/Onion',
@@ -28,6 +29,8 @@ class SplClassLoader
 {
     public $namespaces = array();
     public $prefixes = array();
+    public $fallbacks = array();
+
     public $useIncludePath;
     public $mode;
 
@@ -59,6 +62,11 @@ class SplClassLoader
         foreach ($ps as $prefix => $dirs) {
             $this->prefixes[$prefix] = (array) $dirs;
         }
+    }
+
+    public function addFallback($path)
+    {
+        $this->fallbacks[] = $path;
     }
 
     public function useIncludePath($bool)
@@ -113,6 +121,12 @@ class SplClassLoader
                         return $file;
                 }
             }
+        }
+
+        foreach( $this->fallbacks as $fallback ) {
+            $file = $fallback . DIRECTORY_SEPARATOR . $subpath;
+            if( file_exists($file) )
+                require $file;
         }
 
         if ($this->useIncludePath && $file = stream_resolve_include_path($subpath))
