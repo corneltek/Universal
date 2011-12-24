@@ -25,21 +25,63 @@
 namespace Universal\ClassLoader;
 use Exception;
 
+
+/**
+ * SplClassLoader
+ *
+ * PSR-0 Auto ClassLoader
+ */
 class SplClassLoader
 {
+
+    /**
+     * namespace mapping
+     *
+     * @var array
+     */
     public $namespaces = array();
+
+    /**
+     * prefix mapping
+     *
+     * @var array
+     */
     public $prefixes = array();
+
+
+
     public $fallbacks = array();
 
+    /**
+     * use php include path ?
+     *
+     * @var boolean 
+     */
     public $useIncludePath;
+
+    /**
+     * mode
+     */
     public $mode;
 
+
+    /**
+     * construct 
+     *
+     * @param array $namespaces 
+     */
     public function __construct($namespaces = null)
     {
         if( $namespaces )
             $this->addNamespace( $namespaces );
     }
 
+
+    /**
+     * add namespace
+     *
+     * @param array $ns
+     */
     public function addNamespace($ns = array())
     {
         if( is_array($ns) ) {
@@ -57,6 +99,12 @@ class SplClassLoader
         throw new Exception;
     }
 
+
+    /**
+     * add prefix
+     *
+     * @param array $ps
+     */
     public function addPrefix($ps = array())
     {
         foreach ($ps as $prefix => $dirs) {
@@ -69,21 +117,42 @@ class SplClassLoader
         $this->fallbacks[] = $path;
     }
 
+    /**
+     * use include path
+     *
+     * @param boolean $bool
+     */
     public function useIncludePath($bool)
     {
         $this->useIncludePath = $bool;
     }
 
+
+    /**
+     * register to spl_autoload_register
+     *
+     * @param boolean $prepend
+     */
     public function register($prepend = false)
     {
         spl_autoload_register(array($this, 'loadClass'), true, $prepend);
     }
 
+
+    /**
+     * unregister the spl autoloader
+     */
     public function unregister()
     {
         spl_autoload_unregister(array($this, 'loadClass'));
     }
 
+
+    /**
+     * find class file path
+     *
+     * @param string $fullclass
+     */
     public function findClassFile($fullclass)
     {
         $fullclass = ltrim($fullclass,'\\');
