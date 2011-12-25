@@ -11,10 +11,10 @@
     <active>1</active>
   </lead>
   <date>2011-12-25</date>
-  <time>13:24:52</time>
+  <time>16:19:30</time>
   <version>
-    <release>0.0.2</release>
-    <api>0.0.2</api>
+    <release>0.0.3</release>
+    <api>0.0.3</api>
   </version>
   <stability>
     <release>beta</release>
@@ -28,8 +28,10 @@
       <file install-as="helpers.php" name="tests/helpers.php" role="test" md5sum="442b22ed35a844926391dc62c49ec706"/>
       <file install-as="lib/Foo/Bar.php" name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file install-as="lib/Foo/Foo.php" name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
+      <file install-as="Universal/Container/ObjectContainerTest.php" name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
       <file install-as="UniversalClassLoader/SplClassLoaderTest.php" name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="e75909d8e05e302cb09e1bc7524bd0f1"/>
       <file install-as="Universal/ClassLoader/SplClassLoader.php" name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="a3bd0da6ee8e2376ec854b51eb22e0ba"/>
+      <file install-as="Universal/Container/ObjectContainer.php" name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="e943744b95bde5ef6f5423295b3bb1d3"/>
     </dir>
   </contents>
   <dependencies>
