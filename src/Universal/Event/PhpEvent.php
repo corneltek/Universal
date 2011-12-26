@@ -26,10 +26,10 @@ class PhpEvent
 
     function trigger($ev)
     {
-        $args = func_get_args();
-        array_shift( $args );
-
         if( isset( $this->eventPool[ $ev ] ) ) {
+            $args = func_get_args();
+            array_shift( $args );
+
             foreach( $this->eventPool[ $ev ] as $cb ) {
                 if( call_user_func_array( $cb , $args ) === false )
                     break;
