@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2011-12-25</date>
-  <time>20:05:55</time>
+  <date>2011-12-26</date>
+  <time>12:23:19</time>
   <version>
-    <release>0.0.3</release>
-    <api>0.0.3</api>
+    <release>0.0.4</release>
+    <api>0.0.4</api>
   </version>
   <stability>
     <release>beta</release>
@@ -30,8 +30,9 @@
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
       <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="e75909d8e05e302cb09e1bc7524bd0f1"/>
+      <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="9f5b59b58691ded8bbc26cf97cd98a9c"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="a3bd0da6ee8e2376ec854b51eb22e0ba"/>
-      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="e943744b95bde5ef6f5423295b3bb1d3"/>
+      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
     </dir>
   </contents>
   <dependencies>
@@ -52,6 +53,7 @@
       <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
       <install name="tests/Universal/Container/ObjectContainerTest.php" as="Universal/Container/ObjectContainerTest.php"/>
       <install name="tests/UniversalClassLoader/SplClassLoaderTest.php" as="UniversalClassLoader/SplClassLoaderTest.php"/>
+      <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
       <install name="src/Universal/ClassLoader/SplClassLoader.php" as="Universal/ClassLoader/SplClassLoader.php"/>
       <install name="src/Universal/Container/ObjectContainer.php" as="Universal/Container/ObjectContainer.php"/>
     </filelist>
