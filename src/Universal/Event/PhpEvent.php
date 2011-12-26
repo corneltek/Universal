@@ -10,11 +10,10 @@
  */
 namespace Universal\Event;
 
-
 /**
- * A Simple Event dispatcher
+ * A Simple PHP Event dispatcher
  */
-class EventDispatcher
+class PhpEvent
 {
     public $eventPool = array();
 
