@@ -9,17 +9,17 @@
  *
  */
 namespace Universal\Container;
-
+use Exception;
 class ObjectContainer 
 {
     public $builders = array();
-    public $cachedObjects = array();
+    public $_cachedObjects = array();
 
-    public $cache = true;
+    private $_cache = true;
 
     function setCache($bool)
     {
-        $this->cache = $bool;
+        $this->_cache = $bool;
     }
 
     function __set($key,$builder) 
@@ -29,15 +29,15 @@ class ObjectContainer
 
     function __get($key)
     {
-        if( $this->cache && isset( $this->cachedObjects[ $key ] ) ) {
-            return $this->cachedObjects[ $key ];
+        if( $this->_cache && isset( $this->_cachedObjects[ $key ] ) ) {
+            return $this->_cachedObjects[ $key ];
         }
         elseif( isset( $this->builders[ $key ] ) ) {
             $b = $this->builders[ $key ];
-            if( is_callable( $b) ) {
-                return $this->cachedObjects[ $key ] = call_user_func($b);
+            if( is_callable($b) ) {
+                return $this->_cachedObjects[ $key ] = call_user_func($b);
             } else {
-                return $this->cachedObjects[ $key ] = $b;
+                return $this->_cachedObjects[ $key ] = $b;
             }
         }
         else {
