@@ -24,8 +24,11 @@ class PhpEvent
         $this->eventPool[ $ev ][] = $cb;
     }
 
-    function trigger($ev,$args)
+    function trigger($ev)
     {
+        $args = func_get_args();
+        array_shift( $args );
+
         if( isset( $this->eventPool[ $ev ] ) ) {
             foreach( $this->eventPool[ $ev ] as $cb ) {
                 if( call_user_func_array( $cb , $args ) === false )
