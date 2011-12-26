@@ -11,14 +11,14 @@
     <active>yes</active>
   </lead>
   <date>2011-12-26</date>
-  <time>13:48:19</time>
+  <time>20:58:08</time>
   <version>
-    <release>0.0.5</release>
-    <api>0.0.5</api>
+    <release>0.0.6</release>
+    <api>0.0.6</api>
   </version>
   <stability>
-    <release>beta</release>
-    <api>beta</api>
+    <release>stable</release>
+    <api>stable</api>
   </stability>
   <license>PHP</license>
   <notes>-</notes>
@@ -29,11 +29,12 @@
       <file name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
       <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
+      <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="de363d8fc20257c4d723a40a6e36c444"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="e75909d8e05e302cb09e1bc7524bd0f1"/>
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="9f5b59b58691ded8bbc26cf97cd98a9c"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="a3bd0da6ee8e2376ec854b51eb22e0ba"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
-      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="6df24e06fe962c98b58a6f48fe63583f"/>
+      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="faa6301b4869c36113ce2a9561ad6bac"/>
     </dir>
   </contents>
   <dependencies>
@@ -53,6 +54,7 @@
       <install name="tests/lib/Foo/Bar.php" as="lib/Foo/Bar.php"/>
       <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
       <install name="tests/Universal/Container/ObjectContainerTest.php" as="Universal/Container/ObjectContainerTest.php"/>
+      <install name="tests/Universal/Event/PhpEventTest.php" as="Universal/Event/PhpEventTest.php"/>
       <install name="tests/UniversalClassLoader/SplClassLoaderTest.php" as="UniversalClassLoader/SplClassLoaderTest.php"/>
       <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
       <install name="src/Universal/ClassLoader/SplClassLoader.php" as="Universal/ClassLoader/SplClassLoader.php"/>
