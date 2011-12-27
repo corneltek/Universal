@@ -15,8 +15,20 @@ namespace Universal\Event;
  */
 class PhpEvent
 {
+
+    /**
+     * event pool
+     *
+     * @var array save event callbacks
+     */
     public $eventPool = array();
 
+    /**
+     * register event name
+     *
+     * @param string $ev
+     * @param closure $cb callable function
+     */
     function register($ev,$cb)
     {
         if( ! isset($this->eventPool[ $ev ] ) )
@@ -24,19 +36,45 @@ class PhpEvent
         $this->eventPool[ $ev ][] = $cb;
     }
 
+
+    /**
+     * trigger event with event name
+     *
+     * @param string $ev event name
+     */
     function trigger($ev)
     {
+        $results = array();
         if( isset( $this->eventPool[ $ev ] ) ) {
             $args = func_get_args();
             array_shift( $args );
-
             foreach( $this->eventPool[ $ev ] as $cb ) {
-                if( call_user_func_array( $cb , $args ) === false )
+                /**
+                 * to break the event trigger, just return false.
+                 */
+                $ret = call_user_func_array( $cb , $args );
+                if( $ret === false )
                     break;
+                $results[] = $ret;
             }
         }
+        return $results;
     }
 
+
+    /**
+     * clear event pool
+     */
+    function clear()
+    {
+        // clear event pool
+        $this->eventPool = array();
+    }
+
+
+    /**
+     * static singleton method
+     */
     static function getInstance()
     {
         static $instance;
