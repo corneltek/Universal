@@ -48,8 +48,10 @@ class PhpEvent
         if( isset( $this->eventPool[ $ev ] ) ) {
             $args = func_get_args();
             array_shift( $args );
-
             foreach( $this->eventPool[ $ev ] as $cb ) {
+                /**
+                 * to break the event trigger, just return false.
+                 */
                 $ret = call_user_func_array( $cb , $args );
                 if( $ret === false )
                     break;
