@@ -11,10 +11,10 @@
     <active>yes</active>
   </lead>
   <date>2011-12-27</date>
-  <time>18:47:41</time>
+  <time>19:01:24</time>
   <version>
-    <release>0.0.6</release>
-    <api>0.0.6</api>
+    <release>0.0.7</release>
+    <api>0.0.7</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -34,7 +34,7 @@
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="9f5b59b58691ded8bbc26cf97cd98a9c"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="a3bd0da6ee8e2376ec854b51eb22e0ba"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
-      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="a9abec9587b191006f227b72baeabcbe"/>
+      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
     </dir>
   </contents>
   <dependencies>
