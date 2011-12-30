@@ -7,6 +7,19 @@ Universal is a general proprose PHP library, includes these items beloew
 - FileUtils
 - HTTPRequest handler
 
+## Event
+
+    use Universal\Event\PhpEvent;
+    $e = PhpEvent::getInstance();
+
+    // register your handler
+    $e->register( 'test', function($a,$b,$c) {
+        // do what you want
+
+    });
+
+    // trigger event handlers
+    $e->trigger( 'test' , 1,2,3  );
 
 ## Requirement Checker
 
