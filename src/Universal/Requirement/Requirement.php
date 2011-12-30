@@ -2,6 +2,8 @@
 namespace Universal\Requirement;
 
 use Exception;
+
+class RequirePhpException extends Exception {}
 class RequireExtensionException extends Exception {} 
 class RequireFunctionException extends Exception {}
 class RequireClassException extends Exception {}
@@ -28,6 +30,14 @@ class RequireClassException extends Exception {}
 class Requirement
 {
 
+    function php($version)
+    {
+        if( version_compare( phpversion() , $version ) < 0 ) {
+            throw new RequirePhpException( "PHP Version $version is required." );
+        }
+        return true;
+    }
+
     function extensions()
     {
         $extensions = func_get_args();
@@ -35,6 +45,7 @@ class Requirement
             if( ! extension_loaded( $extensionName ) )
                 throw new RequireExtensionException( "Extension $extensionName is required" );
         }
+        return true;
     }
 
     function functions()
@@ -44,6 +55,7 @@ class Requirement
             if( ! function_exists( $function ) )
                 throw new RequireFunctionException( "Function $function is required" );
         }
+        return true;
     }
 
     function classes()
@@ -53,5 +65,6 @@ class Requirement
             if( ! class_exists( $class ) )
                 throw new RequireClassException( "Class $class is required" );
         }
+        return true;
     }
 }

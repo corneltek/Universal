@@ -15,8 +15,12 @@ class RequirementTest extends PHPUnit_Framework_TestCase
         ok( $require );
         $require->classes( 'Universal\Requirement\RequirementTest' );
 
-        $require->extensions('apc');
-        $require->extensions('curl');
+        ok( $require->extensions('apc') );
+        ok( $require->extensions('curl') );
+
+        ok( $require->php( '5.3.0' ) );
+        ok( $require->php( '5.3.8' ) );
+        ok( $require->php( '5.3' ) );
     }
 }
 
