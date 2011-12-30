@@ -12,10 +12,10 @@ class RequireClassException extends Exception {}
  * @code
  *
  * try {
- *  $require = new Universal\Requirement\Requirement;
- *  $require->extensions( 'apc','mbstring' );
- *  $require->classes( 'ClassName' , 'ClassName2' );
- *  $require->functions( 'func1' , 'func2' , 'function3' )
+ *      $require = new Universal\Requirement\Requirement;
+ *      $require->extensions( 'apc','mbstring' );
+ *      $require->classes( 'ClassName' , 'ClassName2' );
+ *      $require->functions( 'func1' , 'func2' , 'function3' )
  * }
  * catch( RequireExtensionException $e ) {
  * }
