@@ -30,6 +30,11 @@ class RequireClassException extends Exception {}
 class Requirement
 {
 
+    /**
+     * check php version
+     *
+     * @param string $version
+     */
     function php($version)
     {
         if( version_compare( phpversion() , $version ) < 0 ) {
@@ -38,6 +43,10 @@ class Requirement
         return true;
     }
 
+
+    /**
+     * check extensions
+     */
     function extensions()
     {
         $extensions = func_get_args();
@@ -48,6 +57,9 @@ class Requirement
         return true;
     }
 
+    /**
+     * check functions
+     */
     function functions()
     {
         $functions = func_get_args();
@@ -58,6 +70,10 @@ class Requirement
         return true;
     }
 
+
+    /**
+     * check classes
+     */
     function classes()
     {
         $classes = func_get_args();
@@ -67,4 +83,7 @@ class Requirement
         }
         return true;
     }
+
 }
+
+
