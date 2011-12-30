@@ -4,7 +4,7 @@ use Exception;
 
 class ApcClassLoader extends SplClassLoader
 {
-    private $_apcNamespace;
+    private $_apcNamespace = 'apc';
 
     public function __construct($namespaces = null)
     {
