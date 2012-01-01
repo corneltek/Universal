@@ -32,6 +32,20 @@ class BasePathClassLoader
         $this->paths = $paths;
     }
 
+
+    /**
+     * extract PHP5LIB paths from env 
+     */
+    public function useEnvPhpLib()
+    {
+        $lib = getenv('PHP5LIB');
+        if( $lib ) {
+            $paths = explode( ':' , $lib );
+            foreach( $paths as $path )
+                $this->paths[] = $path;
+        }
+    }
+
     /**
      * find class file path
      *
