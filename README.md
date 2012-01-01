@@ -7,6 +7,29 @@ Universal is a general proprose PHP library, includes these items beloew
 - FileUtils
 - HTTPRequest handler
 
+## Classloader
+
+### SplClassLoader
+
+    use Universal\ClassLoader\SplClassLoader;
+    $loader = new \UniversalClassLoader\SplClassLoader( array(  
+            'Vendor\Onion' => 'path/to/Onion',
+            'Vendor\CLIFramework' => 'path/to/CLIFramework',
+    ));
+    $loader->addNamespace(array( 
+        'NS' => 'path'
+    ));
+    $loader->useIncludePath();
+    $loader->register();
+
+### BasePathClassLoader
+
+    $loader = new BasePathClassLoader( array( 
+        'vendor/pear', 'external_vendor/src'
+    ) );
+    $loader->useEnvPhpLib();
+    $loader->register();
+
 ## Event
 
     use Universal\Event\PhpEvent;
