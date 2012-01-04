@@ -1,6 +1,11 @@
 <?php 
 namespace Universal\Http;
 
+/**
+ * $req = new HttpRequest;
+ * $req->files->uploaded_file->name;
+ * $req->files->uploaded_file->size;
+ */
 class FilesParameter extends Parameter
 {
     public $hash;
@@ -22,26 +27,15 @@ class FilesParameter extends Parameter
                         'error' => $hash[$name]['error'],
                         'tmp_name' => $hash[$name]['tmp_name'],
                     );
-                    $files[ $name ][] = new self( $attributes );
+                    $files[ $name ][] = new File( $attributes );
                 }
             }
             else {
                 // single file
-                $files[ $name ] = new self( $hash[ $name ] );
+                $files[ $name ] = new File( $hash[ $name ] );
             }
         }
         $this->hash = $files;
-
     }
 
-
-        /*
-        foreach ($_FILES["pictures"]["error"] as $key => $error) {
-            if ($error == UPLOAD_ERR_OK) {
-                $tmp_name = $_FILES["pictures"]["tmp_name"][$key];
-                $name = $_FILES["pictures"]["name"][$key];
-                move_uploaded_file($tmp_name, "data/$name");
-            }
-        }
-     */
 }
