@@ -24,39 +24,50 @@ class File extends Parameter
         return move_uploaded_file( $this->hash['tmp_name'] , $filepath);
     }
 
-    public function getFilepath()
-    {
-        return $this->hash['name'];
-    }
 
+    /**
+     * use pathinfo function to parse path info
+     *
+     * @return array pathinfo
+     */
     public function getPathInfo()
     {
         static $info;
         return $info ?: $info = pathinfo( $this->hash['name'] );
     }
 
+
+    /**
+     * return filename extension
+     */
     public function getExtension()
     {
         $info = $this->getPathInfo();
         return $info['extension'];
     }
 
+
+    /**
+     * get filename
+     */
     public function getFilename()
     {
         $info = $this->getPathInfo();
         return $info['basename'];   // filename is "only" filename, basename is the "filename".
     }
 
+
+    /**
+     * convert current tempfile to SplFileInfo object
+     */
     public function asSplFileInfo()
     {
         return new SplFileInfo( $this->hash['tmp_name'] );
     }
 
-    public function __toString()
-    {
-        return @$this->hash[ 'name' ];
-    }
-
+    /**
+     * is upload successed ?
+     */
     public function isSuccess()
     {
         return $this->hash['error'] == UPLOAD_ERR_OK;
@@ -67,11 +78,17 @@ class File extends Parameter
         return $this->hash['error'] != UPLOAD_ERR_OK;
     }
 
+    /**
+     * return error code
+     */
     public function getErrorCode()
     {
         return $this->hash['error'];
     }
 
+    /**
+     * return pretty format size
+     */
     public function getPrettySize()
     {
         $size = $this->hash['size'];
@@ -89,6 +106,9 @@ class File extends Parameter
         return $size / $gb . ' GB';
     }
 
+    /**
+     * return upload error message
+     */
     public function getErrorMessage()
     {
         $error = $this->hash['error'];
@@ -133,6 +153,11 @@ class File extends Parameter
                 return _("Unknown Error.");
         }
 
+    }
+
+    public function __toString()
+    {
+        return @$this->hash[ 'name' ];
     }
 
 }

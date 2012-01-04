@@ -20,11 +20,11 @@ class FilesParameter extends Parameter
                 $files[ $name ] = array();
                 for( $i = 0 ; $i < count( $hash[ $name ]['error'] ) ; ++$i ) {
                     $attributes = array( 
-                        'name' => $hash[$name]['name'],
-                        'size' => $hash[$name]['size'],
-                        'type' => $hash[$name]['type'],
-                        'error' => $hash[$name]['error'],
-                        'tmp_name' => $hash[$name]['tmp_name'],
+                        'name' => $hash[$name]['name'][ $i ],
+                        'size' => $hash[$name]['size'][ $i ],
+                        'type' => $hash[$name]['type'][ $i ],
+                        'error' => $hash[$name]['error'][ $i ],
+                        'tmp_name' => $hash[$name]['tmp_name'][ $i ],
                     );
                     $files[ $name ][] = new File( $attributes );
                 }
