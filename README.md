@@ -30,6 +30,24 @@ Universal is a general proprose PHP library, includes these items beloew
     $loader->useEnvPhpLib();
     $loader->register();
 
+## HttpRequest
+
+For multiple files:
+
+    $req = new HttpRequest;
+    foreach( $req->files->uploaded as $f ) {
+        $extname = $f->getExtension();
+        $filename = $f->getPathname();
+    }
+
+    $req->param( 'username' );   // get $_REQUEST['username'];
+
+    $req->get->username;    // get $_GET['username'];
+
+    $req->post->username;   // get $_POST['username'];
+
+    $req->server->path_info;  // get $_SERVER['path_info'];
+
 ## Event
 
     use Universal\Event\PhpEvent;
