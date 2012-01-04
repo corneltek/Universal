@@ -65,6 +65,11 @@ class File extends Parameter
         return new SplFileInfo( $this->hash['tmp_name'] );
     }
 
+
+    /**
+     * Error checking methods
+     */
+
     /**
      * is upload successed ?
      */
@@ -73,7 +78,28 @@ class File extends Parameter
         return $this->hash['error'] == UPLOAD_ERR_OK;
     }
 
-    public function hasError()
+    public function isErrorPartial()
+    {
+        return $this->hash['error'] == UPLOAD_ERR_PARTIAL;
+    }
+
+    public function isErrorNoFile()
+    {
+        return $this->hash['error'] == UPLOAD_ERR_NO_FILE;
+    }
+
+    public function isErrorCantWrite()
+    {
+        return $this->hash['error'] == UPLOAD_ERR_CANT_WRITE;
+    }
+
+    public function isErrorExceedSize()
+    {
+        return $this->hash['error'] == UPLOAD_ERR_INI_SIZE
+            || $this->hash['error'] == UPLOAD_ERR_FORM_SIZE;
+    }
+
+    public function isError()
     {
         return $this->hash['error'] != UPLOAD_ERR_OK;
     }
