@@ -19,7 +19,8 @@ class File extends Parameter
      *
      * @param string $filepath
      */
-    public function moveFile( $filepath ) {
+    public function move( $filepath ) 
+    {
         return move_uploaded_file( $this->hash['tmp_name'] , $filepath);
     }
 
