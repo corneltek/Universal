@@ -41,6 +41,11 @@ class FilesParameterTest extends PHPUnit_Framework_TestCase
         ok( $req );
         ok( is_array( $req->files->uploaded ) );
 
+        foreach( $req->files->uploaded as $f ) {
+            ok( $f );
+            isa_ok( 'Universal\Http\File' , $f );
+        }
+
         isa_ok( 'Universal\Http\Parameter', $req->post );
         isa_ok( 'Universal\Http\Parameter', $req->get );
     }

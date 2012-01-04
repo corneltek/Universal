@@ -9,7 +9,6 @@ namespace Universal\Http;
 class FilesParameter extends Parameter
 {
     public $hash;
-    public $files;
 
     function __construct( $hash )
     {
