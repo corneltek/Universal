@@ -136,7 +136,7 @@ class File extends Parameter
     {
         if( is_string( $limitSize ) ) {
             // parse size string
-            if( preg_match( '/[0-9.]+\s*[MGK]B/i' , $limitSize , $regs ) ) {
+            if( preg_match( '/[0-9.]+\s*[MGK]B?/i' , $limitSize , $regs ) ) {
                 $n = intval($regs[1]);
                 $unit = strtolower( $regs[2] );
                 switch( $unit ) 
