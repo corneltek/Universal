@@ -132,6 +132,33 @@ class File extends Parameter
         return $size / $gb . ' GB';
     }
 
+    public function exceedSize( $limitSize )
+    {
+        if( is_string( $limitSize ) ) {
+            // parse size string
+            if( preg_match( '/[0-9.]+\s*[MGK]B/i' , $limitSize , $regs ) ) {
+                $n = intval($regs[1]);
+                $unit = strtolower( $regs[2] );
+                switch( $unit ) 
+                {
+                case 'm':
+                    return ( $this->hash['size'] > $n * 1024 * 1024 );
+                    break;
+                case 'k':
+                    return ( $this->hash['size'] > $n * 1024 );
+                    break;
+                case 'g':
+                    return ( $this->hash['size'] > $n * 1024 * 1024 * 1024 );
+                    break;
+                default:
+                    // check as bytes
+                    return ( $this->hash['size'] > $n );
+                    break;
+                }
+            }
+        }
+    }
+
     /**
      * return upload error message
      */
