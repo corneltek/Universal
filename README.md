@@ -48,6 +48,29 @@ For multiple files:
 
     $req->server->path_info;  // get $_SERVER['path_info'];
 
+
+## Session
+
+use ObjectContainer to pass options:
+
+    $container = new Universal\Container\ObjectContainer;
+    $container->state = function() {
+        return new Universal\Session\State\NativeState;
+    };
+    $container->storage = function() {
+        return new Universal\Session\Storage\NativeStorage;
+    };
+
+Session:
+
+    $session = new Universal\Session\Session(array(  
+        'state'   => new Universal\Session\State\NativeState,
+        'storage' => new Universal\Session\Storage\NativeStorage,
+    ));
+    $counter = $session->get( 'counter' );
+    $session->set( 'counter' , ++$counter );
+    echo $session->get( 'counter' );
+
 ## Event
 
     use Universal\Event\PhpEvent;

@@ -14,17 +14,17 @@ class Session
         {
             $this->state = isset($options['state']) 
                 ? $options['state'] 
-                : new State\Native;
+                : new State\NativeState;
                 // : new State\Cookie; // or built-in
 
             $this->storage = isset($options['storage']) 
                 ? $options['storage'] 
-                : new SessionStorage\NativeStorage; // Use php native session storage by default
+                : new Storage\NativeStorage; // Use php native session storage by default
         }
         elseif ( is_a( '\Universal\Container\ObjectContainer' , $options ) ) 
         {
-            $this->state   = $options->state   ?: new State\Native;
-            $this->storage = $options->storage ?: new SessionStorage\NativeStorage;
+            $this->state   = $options->state   ?: new State\NativeState;
+            $this->storage = $options->storage ?: new Storage\NativeStorage;
         }
 
         // load session data by session id.

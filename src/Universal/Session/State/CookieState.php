@@ -1,7 +1,7 @@
 <?php 
 namespace Universal\Session\State;
 
-class Cookie
+class CookieState
 {
     public $cookieParams;
     public $sessionKey;

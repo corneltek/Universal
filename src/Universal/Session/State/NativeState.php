@@ -1,7 +1,7 @@
 <?php 
 namespace Universal\Session\State;
 
-class Native 
+class NativeState
 {
 
     function __construct()

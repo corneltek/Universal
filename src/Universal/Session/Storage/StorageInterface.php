@@ -1,5 +1,5 @@
 <?php 
-namespace Universal\Session\SessionStorage;
+namespace Universal\Session\Storage;
 
 interface StorageInterface
 {
