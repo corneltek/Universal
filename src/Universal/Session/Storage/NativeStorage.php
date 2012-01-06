@@ -1,6 +1,10 @@
 <?php 
 namespace Universal\Session\Storage;
 
+/**
+ * Native php session storage
+ *
+ */
 class NativeStorage
     implements StorageInterface
 {
@@ -41,5 +45,17 @@ class NativeStorage
         session_destroy();
     }
 
+
+
+
+    public function setGcProbability($d)
+    {
+        ini_set('session.gc_probability', $d);
+    }
+
+    public function setGcDivisor($d)
+    {
+        ini_set('session.gc_divisor', $d);
+    }
 
 }
