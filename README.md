@@ -30,6 +30,14 @@ Universal is a general proprose PHP library, includes these items beloew
     $loader->useEnvPhpLib();
     $loader->register();
 
+### Include Path Manipulator
+
+Include Path manipulator
+ 
+    $includer = new PathIncluder(array( 'to/path', ... ));
+    $includer->add( 'path/to/lib' );
+    $includer->setup();   // write set_include_path
+
 ## HttpRequest
 
 For multiple files:
