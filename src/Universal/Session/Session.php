@@ -31,6 +31,16 @@ class Session
         $this->storage->load( $this->state->getSid() );
     }
 
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    public function getStorage()
+    {
+        return $this->storage;
+    }
+
     public function set($name,$value)
     {
         return $this->storage->set( $name, $value );

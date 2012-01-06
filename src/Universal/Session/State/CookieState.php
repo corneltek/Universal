@@ -5,12 +5,12 @@ class CookieState
 {
     public $cookieParams;
     public $sessionKey;
+    public $sessionId;
 
     function __construct($options = array())
     {
         $this->sessionKey = isset($options['cookie_id']) ? $options['cookie_id'] : 'session';
         // $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
-
 
 
         /* default cookie param */
@@ -26,12 +26,12 @@ class CookieState
             array_merge( $cookieParams , (array) $options['cookie_params'] ) :
             $cookieParams;
 
-        $sid = $this->getSid();
-        if( ! $this->validateSid($sid) )
+        $this->sessionId = $this->getSid();
+        if( ! $this->validateSid($this->sessionId) )
             throw new Exception( "Invalid Session Id" );
 
         if( ! isset($_SERVER['argv']) ) {
-            $this->write( $sid );
+            $this->write( $this->sessionId );
         }
     }
 
@@ -40,22 +40,47 @@ class CookieState
         return isset($_COOKIE[$this->sessionKey]) ? $_COOKIE[$this->sessionKey] : $this->generateSid();
     }
 
+    /**
+     * set default cookie params
+     */
+    public function setCookieParams(array $config)
+    {
+        $this->cookieParams = array_merge( $this->cookieParams , $config );
+    }
+
+
+    /**
+     * let current cookie be expired.
+     */
+    public function setCookieExpire()
+    {
+        $this->setSessionCookie(array( 'expire' => time() ));
+    }
+
+    public function setSessionCookie($config = null)
+    {
+        if( $config )
+            $config = array_merge( $this->cookieParams , $config );
+
+        // bool setcookie ( string $name [, string $value [, int $expire = 0 [, 
+        //    string $path [, string $domain [, bool $secure = false [, bool 
+        //    $httponly = false ]]]]]] )
+        setcookie( $this->sessionKey , $this->sessionId, 
+            @$config['expire'],
+            @$config['path'],
+            @$config['domain'],
+            @$config['secure'],
+            @$config['httponly']
+        );
+    }
+
 
     /**
      * write cookie
      */
-    public function write($sid)
+    public function write()
     {
-        // bool setcookie ( string $name [, string $value [, int $expire = 0 [, 
-        //    string $path [, string $domain [, bool $secure = false [, bool 
-        //    $httponly = false ]]]]]] )
-        setcookie( $this->sessionKey , $sid , 
-            $this->cookieParams['expire'],
-            $this->cookieParams['path'],
-            $this->cookieParams['domain'],
-            @$this->cookieParams['secure'],
-            @$this->cookieParams['httponly']
-        );
+        $this->setSessionCookie();
     }
 
 
