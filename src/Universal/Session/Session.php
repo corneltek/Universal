@@ -14,6 +14,7 @@ class Session
 {
     private $state;
     private $storage;
+    private $saveHandler;
 
 
     /**
@@ -37,14 +38,30 @@ class Session
                 : new State\NativeState;
                 // : new State\Cookie; // or built-in
 
-            $this->storage = isset($options['storage']) 
-                ? $options['storage'] 
-                : new Storage\NativeStorage; // Use php native session storage by default
+            if( isset($options['storage']) ) {
+                $this->storage = $options['storage'];
+            }
+            elseif( isset($options['save_handler']) ) {
+                $this->saveHandler = $options['save_handler'];
+                $this->storage = new Storage\NativeStorage;
+            }
+            else {
+                $this->storage = new Storage\NativeStorage;
+            }
         }
         elseif ( is_a( '\Universal\Container\ObjectContainer', $options ) ) 
         {
             $this->state   = $options->state   ?: new State\NativeState;
-            $this->storage = $options->storage ?: new Storage\NativeStorage;
+
+            /* use save handler or storage */
+            if( $s = $options->storage ) {
+                $this->storage = $s;
+            } elseif( $h = $options->saveHandler ) {
+                $this->saveHandler = $h;
+                $this->storage = new Storage\NativeStorage;
+            } else {
+                $this->storage = new Storage\NativeStorage;
+            }
         }
 
         // load session data by session id.
