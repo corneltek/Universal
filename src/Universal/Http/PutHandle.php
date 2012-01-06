@@ -5,6 +5,10 @@ namespace Universal\Http;
  * $put = new Universal\Http\Put;
  * $data = $put->read(1024);
  * $put->close();
+ *
+ * TODO:
+ *
+ * use SplFileObject
  */
 class PutHandle
 {
