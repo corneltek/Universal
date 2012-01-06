@@ -46,8 +46,6 @@ class NativeStorage
     }
 
 
-
-
     public function setGcProbability($d)
     {
         ini_set('session.gc_probability', $d);
