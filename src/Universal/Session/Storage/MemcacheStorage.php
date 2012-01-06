@@ -29,6 +29,11 @@ class MemcacheStorage
         $this->connection->addServer( $host, $port, $persistent, $weight, $timeout );
     }
 
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
     public function setTtl($ttl)
     {
         $this->ttl = $ttl;
