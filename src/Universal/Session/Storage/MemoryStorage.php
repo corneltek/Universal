@@ -17,7 +17,7 @@ class MemoryStorage
 
     public function get($name) 
     {
-        return @$this->_data[ $name ];
+        return isset( $this->_data[$name] ) ? $this->_data[ $name ] : null;
     }
 
     public function has($name)
