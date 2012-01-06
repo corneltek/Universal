@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-01-05</date>
-  <time>13:16:13</time>
+  <date>2012-01-06</date>
+  <time>18:42:51</time>
   <version>
-    <release>0.0.11</release>
-    <api>0.0.11</api>
+    <release>0.0.12</release>
+    <api>0.0.12</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -29,12 +29,12 @@
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
       <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="340c111cfe55d2d0e0d4f76daaaac29a"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="d5926598afe94b250bfb4069d0d13104"/>
+      <file name="tests/Universal/Session/SessionTest.php" role="test" md5sum="a208ccaef8ce3200cf178a24fe19b7f8"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="1b3bda9516c07a1241ef6495a68dfb8c"/>
       <file name="tests/bootstrap.php" role="test" md5sum="bbba1757577fcdde93c35ec0143b7a53"/>
       <file name="tests/helpers.php" role="test" md5sum="aae3a65fac318e1871de47062f2e4096"/>
       <file name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
-      <file name="src/.DS_Store" role="php" md5sum="7b2e2749f01fea0cbac075eb9be0b43f"/>
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="0e46d7f6e8094c39bfae519763eeef14"/>
       <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="b7f0d7eed8256dad677953fd9063a580"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="dd8535a5af05cedafd446ddc80a152e6"/>
@@ -46,8 +46,16 @@
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="f5b722080292ea305f304a7bfb05ecc5"/>
       <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
+      <file name="src/Universal/Session/Session.php" role="php" md5sum="b1c454c5d7bd0d7fc53772106a20be2f"/>
+      <file name="src/Universal/Session/SessionManager.php" role="php" md5sum="a991fedf18a7983cac698b0f3f6d46e1"/>
+      <file name="src/Universal/Session/State/CookieState.php" role="php" md5sum="eb0dcf9df13c41fcafed5eda8d575b52"/>
+      <file name="src/Universal/Session/State/NativeState.php" role="php" md5sum="f0524d8e89b0563b26f45afc00abc1d6"/>
+      <file name="src/Universal/Session/Storage/MemcacheStorage.php" role="php" md5sum="8299eaa6c2241726bac6db287e97deda"/>
+      <file name="src/Universal/Session/Storage/MemoryStorage.php" role="php" md5sum="e2062bbf432c1f43f4fbcb8debd4b80c"/>
+      <file name="src/Universal/Session/Storage/NativeStorage.php" role="php" md5sum="47a30fa1ffc8d80c5dc644efed28e3b0"/>
+      <file name="src/Universal/Session/Storage/StorageInterface.php" role="php" md5sum="ed7eedec9aa58e63d285b4b78c52f782"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="6f90fd207143c71aa9b3680f0cd756f1"/>
+      <file name="README.md" role="doc" md5sum="3a31d5946ad9d7fc68b65153c3f895fd"/>
     </dir>
   </contents>
   <dependencies>
@@ -67,12 +75,12 @@
       <install name="tests/Universal/Event/PhpEventTest.php" as="Universal/Event/PhpEventTest.php"/>
       <install name="tests/Universal/Http/FilesParameterTest.php" as="Universal/Http/FilesParameterTest.php"/>
       <install name="tests/Universal/Requirement/RequirementTest.php" as="Universal/Requirement/RequirementTest.php"/>
+      <install name="tests/Universal/Session/SessionTest.php" as="Universal/Session/SessionTest.php"/>
       <install name="tests/UniversalClassLoader/SplClassLoaderTest.php" as="UniversalClassLoader/SplClassLoaderTest.php"/>
       <install name="tests/bootstrap.php" as="bootstrap.php"/>
       <install name="tests/helpers.php" as="helpers.php"/>
       <install name="tests/lib/Foo/Bar.php" as="lib/Foo/Bar.php"/>
       <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
-      <install name="src/.DS_Store" as=".DS_Store"/>
       <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
       <install name="src/Universal/ClassLoader/BasePathClassLoader.php" as="Universal/ClassLoader/BasePathClassLoader.php"/>
       <install name="src/Universal/ClassLoader/SplClassLoader.php" as="Universal/ClassLoader/SplClassLoader.php"/>
@@ -84,6 +92,14 @@
       <install name="src/Universal/Http/HttpRequest.php" as="Universal/Http/HttpRequest.php"/>
       <install name="src/Universal/Http/Parameter.php" as="Universal/Http/Parameter.php"/>
       <install name="src/Universal/Requirement/Requirement.php" as="Universal/Requirement/Requirement.php"/>
+      <install name="src/Universal/Session/Session.php" as="Universal/Session/Session.php"/>
+      <install name="src/Universal/Session/SessionManager.php" as="Universal/Session/SessionManager.php"/>
+      <install name="src/Universal/Session/State/CookieState.php" as="Universal/Session/State/CookieState.php"/>
+      <install name="src/Universal/Session/State/NativeState.php" as="Universal/Session/State/NativeState.php"/>
+      <install name="src/Universal/Session/Storage/MemcacheStorage.php" as="Universal/Session/Storage/MemcacheStorage.php"/>
+      <install name="src/Universal/Session/Storage/MemoryStorage.php" as="Universal/Session/Storage/MemoryStorage.php"/>
+      <install name="src/Universal/Session/Storage/NativeStorage.php" as="Universal/Session/Storage/NativeStorage.php"/>
+      <install name="src/Universal/Session/Storage/StorageInterface.php" as="Universal/Session/Storage/StorageInterface.php"/>
       <install name="Changes.md" as="Changes.md"/>
       <install name="README.md" as="README.md"/>
     </filelist>
