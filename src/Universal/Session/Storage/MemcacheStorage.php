@@ -41,6 +41,14 @@ class MemcacheStorage
         $this->setData( $data );
     }
 
+    /**
+     * sync memory data to backend
+     */
+    public function sync()
+    {
+        $this->connection->set( $this->sessionId , $this->_data );
+    }
+
     public function destroy()
     {
 
@@ -48,7 +56,7 @@ class MemcacheStorage
 
     public function __destruct()
     {
-        $this->connection->set( $this->sessionId , $this->_data );
+        $this->sync();
     }
 
 }

@@ -14,6 +14,8 @@ interface StorageInterface
 
     public function destroy();
 
+    public function sync();
+
     public function load($sessionId);
 
 }

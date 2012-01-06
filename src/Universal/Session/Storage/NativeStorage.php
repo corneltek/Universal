@@ -7,7 +7,7 @@ class NativeStorage
 
     public function get($name)
     {
-        return $_SESSION[$name];
+        return isset($_SESSION[$name]) ? $_SESSION[$name]: null;
     }
 
     public function set($name,$value) 
@@ -30,8 +30,16 @@ class NativeStorage
 
     }
 
+    public function sync()
+    {
+        // we don't really need this.
+        // session_write_close();
+    }
+
     public function destroy()
     {
         session_destroy();
     }
+
+
 }
