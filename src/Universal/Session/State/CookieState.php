@@ -11,15 +11,20 @@ class CookieState
         $this->sessionKey = isset($options['cookie_id']) ? $options['cookie_id'] : 'session';
         // $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
 
+
+
         /* default cookie param */
-        $this->cookieParams = isset($options['cookie_params']) ? $options['cookie_params'] 
-            : array(
-                'path'     => '/',
-                'expire'   => 0,
-                'domain'   => null, //
-                'secure'   => false, // false,
-                'httponly' => false, // false,
-            );
+        $cookieParams = array(
+            'path'     => '/',
+            'expire'   => 0,
+            'domain'   => null, //
+            'secure'   => false, // false,
+            'httponly' => false, // false,
+        );
+
+        $this->cookieParams = isset( $options['cookie_params'] ) ? 
+            array_merge( $cookieParams , (array) $options['cookie_params'] ) :
+            $cookieParams;
 
         $sid = $this->getSid();
         if( ! $this->validateSid($sid) )
