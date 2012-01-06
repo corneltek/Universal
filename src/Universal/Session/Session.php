@@ -34,8 +34,23 @@ class Session
         return $this->storage->has( $name );
     }
 
-    public function offsetSet($name,$value) { }
-    public function offsetGet($name,$value) { }
-    public function offsetExists($name,$value) { }
-    public function offsetUnset($name) {  }
+    public function offsetSet($name,$value) 
+    {
+        return $this->storage->set( $name, $value );
+    }
+    public function offsetGet($name) 
+    {
+        return $this->storage->get( $name );
+    }
+
+    public function offsetExists($name) 
+    {
+        return $this->storage->has( $name );
+    }
+
+    public function offsetUnset($name) 
+    {
+        return $this->storage->delete( $name );
+    }
+
 }

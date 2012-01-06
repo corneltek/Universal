@@ -3,6 +3,7 @@ namespace Universal\Session\State;
 
 class Cookie
 {
+    public $cookieParams = array();
     public $sessionKey;
 
     /**
@@ -14,12 +15,16 @@ class Cookie
     {
         $this->sessionKey = isset($options['cookie_id']) ? $options['cookie_id'] : 'session';
         $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
+
+        $sid = $this->getSid();
+        if( ! $sid )
+            $sid = $this->generateSid();
+
     }
 
     public function getSid()
     {
-        return isset( $_COOKIE[$this->sessionKey] ) ?
-                    $_COOKIE[$this->sessionKey] : $this->generateSid();
+        return @$_COOKIE[$this->sessionKey];
     }
 
 
@@ -31,7 +36,6 @@ class Cookie
         return sha1( rand() . microtime() );
     }
 
-
     /**
      * validate sid string
      */
@@ -42,9 +46,18 @@ class Cookie
 
 
     /**
+     * sign data with sha1 and secret key
+     */
+    public function sign($data)
+    {
+        return hash_hmac('sha1', $data , $this->secret );
+        // return hash_hmac('sha256', $data , $this->secret );
+    }
+
+    /**
      * update state, cookie expiry time ... etc
      */
-    function update()
+    function update($sid,$data,$params = array() )
     {
 
     }
