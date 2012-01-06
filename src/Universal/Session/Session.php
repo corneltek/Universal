@@ -78,6 +78,11 @@ class Session
         return $this->storage;
     }
 
+    public function getSaveHandler()
+    {
+        return $this->saveHandler;
+    }
+
     public function set($name,$value)
     {
         return $this->storage->set( $name, $value );
