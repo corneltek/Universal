@@ -2,6 +2,13 @@
 namespace Universal\Session;
 use ArrayAccess;
 
+
+/**
+ * Session manager class.
+ *
+ * TODO:
+ * - support Session Save Handler 
+ */
 class Session 
     implements ArrayAccess
 {
