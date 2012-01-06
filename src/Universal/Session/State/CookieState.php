@@ -1,16 +1,56 @@
 <?php 
 namespace Universal\Session\State;
+use RuntimeException;
 
 class CookieState
 {
+
+    /**
+     * @var array cookie parameter array
+     */
     public $cookieParams;
+
+    /**
+     * @var string session key
+     */
     public $sessionKey;
+
+
+    /**
+     * @var string session id string
+     */
     public $sessionId;
 
+    /**
+     * @var callable sid generator
+     */
+    protected $sidGenerator;
+
+    /**
+     * @var callable sid validator
+     */
+    protected $sidValidator;
+
+
+    /**
+     * options:
+     *
+     *   - cookie_id: 
+     *   - cookie_params:
+     *   - sid_generator: callable, return session id string
+     *   - sid_validator: callable, validate session id string
+     */
     function __construct($options = array())
     {
         $this->sessionKey = isset($options['cookie_id']) ? $options['cookie_id'] : 'session';
         // $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
+
+        if( isset($options['sid_generator']) ) {
+            $this->sidGenerator = $options['sid_generator'];
+        }
+        if( isset($options['sid_validator']) ) {
+            $this->sidValidator = $options['sid_validator'];
+        }
 
 
         /* default cookie param */
@@ -89,6 +129,16 @@ class CookieState
      */
     public function generateSid()
     {
+
+        if( $this->sidGenerator ) {
+            if( callable( $this->sidGenerator ) ) {
+                return $this->sidGenerator();
+            } else {
+                throw new RuntimeException('sid generator is not callable.');
+            }
+        }
+
+
         return sha1( rand() . microtime() );
     }
 
@@ -97,6 +147,13 @@ class CookieState
      */
     public function validateSid($sid)
     {
+        if( $this->sidValidator ) {
+            if( callable($this->sidValidator) ) {
+                return $this->sidValidator($sid);
+            } else {
+                throw new RuntimeException('sid validator is not callable.');
+            }
+        }
         return preg_match( '/\A[0-9a-f]{40}\Z/' , $sid );
     }
 
