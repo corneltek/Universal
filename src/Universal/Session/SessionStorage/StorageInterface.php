@@ -12,4 +12,6 @@ interface StorageInterface
 
     public function delete($name);
 
+    public function destroy();
+
 }

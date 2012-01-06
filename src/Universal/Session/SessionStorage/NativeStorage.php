@@ -30,4 +30,8 @@ class NativeStorage
 
     }
 
+    public function destroy()
+    {
+        session_destroy();
+    }
 }
