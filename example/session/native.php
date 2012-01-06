@@ -7,7 +7,11 @@ $session = new Universal\Session\Session(array(
     'storage' => new Universal\Session\Storage\NativeStorage,
 ));
 */
+
 $session = new Universal\Session\Session;
 $counter = $session->get( 'counter' );
 $session->set( 'counter' , ++$counter );
 echo $session->get( 'counter' );
+
+$counter = $session->counter;
+$session->counter += 2;
