@@ -20,6 +20,9 @@ class CookieState
                 'secure'   => null, // false,
                 'httponly' => null, // false,
             );
+
+        $sid = $this->getSid();
+        $this->write( $sid );
     }
 
     public function getSid()
@@ -73,15 +76,5 @@ class CookieState
         // return hash_hmac('sha256', $data , $this->secret );
     }
     */
-
-
-
-    /**
-     * update state, cookie expiry time ... etc
-     */
-    function update($sid,$data,$params = array() )
-    {
-
-    }
 
 }

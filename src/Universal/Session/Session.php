@@ -3,7 +3,7 @@ namespace Universal\Session;
 use ArrayAccess;
 
 class Session 
-        implements ArrayAccess
+    implements ArrayAccess
 {
     private $state;
     private $storage;
@@ -21,7 +21,7 @@ class Session
                 ? $options['storage'] 
                 : new Storage\NativeStorage; // Use php native session storage by default
         }
-        elseif ( is_a( '\Universal\Container\ObjectContainer' , $options ) ) 
+        elseif ( is_a( '\Universal\Container\ObjectContainer', $options ) ) 
         {
             $this->state   = $options->state   ?: new State\NativeState;
             $this->storage = $options->storage ?: new Storage\NativeStorage;

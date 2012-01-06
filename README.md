@@ -61,11 +61,21 @@ use ObjectContainer to pass options:
         return new Universal\Session\Storage\NativeStorage;
     };
 
-Session:
+Native Session:
 
     $session = new Universal\Session\Session(array(  
         'state'   => new Universal\Session\State\NativeState,
         'storage' => new Universal\Session\Storage\NativeStorage,
+    ));
+    $counter = $session->get( 'counter' );
+    $session->set( 'counter' , ++$counter );
+    echo $session->get( 'counter' );
+
+Session with memcache backend:
+
+    $session = new Universal\Session\Session(array(  
+        'state'   => new Universal\Session\State\CookieState,
+        'storage' => new Universal\Session\Storage\MemcacheStorage,
     ));
     $counter = $session->get( 'counter' );
     $session->set( 'counter' , ++$counter );

@@ -6,7 +6,7 @@ class NativeState
 
     function __construct()
     {
-        if( ! isset($_SESSION ))
+        if( ! isset($_SESSION) )
             session_start();
     }
 
