@@ -1,6 +1,6 @@
 <?php 
-
 namespace Universal\Session;
+use ArrayAccess;
 
 class Session 
         implements ArrayAccess
@@ -10,10 +10,14 @@ class Session
 
     public function __construct( $options = array() )
     {
-        $this->state = isset($options['state']) ? $options['state'] : new State\CookieState; // or built-in
+        $this->state = isset($options['state']) 
+            ? $options['state'] 
+            : new State\Native;
+            // : new State\Cookie; // or built-in
 
-        $this->storage = isset($options['storage']) ? $options['storage'] : 
-                    new SessionStorage\NativeStorage; // Use php native session storage by default
+        $this->storage = isset($options['storage']) 
+            ? $options['storage'] 
+            : new SessionStorage\NativeStorage; // Use php native session storage by default
 
         // load session data by session id.
         $this->storage->load( $this->state->getSid() );

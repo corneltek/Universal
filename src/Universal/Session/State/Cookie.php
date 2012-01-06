@@ -3,28 +3,46 @@ namespace Universal\Session\State;
 
 class Cookie
 {
-    public $cookieParams = array();
+    public $cookieParams;
     public $sessionKey;
-
-    /**
-     * secret string to sign cookie data
-     */
-    private $secret;
 
     function __construct($options = array())
     {
         $this->sessionKey = isset($options['cookie_id']) ? $options['cookie_id'] : 'session';
-        $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
+        // $this->secret     = isset($options['secret']) ? $options['secret'] : md5(microtime());
 
-        $sid = $this->getSid();
-        if( ! $sid )
-            $sid = $this->generateSid();
-
+        /* default cookie param */
+        $this->cookieParams = isset($options['cookie_params']) ? $options['cookie_params'] 
+            : array(
+                'path'     => '/',
+                'expire'   => 0,
+                'domain'   => null, //
+                'secure'   => null, // false,
+                'httponly' => null, // false,
+            );
     }
 
     public function getSid()
     {
-        return @$_COOKIE[$this->sessionKey];
+        return isset($_COOKIE[$this->sessionKey]) ? $_COOKIE[$this->sessionKey] : $this->generateSid();
+    }
+
+
+    /**
+     * write cookie
+     */
+    public function write($sid)
+    {
+        // bool setcookie ( string $name [, string $value [, int $expire = 0 [, 
+        //    string $path [, string $domain [, bool $secure = false [, bool 
+        //    $httponly = false ]]]]]] )
+        setcookie( $this->sessionKey , $sid , 
+            $this->cookieParams['expire'],
+            $this->cookieParams['path'],
+            $this->cookieParams['domain'],
+            @$this->cookieParams['secure'],
+            @$this->cookieParams['httponly']
+        );
     }
 
 
@@ -48,21 +66,20 @@ class Cookie
     /**
      * sign data with sha1 and secret key
      */
+    /*
     public function sign($data)
     {
         return hash_hmac('sha1', $data , $this->secret );
         // return hash_hmac('sha256', $data , $this->secret );
     }
+    */
+
+
 
     /**
      * update state, cookie expiry time ... etc
      */
     function update($sid,$data,$params = array() )
-    {
-
-    }
-
-    function _setCookie()
     {
 
     }
