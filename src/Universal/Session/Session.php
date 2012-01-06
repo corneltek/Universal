@@ -8,6 +8,19 @@ class Session
     private $state;
     private $storage;
 
+
+    /**
+     * contruct
+     *
+     * @param array|Universal\Container\ObjectContainer $options default option
+     *
+     * options:
+     *   can be ObjectContainer or array.
+     *
+     *   array:
+     *      state: State object.
+     *      storage: Storage object.
+     */
     public function __construct( $options = array() )
     {
         if( is_array( $options ) ) 
