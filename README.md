@@ -51,6 +51,12 @@ For multiple files:
 
 ## Session
 
+Supported Session Storage backend:
+
+- Memcache
+- Redis
+- Native
+
 use ObjectContainer to pass options:
 
     $container = new Universal\Container\ObjectContainer;
