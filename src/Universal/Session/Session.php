@@ -10,17 +10,35 @@ class Session
 
     public function __construct( $options = array() )
     {
-        $this->state = isset($options['state']) 
-            ? $options['state'] 
-            : new State\Native;
-            // : new State\Cookie; // or built-in
+        if( is_array( $options ) ) 
+        {
+            $this->state = isset($options['state']) 
+                ? $options['state'] 
+                : new State\Native;
+                // : new State\Cookie; // or built-in
 
-        $this->storage = isset($options['storage']) 
-            ? $options['storage'] 
-            : new SessionStorage\NativeStorage; // Use php native session storage by default
+            $this->storage = isset($options['storage']) 
+                ? $options['storage'] 
+                : new SessionStorage\NativeStorage; // Use php native session storage by default
+        }
+        elseif ( is_a( '\Universal\Container\ObjectContainer' , $options ) ) 
+        {
+            $this->state   = $options->state   ?: new State\Native;
+            $this->storage = $options->storage ?: new SessionStorage\NativeStorage;
+        }
 
         // load session data by session id.
         $this->storage->load( $this->state->getSid() );
+    }
+
+    public function set($name,$value)
+    {
+        return $this->storage->set( $name, $value );
+    }
+
+    public function get($name)
+    {
+        return $this->storage->get( $name );
     }
 
     public function __set($name,$value)
