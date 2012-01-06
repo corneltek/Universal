@@ -2,7 +2,6 @@
 namespace Universal\Session;
 use ArrayAccess;
 
-
 /**
  * Session manager class.
  *
@@ -35,33 +34,36 @@ class Session
     {
         if( is_array( $options ) ) 
         {
-            $this->state = isset($options['state']) 
-                ? $options['state'] 
-                : new State\NativeState;
-                // : new State\Cookie; // or built-in
-
             if( isset($options['storage']) ) {
                 $this->storage = $options['storage'];
+                $this->state = isset($options['state']) 
+                    ? $options['state'] 
+                    : new State\NativeState;
+                                // : new State\Cookie; // or built-in
             }
             elseif( isset($options['save_handler']) ) {
                 $this->saveHandler = $options['save_handler'];
+                $this->state = new State\NativeState;
                 $this->storage = new Storage\NativeStorage;
             }
             else {
+                $this->state = new State\NativeState;
                 $this->storage = new Storage\NativeStorage;
             }
         }
         elseif ( is_a( '\Universal\Container\ObjectContainer', $options ) ) 
         {
-            $this->state   = $options->state   ?: new State\NativeState;
 
             /* use save handler or storage */
             if( $s = $options->storage ) {
                 $this->storage = $s;
+                $this->state   = $options->state ?: new State\NativeState;
             } elseif( $h = $options->saveHandler ) {
                 $this->saveHandler = $h;
+                $this->state = new State\NativeState;
                 $this->storage = new Storage\NativeStorage;
             } else {
+                $this->state = new State\NativeState;
                 $this->storage = new Storage\NativeStorage;
             }
         }
