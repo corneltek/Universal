@@ -17,12 +17,17 @@ class CookieState
                 'path'     => '/',
                 'expire'   => 0,
                 'domain'   => null, //
-                'secure'   => null, // false,
-                'httponly' => null, // false,
+                'secure'   => false, // false,
+                'httponly' => false, // false,
             );
 
         $sid = $this->getSid();
-        $this->write( $sid );
+        if( ! $this->validateSid($sid) )
+            throw new Exception( "Invalid Session Id" );
+
+        if( ! isset($_SERVER['argv']) ) {
+            $this->write( $sid );
+        }
     }
 
     public function getSid()
