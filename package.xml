@@ -11,10 +11,10 @@
     <active>yes</active>
   </lead>
   <date>2012-01-06</date>
-  <time>18:42:51</time>
+  <time>21:37:31</time>
   <version>
-    <release>0.0.12</release>
-    <api>0.0.12</api>
+    <release>0.0.13</release>
+    <api>0.0.13</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -46,16 +46,18 @@
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="f5b722080292ea305f304a7bfb05ecc5"/>
       <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
-      <file name="src/Universal/Session/Session.php" role="php" md5sum="b1c454c5d7bd0d7fc53772106a20be2f"/>
-      <file name="src/Universal/Session/SessionManager.php" role="php" md5sum="a991fedf18a7983cac698b0f3f6d46e1"/>
+      <file name="src/Universal/Session/SaveHandler/MemcacheSaveHandler.php" role="php" md5sum="d8198f7789c541ac8688273231215cc7"/>
+      <file name="src/Universal/Session/SaveHandler/RedisSaveHandler.php" role="php" md5sum="1c65af154278540396f7aa8b8b17e085"/>
+      <file name="src/Universal/Session/Session.php" role="php" md5sum="c4edcca039d75bf717fb43e2823755fc"/>
       <file name="src/Universal/Session/State/CookieState.php" role="php" md5sum="eb0dcf9df13c41fcafed5eda8d575b52"/>
       <file name="src/Universal/Session/State/NativeState.php" role="php" md5sum="f0524d8e89b0563b26f45afc00abc1d6"/>
-      <file name="src/Universal/Session/Storage/MemcacheStorage.php" role="php" md5sum="8299eaa6c2241726bac6db287e97deda"/>
+      <file name="src/Universal/Session/Storage/MemcacheStorage.php" role="php" md5sum="18b09555ec607f19b04cfd59111ed63c"/>
       <file name="src/Universal/Session/Storage/MemoryStorage.php" role="php" md5sum="e2062bbf432c1f43f4fbcb8debd4b80c"/>
       <file name="src/Universal/Session/Storage/NativeStorage.php" role="php" md5sum="47a30fa1ffc8d80c5dc644efed28e3b0"/>
+      <file name="src/Universal/Session/Storage/RedisStorage.php" role="php" md5sum="5d0eb8a3bdcc55e56331e84aace8d3c8"/>
       <file name="src/Universal/Session/Storage/StorageInterface.php" role="php" md5sum="ed7eedec9aa58e63d285b4b78c52f782"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="3a31d5946ad9d7fc68b65153c3f895fd"/>
+      <file name="README.md" role="doc" md5sum="a0c690e5a6560840f004938c4c0ef788"/>
     </dir>
   </contents>
   <dependencies>
@@ -92,13 +94,15 @@
       <install name="src/Universal/Http/HttpRequest.php" as="Universal/Http/HttpRequest.php"/>
       <install name="src/Universal/Http/Parameter.php" as="Universal/Http/Parameter.php"/>
       <install name="src/Universal/Requirement/Requirement.php" as="Universal/Requirement/Requirement.php"/>
+      <install name="src/Universal/Session/SaveHandler/MemcacheSaveHandler.php" as="Universal/Session/SaveHandler/MemcacheSaveHandler.php"/>
+      <install name="src/Universal/Session/SaveHandler/RedisSaveHandler.php" as="Universal/Session/SaveHandler/RedisSaveHandler.php"/>
       <install name="src/Universal/Session/Session.php" as="Universal/Session/Session.php"/>
-      <install name="src/Universal/Session/SessionManager.php" as="Universal/Session/SessionManager.php"/>
       <install name="src/Universal/Session/State/CookieState.php" as="Universal/Session/State/CookieState.php"/>
       <install name="src/Universal/Session/State/NativeState.php" as="Universal/Session/State/NativeState.php"/>
       <install name="src/Universal/Session/Storage/MemcacheStorage.php" as="Universal/Session/Storage/MemcacheStorage.php"/>
       <install name="src/Universal/Session/Storage/MemoryStorage.php" as="Universal/Session/Storage/MemoryStorage.php"/>
       <install name="src/Universal/Session/Storage/NativeStorage.php" as="Universal/Session/Storage/NativeStorage.php"/>
+      <install name="src/Universal/Session/Storage/RedisStorage.php" as="Universal/Session/Storage/RedisStorage.php"/>
       <install name="src/Universal/Session/Storage/StorageInterface.php" as="Universal/Session/Storage/StorageInterface.php"/>
       <install name="Changes.md" as="Changes.md"/>
       <install name="README.md" as="README.md"/>
