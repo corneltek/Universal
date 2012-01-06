@@ -28,6 +28,8 @@ class Session
      *   array:
      *      state: State object.
      *      storage: Storage object.
+     *      save_handler: session save handler
+     *          once this is enabled, use native session storage for session.
      */
     public function __construct( $options = array() )
     {
@@ -68,16 +70,27 @@ class Session
         $this->storage->load( $this->state->getSid() );
     }
 
+    /**
+     * @return Universal\Session\State
+     */
     public function getState()
     {
         return $this->state;
     }
 
+
+    /**
+     * @return Universal\Session\Storage
+     */
     public function getStorage()
     {
         return $this->storage;
     }
 
+
+    /**
+     * @return Universal\Session\SaveHandler
+     */
     public function getSaveHandler()
     {
         return $this->saveHandler;
@@ -108,10 +121,18 @@ class Session
         return $this->storage->has( $name );
     }
 
+
+    /**
+     * ArrayAccess interface method
+     *
+     * @param string $name
+     * @param string $value
+     */
     public function offsetSet($name,$value) 
     {
         return $this->storage->set( $name, $value );
     }
+
     public function offsetGet($name) 
     {
         return $this->storage->get( $name );
