@@ -127,7 +127,6 @@ class SplClassLoader
         $this->useIncludePath = $bool;
     }
 
-
     /**
      * register to spl_autoload_register
      *

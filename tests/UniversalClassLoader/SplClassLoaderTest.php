@@ -23,6 +23,8 @@ class SplClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $bar = new \Foo\Bar;
         ok( $bar );
+
+        $loader->unregister();
     }
 }
 
