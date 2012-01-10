@@ -10,8 +10,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-01-07</date>
-  <time>00:11:59</time>
+  <date>2012-01-09</date>
+  <time>22:31:46</time>
   <version>
     <release>0.0.14</release>
     <api>0.0.14</api>
@@ -37,6 +37,7 @@
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="0e46d7f6e8094c39bfae519763eeef14"/>
       <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="b7f0d7eed8256dad677953fd9063a580"/>
+      <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="f73d3026628bae31ad8dd5c8290680f9"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="dd8535a5af05cedafd446ddc80a152e6"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
@@ -58,7 +59,7 @@
       <file name="src/Universal/Session/Storage/RedisStorage.php" role="php" md5sum="5d0eb8a3bdcc55e56331e84aace8d3c8"/>
       <file name="src/Universal/Session/Storage/StorageInterface.php" role="php" md5sum="ed7eedec9aa58e63d285b4b78c52f782"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="a0c690e5a6560840f004938c4c0ef788"/>
+      <file name="README.md" role="doc" md5sum="cd7b5cea022f623de822d8d4f04ef10e"/>
       <file name="REF.md" role="doc" md5sum="ad778c0a94993cf81fd02d03eef3952a"/>
       <file name="example/init.php" role="data" md5sum="b8b34b3ba369542c86bb6ce67711f5b8"/>
       <file name="example/session/container.php" role="data" md5sum="db80dbac35b3f92a0dd15ee774ceb13b"/>
@@ -93,6 +94,7 @@
       <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
       <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
       <install name="src/Universal/ClassLoader/BasePathClassLoader.php" as="Universal/ClassLoader/BasePathClassLoader.php"/>
+      <install name="src/Universal/ClassLoader/PathIncluder.php" as="Universal/ClassLoader/PathIncluder.php"/>
       <install name="src/Universal/ClassLoader/SplClassLoader.php" as="Universal/ClassLoader/SplClassLoader.php"/>
       <install name="src/Universal/Container/ObjectContainer.php" as="Universal/Container/ObjectContainer.php"/>
       <install name="src/Universal/Event/PhpEvent.php" as="Universal/Event/PhpEvent.php"/>
