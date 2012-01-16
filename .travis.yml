@@ -1,0 +1,14 @@
+language: php
+php:
+  - 5.3.2
+  - 5.3
+  - 5.4
+
+before_script:
+  - pyrus install pear.php.net/PEAR
+  - "curl -O https://raw.github.com/c9s/Onion/master/onion.phar"
+  - phpenv rehash
+  - php onion.phar -d bundle
+  - php onion.phar -d build
+
+script: phpunit
