@@ -46,19 +46,49 @@ Include Path manipulator
 
 For multiple files:
 
+```php
+<?php
+
+$req = new HttpRequest;
+foreach( $req->files->uploaded as $f ) {
+    $extname = $f->getExtension();
+    $filename = $f->getPathname();
+}
+
+$req->param( 'username' );   // get $_REQUEST['username'];
+
+$req->get->username;    // get $_GET['username'];
+
+$req->post->username;   // get $_POST['username'];
+
+$req->server->path_info;  // get $_SERVER['path_info'];
+```
+
+To get FILE:
+
     $req = new HttpRequest;
+
+Get $_FILES['uploaded'] hash:
+
+    $req->files->uploaded;
+
+Get file size:
+
+    $req->files->uploaded->size;
+
+Get file mime type:
+
+    $req->files->uploaded->type; // plain/text
+
+Get upload error:
+
+    $req->files->uploaded->error;
+
+Foreach file:
+
     foreach( $req->files->uploaded as $f ) {
-        $extname = $f->getExtension();
-        $filename = $f->getPathname();
+        $f->size;
     }
-
-    $req->param( 'username' );   // get $_REQUEST['username'];
-
-    $req->get->username;    // get $_GET['username'];
-
-    $req->post->username;   // get $_POST['username'];
-
-    $req->server->path_info;  // get $_SERVER['path_info'];
 
 
 ## Session
