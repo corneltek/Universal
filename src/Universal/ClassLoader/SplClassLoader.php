@@ -24,6 +24,8 @@
  */
 namespace Universal\ClassLoader;
 use Exception;
+if( class_exists('\Universal\ClassLoader\SplClassLoader') )
+    return;
 
 
 /**

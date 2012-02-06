@@ -2,6 +2,9 @@
 namespace Universal\ClassLoader;
 use Exception;
 
+if( class_exists('\Universal\ClassLoader\ApcClassLoader') )
+    return;
+
 class ApcClassLoader extends SplClassLoader
 {
     private $_apcNamespace = 'apc';

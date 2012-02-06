@@ -1,5 +1,7 @@
 <?php 
 namespace Universal\ClassLoader;
+if( class_exists('\Universal\ClassLoader\PathIncluder') )
+    return;
 
 /**
  * Include Path manipulator

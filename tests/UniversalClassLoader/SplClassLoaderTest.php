@@ -26,6 +26,13 @@ class SplClassLoaderTest extends PHPUnit_Framework_TestCase
 
         $loader->unregister();
     }
+
+    function testReloadGuard()
+    {
+        require 'src/Universal/ClassLoader/SplClassLoader.php';
+        require 'src/Universal/ClassLoader/SplClassLoader.php';
+
+    }
 }
 
 
