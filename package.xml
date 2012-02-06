@@ -10,34 +10,34 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-01-10</date>
-  <time>21:37:54</time>
+  <date>2012-02-06</date>
+  <time>16:57:40</time>
   <version>
-    <release>0.0.15</release>
-    <api>0.0.15</api>
+    <release>0.0.16</release>
+    <api>0.0.16</api>
   </version>
   <stability>
-    <release>beta</release>
-    <api>beta</api>
+    <release>stable</release>
+    <api>stable</api>
   </stability>
   <license>PHP</license>
   <notes>-</notes>
   <contents>
     <dir name="/">
-      <file name="tests/Universal/ClassLoader/BasePathClassLoaderTest.php" role="test" md5sum="a16187aac04bfd9c9cc7b1e35bd6e396"/>
-      <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
-      <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
-      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="340c111cfe55d2d0e0d4f76daaaac29a"/>
-      <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="d5926598afe94b250bfb4069d0d13104"/>
-      <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="1b3bda9516c07a1241ef6495a68dfb8c"/>
       <file name="tests/bootstrap.php" role="test" md5sum="bbba1757577fcdde93c35ec0143b7a53"/>
       <file name="tests/helpers.php" role="test" md5sum="aae3a65fac318e1871de47062f2e4096"/>
       <file name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
-      <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="0e46d7f6e8094c39bfae519763eeef14"/>
-      <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="b7f0d7eed8256dad677953fd9063a580"/>
-      <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="f73d3026628bae31ad8dd5c8290680f9"/>
-      <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="dd8535a5af05cedafd446ddc80a152e6"/>
+      <file name="tests/Universal/ClassLoader/BasePathClassLoaderTest.php" role="test" md5sum="a16187aac04bfd9c9cc7b1e35bd6e396"/>
+      <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
+      <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
+      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="340c111cfe55d2d0e0d4f76daaaac29a"/>
+      <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="e4a04a053f3584aa97573fd31b931ed4"/>
+      <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="de7254d2703b37d96c79050f01d3d0f1"/>
+      <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="8a7b9878e28a966771bd60a8cb82dda1"/>
+      <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="7eea19f601d84520085e7361b81f538c"/>
+      <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="b0cdd137159c416d9f101cc67a591bdf"/>
+      <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="dc567892263d5cc05d745251a87c9e0f"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
@@ -48,7 +48,7 @@
       <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="6128e642381f5c3e068faf138c31152c"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="cd7b5cea022f623de822d8d4f04ef10e"/>
+      <file name="README.md" role="doc" md5sum="919868398cb2b9f453468dccab25687e"/>
       <file name="REF.md" role="doc" md5sum="ad778c0a94993cf81fd02d03eef3952a"/>
     </dir>
   </contents>
@@ -64,16 +64,16 @@
   </dependencies>
   <phprelease>
     <filelist>
+      <install name="tests/bootstrap.php" as="bootstrap.php"/>
+      <install name="tests/helpers.php" as="helpers.php"/>
+      <install name="tests/lib/Foo/Bar.php" as="lib/Foo/Bar.php"/>
+      <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
       <install name="tests/Universal/ClassLoader/BasePathClassLoaderTest.php" as="Universal/ClassLoader/BasePathClassLoaderTest.php"/>
       <install name="tests/Universal/Container/ObjectContainerTest.php" as="Universal/Container/ObjectContainerTest.php"/>
       <install name="tests/Universal/Event/PhpEventTest.php" as="Universal/Event/PhpEventTest.php"/>
       <install name="tests/Universal/Http/FilesParameterTest.php" as="Universal/Http/FilesParameterTest.php"/>
       <install name="tests/Universal/Requirement/RequirementTest.php" as="Universal/Requirement/RequirementTest.php"/>
       <install name="tests/UniversalClassLoader/SplClassLoaderTest.php" as="UniversalClassLoader/SplClassLoaderTest.php"/>
-      <install name="tests/bootstrap.php" as="bootstrap.php"/>
-      <install name="tests/helpers.php" as="helpers.php"/>
-      <install name="tests/lib/Foo/Bar.php" as="lib/Foo/Bar.php"/>
-      <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
       <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
       <install name="src/Universal/ClassLoader/BasePathClassLoader.php" as="Universal/ClassLoader/BasePathClassLoader.php"/>
       <install name="src/Universal/ClassLoader/PathIncluder.php" as="Universal/ClassLoader/PathIncluder.php"/>
