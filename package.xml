@@ -10,8 +10,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-02-06</date>
-  <time>16:58:09</time>
+  <date>2012-02-07</date>
+  <time>01:46:34</time>
   <version>
     <release>0.0.16</release>
     <api>0.0.16</api>
@@ -33,11 +33,11 @@
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
       <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="340c111cfe55d2d0e0d4f76daaaac29a"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="e4a04a053f3584aa97573fd31b931ed4"/>
-      <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="de7254d2703b37d96c79050f01d3d0f1"/>
-      <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="8a7b9878e28a966771bd60a8cb82dda1"/>
-      <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="7eea19f601d84520085e7361b81f538c"/>
-      <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="b0cdd137159c416d9f101cc67a591bdf"/>
-      <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="dc567892263d5cc05d745251a87c9e0f"/>
+      <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="ce71c53629c0b5f8098fb54ba23dd9f6"/>
+      <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="277cd6fc952d2d95a86518bc926c6ec0"/>
+      <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="57888e9e23bc8a49aae46f0e3b6e4801"/>
+      <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="dc8c2c90c8ae9e87fa78f776a4b7f508"/>
+      <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="8b504a5ef37c9f9854e2227ccafeb05e"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
