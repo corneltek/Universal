@@ -8,7 +8,7 @@
 
 /* php 5.3.3 does not support this */
 if( ! defined('DEBUG_BACKTRACE_PROVIDE_OBJECT') )
-    define( 'DEBUG_BACKTRACE_PROVIDE_OBJECT' , null );
+    define( 'DEBUG_BACKTRACE_PROVIDE_OBJECT' , 1 );
 
 function ok( $v , $msg = null )
 {
