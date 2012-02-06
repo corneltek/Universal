@@ -1,8 +1,7 @@
 <?php 
 namespace Universal\ClassLoader;
 
-if( class_exists('\Universal\ClassLoader\BasePathClassLoader') )
-    return;
+if( ! class_exists('\Universal\ClassLoader\BasePathClassLoader') ) {
 
 /**
  * Base Path Classloader:
@@ -128,3 +127,5 @@ class BasePathClassLoader
 
 }
 
+
+}

@@ -2,8 +2,7 @@
 namespace Universal\ClassLoader;
 use Exception;
 
-if( class_exists('\Universal\ClassLoader\ApcClassLoader') )
-    return;
+if( ! class_exists('\Universal\ClassLoader\ApcClassLoader') ) {
 
 class ApcClassLoader extends SplClassLoader
 {
@@ -35,4 +34,6 @@ class ApcClassLoader extends SplClassLoader
         }
         return false;
     }
+}
+
 }

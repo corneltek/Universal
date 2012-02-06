@@ -24,9 +24,8 @@
  */
 namespace Universal\ClassLoader;
 use Exception;
-if( class_exists('\Universal\ClassLoader\SplClassLoader') )
-    return;
 
+if( ! class_exists('\Universal\ClassLoader\SplClassLoader') ) {
 
 /**
  * SplClassLoader
@@ -210,4 +209,7 @@ class SplClassLoader
             require $file;
         }
     }
+
+}
+
 }

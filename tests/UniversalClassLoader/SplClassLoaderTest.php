@@ -31,7 +31,6 @@ class SplClassLoaderTest extends PHPUnit_Framework_TestCase
     {
         require 'src/Universal/ClassLoader/SplClassLoader.php';
         require 'src/Universal/ClassLoader/SplClassLoader.php';
-
     }
 }
 

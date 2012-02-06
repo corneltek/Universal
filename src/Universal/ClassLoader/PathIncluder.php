@@ -1,7 +1,6 @@
 <?php 
 namespace Universal\ClassLoader;
-if( class_exists('\Universal\ClassLoader\PathIncluder') )
-    return;
+if( ! class_exists('\Universal\ClassLoader\PathIncluder') ) {
 
 /**
  * Include Path manipulator
@@ -89,5 +88,7 @@ class PathIncluder
     {
         set_include_path( join( PATH_SEPARATOR , $this->paths ) );
     }
+
+}
 
 }
