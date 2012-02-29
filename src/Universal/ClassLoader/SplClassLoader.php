@@ -34,6 +34,7 @@ if( ! class_exists('\Universal\ClassLoader\SplClassLoader') ) {
  */
 class SplClassLoader
 {
+    static $instance;
 
     /**
      * namespace mapping
@@ -75,6 +76,12 @@ class SplClassLoader
     {
         if( $namespaces )
             $this->addNamespace( $namespaces );
+        self::$instance = $this;
+    }
+
+    public function getInstance() 
+    {
+        return self::$instance ?: self::$instance = new self;
     }
 
 

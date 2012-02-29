@@ -16,6 +16,9 @@ if( ! class_exists('\Universal\ClassLoader\BasePathClassLoader') ) {
  */
 class BasePathClassLoader 
 {
+
+    static $instance;
+
     /**
      * library paths
      */
@@ -31,8 +34,13 @@ class BasePathClassLoader
     public function __construct($paths)
     {
         $this->paths = $paths;
+        self::$instance = $this;
     }
 
+    public function getInstance() 
+    {
+        return self::$instance ?: self::$instance = new self;
+    }
 
     /**
      * extract PHP5LIB paths from env 
