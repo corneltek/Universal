@@ -192,7 +192,7 @@ class SplClassLoader
                 if (strpos($fullclass, $p) !== 0)
                     continue;
                 foreach ($dirs as $dir) {
-                    $file = $dir.DIRECTORY_SEPARATOR.$subpath;
+                    $file = $dir . DIRECTORY_SEPARATOR . $subpath;
                     if (file_exists($file))
                         return $file;
                 }
@@ -202,7 +202,7 @@ class SplClassLoader
         foreach( $this->fallbacks as $fallback ) {
             $file = $fallback . DIRECTORY_SEPARATOR . $subpath;
             if( file_exists($file) )
-                require $file;
+                return $file;
         }
 
         if ($this->useIncludePath && $file = stream_resolve_include_path($subpath))
