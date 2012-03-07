@@ -19,8 +19,10 @@ class File extends Parameter
      */
     public function hasFile()
     {
-        return isset( $this->hash['tmp_name'] ) && $this->hash['tmp_name'] 
-                && $this->hash['error'] == UPLOAD_ERR_OK;
+        return isset( $this->hash['tmp_name'] ) 
+            && $this->hash['tmp_name'] 
+            && file_exists($this->hash['tmp_name'])
+            && $this->hash['error'] == UPLOAD_ERR_OK;
     }
 
 
@@ -65,7 +67,6 @@ class File extends Parameter
     {
         return $this->hash['tmp_name'];
     }
-
 
 
 
