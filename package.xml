@@ -11,10 +11,10 @@
     <active>yes</active>
   </lead>
   <date>2012-03-07</date>
-  <time>14:45:27</time>
+  <time>15:03:52</time>
   <version>
-    <release>1.0.3</release>
-    <api>1.0.3</api>
+    <release>1.1.3</release>
+    <api>1.1.3</api>
   </version>
   <stability>
     <release>stable</release>
@@ -31,7 +31,7 @@
       <file name="tests/Universal/ClassLoader/BasePathClassLoaderTest.php" role="test" md5sum="a16187aac04bfd9c9cc7b1e35bd6e396"/>
       <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
-      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="340c111cfe55d2d0e0d4f76daaaac29a"/>
+      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="2d7509c37811c0614b36f57e1b6a7dd5"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="ae823109f36b73a103cf20de49b2bc86"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="ce71c53629c0b5f8098fb54ba23dd9f6"/>
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="277cd6fc952d2d95a86518bc926c6ec0"/>
@@ -42,8 +42,8 @@
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
       <file name="src/Universal/Http/Cookie.php" role="php" md5sum="ba33fa44f593218f6323ba0dea77181c"/>
-      <file name="src/Universal/Http/File.php" role="php" md5sum="bf89b55c6206b5bec77255f69ffb30ea"/>
-      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="1d4e67af2353341fad9ba681ea79833a"/>
+      <file name="src/Universal/Http/File.php" role="php" md5sum="b6480e3cff3854a4d6955ac274312e83"/>
+      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="ec73fab20ba20650e3b6b386d856f45d"/>
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="f5b722080292ea305f304a7bfb05ecc5"/>
       <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
       <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="6128e642381f5c3e068faf138c31152c"/>
