@@ -26,16 +26,23 @@ class File extends Parameter
     }
 
 
+
     /**
      * move temporary file to a path
      *
      * @param string $filepath
      */
-    public function move( $filepath ) 
+    public function move( $filepath , $as = null )
     {
-        return move_uploaded_file( $this->hash['tmp_name'] , $filepath);
+        if( is_dir( $filepath ) ) {
+            $filepath = $filepath 
+                . DIRECTORY_SEPARATOR . ($as ?: $this->hash['name']);
+            return move_uploaded_file( $this->hash['tmp_name'], $filepath);
+        }
+        else {
+            return move_uploaded_file( $this->hash['tmp_name'], $filepath);
+        }
     }
-
 
     /**
      * use pathinfo function to parse path info from filename.
