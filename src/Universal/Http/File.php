@@ -5,17 +5,9 @@ use SplFileInfo;
 class File extends Parameter
 {
 
-    /**
-     * delete temp file
-     */
-    public function delete()
-    {
-        unlink( $this->hash['tmp_name'] );
-    }
-
 
     /**
-     * if there is a file
+     * If there is a file and no error
      */
     public function hasFile()
     {
@@ -28,9 +20,9 @@ class File extends Parameter
 
 
     /**
-     * move temporary file to a path
+     * Move temporary file to a path
      *
-     * @param string $filepath
+     * @param string $filepath can be file or directory path.
      */
     public function move( $filepath , $as = null )
     {
@@ -38,11 +30,19 @@ class File extends Parameter
             $filepath = $filepath 
                 . DIRECTORY_SEPARATOR . ($as ?: $this->hash['name']);
             return move_uploaded_file( $this->hash['tmp_name'], $filepath);
-        }
-        else {
+        } else {
             return move_uploaded_file( $this->hash['tmp_name'], $filepath);
         }
     }
+
+    /**
+     * delete temp file
+     */
+    public function delete()
+    {
+        unlink( $this->hash['tmp_name'] );
+    }
+
 
     /**
      * use pathinfo function to parse path info from filename.
