@@ -1,5 +1,6 @@
 <?php 
 namespace Universal\Http;
+use ArrayAccess;
 
 /**
  * $req = new HttpRequest;
@@ -55,7 +56,7 @@ class FilesParameter extends Parameter
     
     public function offsetUnset($name)
     {
-        return unset($this->hash[$name]);
+        unset($this->hash[$name]);
     }
     
 }
