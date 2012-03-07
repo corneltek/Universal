@@ -36,7 +36,7 @@ class File extends Parameter
 
 
     /**
-     * use pathinfo function to parse path info
+     * use pathinfo function to parse path info from filename.
      *
      * @return array pathinfo
      */
@@ -58,6 +58,19 @@ class File extends Parameter
 
 
     /**
+     * get tmp_name filepath
+     */
+
+    public function getFilepath()
+    {
+        return $this->hash['tmp_name'];
+    }
+
+
+
+
+
+    /**
      * get filename
      */
     public function getFilename()
@@ -74,6 +87,8 @@ class File extends Parameter
     {
         return new SplFileInfo( $this->hash['tmp_name'] );
     }
+
+
 
 
     /**
