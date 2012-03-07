@@ -29,11 +29,41 @@ class File extends Parameter
         if( is_dir( $filepath ) ) {
             $filepath = $filepath 
                 . DIRECTORY_SEPARATOR . ($as ?: $this->hash['name']);
-            return move_uploaded_file( $this->hash['tmp_name'], $filepath);
+            if( false !== move_uploaded_file( $this->hash['tmp_name'], $filepath) ) {
+                $this->hash['saved_name'] = $filepath;
+                return true;
+            }
         } else {
-            return move_uploaded_file( $this->hash['tmp_name'], $filepath);
+            if( false !== move_uploaded_file( $this->hash['tmp_name'], $filepath) ) {
+                $this->hash['saved_name'] = $filepath;
+                return true;
+            }
         }
+        return false;
     }
+
+
+    /**
+     * Not to move file, but copy
+     */
+    public function copy( $filepath , $as = null )
+    {
+        if( is_dir( $filepath ) ) {
+            $filepath = $filepath 
+                . DIRECTORY_SEPARATOR . ($as ?: $this->hash['name']);
+            if( copy( $this->hash['tmp_name'], $filepath ) !== false ) {
+                $this->hash['saved_name'] = $filepath;
+                return true;
+            }
+        } else {
+            if( false !== copy( $this->hash['tmp_name'], $filepath ) ) {
+                $this->hash['saved_name'] = $filepath;
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * delete temp file
@@ -76,10 +106,14 @@ class File extends Parameter
     }
 
 
+    public function getSavedFilepath()
+    {
+        return $this->hash['saved_name'];
+    }
 
 
     /**
-     * get filename
+     * Get upload filename
      */
     public function getFilename()
     {
