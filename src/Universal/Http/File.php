@@ -15,6 +15,16 @@ class File extends Parameter
 
 
     /**
+     * if there is a file
+     */
+    public function hasFile()
+    {
+        return isset( $this->hash['tmp_name'] ) && $this->hash['tmp_name'] 
+                && $this->hash['error'] == UPLOAD_ERR_OK;
+    }
+
+
+    /**
      * move temporary file to a path
      *
      * @param string $filepath
@@ -207,6 +217,7 @@ class File extends Parameter
         }
 
     }
+
 
     public function __toString()
     {
