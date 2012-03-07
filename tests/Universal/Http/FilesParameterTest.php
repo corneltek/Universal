@@ -24,6 +24,11 @@ class FilesParameterTest extends PHPUnit_Framework_TestCase
         is( 100, $req->files->uploaded->size );
         is( 'text/plain', $req->files->uploaded->type );
         is( 0, $req->files->uploaded->error );
+
+        ok( isset( $req->files['uploaded'] ) );
+        $file = $req->files['uploaded'];
+        ok( $file );
+        isa_ok( 'Universal\Http\File' , $file );
     }
 
     function testFunc2()
