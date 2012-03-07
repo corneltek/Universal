@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-01</date>
-  <time>01:12:33</time>
+  <date>2012-03-07</date>
+  <time>14:45:27</time>
   <version>
-    <release>1.0.2</release>
-    <api>1.0.2</api>
+    <release>1.0.3</release>
+    <api>1.0.3</api>
   </version>
   <stability>
     <release>stable</release>
@@ -41,8 +41,9 @@
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
+      <file name="src/Universal/Http/Cookie.php" role="php" md5sum="ba33fa44f593218f6323ba0dea77181c"/>
       <file name="src/Universal/Http/File.php" role="php" md5sum="bf89b55c6206b5bec77255f69ffb30ea"/>
-      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="fac4fe1de092bd2353d2bfd4ee70ceea"/>
+      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="1d4e67af2353341fad9ba681ea79833a"/>
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="f5b722080292ea305f304a7bfb05ecc5"/>
       <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
       <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="6128e642381f5c3e068faf138c31152c"/>
@@ -81,6 +82,7 @@
       <install name="src/Universal/Container/ObjectContainer.php" as="Universal/Container/ObjectContainer.php"/>
       <install name="src/Universal/Event/PhpEvent.php" as="Universal/Event/PhpEvent.php"/>
       <install name="src/Universal/FileSystem/PathUtils.php" as="Universal/FileSystem/PathUtils.php"/>
+      <install name="src/Universal/Http/Cookie.php" as="Universal/Http/Cookie.php"/>
       <install name="src/Universal/Http/File.php" as="Universal/Http/File.php"/>
       <install name="src/Universal/Http/FilesParameter.php" as="Universal/Http/FilesParameter.php"/>
       <install name="src/Universal/Http/HttpRequest.php" as="Universal/Http/HttpRequest.php"/>
