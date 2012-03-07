@@ -7,6 +7,7 @@ namespace Universal\Http;
  * $req->files->uploaded_file->size;
  */
 class FilesParameter extends Parameter
+        implements ArrayAccess
 {
     public $hash;
 
@@ -36,5 +37,25 @@ class FilesParameter extends Parameter
         }
         $this->hash = $files;
     }
-
+    
+    public function offsetSet($name,$value)
+    {
+        $this->hash[ $name ] = $value;
+    }
+    
+    public function offsetExists($name)
+    {
+        return isset($this->hash[ $name ]);
+    }
+    
+    public function offsetGet($name)
+    {
+        return $this->hash[ $name ];
+    }
+    
+    public function offsetUnset($name)
+    {
+        return unset($this->hash[$name]);
+    }
+    
 }
