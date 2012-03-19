@@ -27,6 +27,11 @@ class ObjectContainer
         $this->builders[ $key ] = $builder;
     }
 
+    function __isset($key)
+    {
+        return isset($this->builders[ $key ]);
+    }
+
     function __get($key)
     {
         if( $this->_cache && isset( $this->_cachedObjects[ $key ] ) ) {
