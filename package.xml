@@ -10,8 +10,8 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-07</date>
-  <time>17:42:23</time>
+  <date>2012-03-19</date>
+  <time>14:12:06</time>
   <version>
     <release>1.1.4</release>
     <api>1.1.4</api>
@@ -38,7 +38,7 @@
       <file name="src/Universal/ClassLoader/BasePathClassLoader.php" role="php" md5sum="c6df3361d534afe9386b32fb95e655c2"/>
       <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="dc8c2c90c8ae9e87fa78f776a4b7f508"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="6b3e8cb0dfd235a16f44eca55de353b7"/>
-      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="bb156e60597dee5f48c020a786ff1021"/>
+      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="673f463435d02c64f3e56c90019c2876"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
       <file name="src/Universal/Http/Cookie.php" role="php" md5sum="ba33fa44f593218f6323ba0dea77181c"/>
