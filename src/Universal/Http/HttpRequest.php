@@ -1,8 +1,6 @@
 <?php 
 namespace Universal\Http;
 use ArrayAccess;
-use FilesParameter;
-use Parameter;
 
 /**
  * $req = new HttpRequest;
