@@ -1,5 +1,8 @@
 <?php 
 namespace Universal\Http;
+use ArrayAccess;
+use FilesParameter;
+use Parameter;
 
 /**
  * $req = new HttpRequest;
@@ -14,6 +17,7 @@ namespace Universal\Http;
  * $req->files->uploaded->error;
  */
 class HttpRequest
+    implements ArrayAccess
 {
     private $requestVars = array();
 
@@ -22,9 +26,21 @@ class HttpRequest
 
     }
 
+
+    /**
+     * get
+     * post
+     * session
+     * cookie
+     */
     function __get( $name )
     {
         return $this->getParameters( $name );
+    }
+
+    function hasParam($name)
+    {
+        return isset($_REQUEST[$name]);
     }
 
     function param($name)
@@ -66,5 +82,29 @@ class HttpRequest
         }
         return $this->requestVars[ $name ] = $vars;
     }
+
+    
+
+
+    public function offsetSet($name,$value)
+    {
+        $_REQUEST[ $name ] = $value;
+    }
+    
+    public function offsetExists($name)
+    {
+        return isset($_REQUEST[ $name ]);
+    }
+    
+    public function offsetGet($name)
+    {
+        return $_REQUEST[ $name ];
+    }
+    
+    public function offsetUnset($name)
+    {
+        unset($_REQUEST[$name]);
+    }
+    
 
 }
