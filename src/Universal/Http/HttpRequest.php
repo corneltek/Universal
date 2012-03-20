@@ -19,12 +19,6 @@ class HttpRequest
 {
     private $requestVars = array();
 
-    function __construct()
-    {
-
-    }
-
-
     /**
      * get
      * post
