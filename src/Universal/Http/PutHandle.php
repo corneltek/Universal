@@ -21,7 +21,7 @@ class PutHandle
 
     function read($i = 1024)
     {
-        return fread($this->handle, $i));
+        return fread($this->handle, $i);
     }
 
     function close()
