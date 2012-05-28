@@ -12,19 +12,22 @@ namespace Universal\Event;
 
 /**
  * A Simple PHP Event dispatcher
+ *
+ *
+ * TODO: Move this PhpEvent to a standard-alone component.
  */
 class PhpEvent
 {
 
     /**
-     * event pool
+     * Event pool
      *
      * @var array save event callbacks
      */
     public $eventPool = array();
 
     /**
-     * register event name
+     * Register event name
      *
      * @param string $ev
      * @param closure $cb callable function
@@ -42,7 +45,7 @@ class PhpEvent
      *
      * @param string $ev event name
      */
-    function trigger($ev)
+    public function trigger($ev)
     {
         $results = array();
         if( isset( $this->eventPool[ $ev ] ) ) {
@@ -65,7 +68,7 @@ class PhpEvent
     /**
      * clear event pool
      */
-    function clear()
+    public function clear()
     {
         // clear event pool
         $this->eventPool = array();

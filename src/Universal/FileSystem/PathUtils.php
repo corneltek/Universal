@@ -155,34 +155,34 @@ class PathUtils {
     static function filename_append_md5( $filename , $filePath = null )
     {
         $suffix = $filePath ? md5( $filePath ) : md5( time() );
-		$pos = strrpos( $filename , '.' );
-		if( $pos ) {
-			return 
-				substr( $filename , 0 , $pos )
-				. $suffix 
-				. substr( $filename , $pos );
-		}
-		return $filename . $suffix;
+        $pos = strrpos( $filename , '.' );
+        if( $pos ) {
+            return 
+                substr( $filename , 0 , $pos )
+                . $suffix 
+                . substr( $filename , $pos );
+        }
+        return $filename . $suffix;
     }
 
-	static function filename_suffix( $filename , $suffix )
-	{
-		$pos = strrpos( $filename , '.' );
-		if( $pos ) {
-			return 
-				substr( $filename , 0 , $pos )
-				. $suffix 
-				. substr( $filename , $pos );
-		}
-		return $filename . $suffix;
-	}
+    static function filename_suffix( $filename , $suffix )
+    {
+        $pos = strrpos( $filename , '.' );
+        if( $pos ) {
+            return 
+                substr( $filename , 0 , $pos )
+                . $suffix 
+                . substr( $filename , $pos );
+        }
+        return $filename . $suffix;
+    }
 
-	static function mimetype( $file )
-	{
-		$fi = new \finfo( FILEINFO_MIME );
-		$mime_type = $fi->buffer(file_get_contents($file));
-		return $mime_type;
-	}
+    static function mimetype( $file )
+    {
+        $fi = new \finfo( FILEINFO_MIME );
+        $mime_type = $fi->buffer(file_get_contents($file));
+        return $mime_type;
+    }
 
 }
 
