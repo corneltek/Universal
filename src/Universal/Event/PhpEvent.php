@@ -15,6 +15,7 @@ namespace Universal\Event;
  *
  *
  * TODO: Move this PhpEvent to a standard-alone component.
+ * TODO: implement an extension for this.
  */
 class PhpEvent
 {
