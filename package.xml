@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-03-19</date>
-  <time>14:19:01</time>
+  <date>2012-05-29</date>
+  <time>01:12:30</time>
   <version>
-    <release>1.1.5</release>
-    <api>1.1.5</api>
+    <release>1.2.0</release>
+    <api>1.2.0</api>
   </version>
   <stability>
     <release>stable</release>
@@ -32,6 +32,7 @@
       <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
       <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="2d7509c37811c0614b36f57e1b6a7dd5"/>
+      <file name="tests/Universal/Http/HttpResponseTest.php" role="test" md5sum="68b6b54cd1977475871eb0c12863ad21"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="ae823109f36b73a103cf20de49b2bc86"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="ce71c53629c0b5f8098fb54ba23dd9f6"/>
       <file name="src/Universal/ClassLoader/ApcClassLoader.php" role="php" md5sum="277cd6fc952d2d95a86518bc926c6ec0"/>
@@ -39,14 +40,15 @@
       <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="dc8c2c90c8ae9e87fa78f776a4b7f508"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="6b3e8cb0dfd235a16f44eca55de353b7"/>
       <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="673f463435d02c64f3e56c90019c2876"/>
-      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="defb805f558a889af734782b3617b2df"/>
-      <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="e64d07c6359208069513b040f0c8616e"/>
-      <file name="src/Universal/Http/Cookie.php" role="php" md5sum="ba33fa44f593218f6323ba0dea77181c"/>
-      <file name="src/Universal/Http/File.php" role="php" md5sum="c58a9dd9fac853d93618d3c62fc41f44"/>
+      <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="dabf71cf56b6b2e89810b56057872fca"/>
+      <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="91c0c341683b82f7997363fee165a3bb"/>
+      <file name="src/Universal/Http/Cookie.php" role="php" md5sum="e220ce1f880fbe221bce82a6f97e2f73"/>
+      <file name="src/Universal/Http/File.php" role="php" md5sum="ebce64dfbf964ce2d9a601aa60a67c33"/>
       <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="ec73fab20ba20650e3b6b386d856f45d"/>
-      <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="f5b722080292ea305f304a7bfb05ecc5"/>
+      <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="9729a986980e03fd90ff03bd61217909"/>
+      <file name="src/Universal/Http/HttpResponse.php" role="php" md5sum="a129d6ddbd0837bf6e58459842821efc"/>
       <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
-      <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="6128e642381f5c3e068faf138c31152c"/>
+      <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="b689e8c38911d88802b96eeffc70da99"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
       <file name="README.md" role="doc" md5sum="4effd7e2d971f7f112121b2dee376856"/>
@@ -73,6 +75,7 @@
       <install name="tests/Universal/Container/ObjectContainerTest.php" as="Universal/Container/ObjectContainerTest.php"/>
       <install name="tests/Universal/Event/PhpEventTest.php" as="Universal/Event/PhpEventTest.php"/>
       <install name="tests/Universal/Http/FilesParameterTest.php" as="Universal/Http/FilesParameterTest.php"/>
+      <install name="tests/Universal/Http/HttpResponseTest.php" as="Universal/Http/HttpResponseTest.php"/>
       <install name="tests/Universal/Requirement/RequirementTest.php" as="Universal/Requirement/RequirementTest.php"/>
       <install name="tests/UniversalClassLoader/SplClassLoaderTest.php" as="UniversalClassLoader/SplClassLoaderTest.php"/>
       <install name="src/Universal/ClassLoader/ApcClassLoader.php" as="Universal/ClassLoader/ApcClassLoader.php"/>
@@ -86,6 +89,7 @@
       <install name="src/Universal/Http/File.php" as="Universal/Http/File.php"/>
       <install name="src/Universal/Http/FilesParameter.php" as="Universal/Http/FilesParameter.php"/>
       <install name="src/Universal/Http/HttpRequest.php" as="Universal/Http/HttpRequest.php"/>
+      <install name="src/Universal/Http/HttpResponse.php" as="Universal/Http/HttpResponse.php"/>
       <install name="src/Universal/Http/Parameter.php" as="Universal/Http/Parameter.php"/>
       <install name="src/Universal/Http/PutHandle.php" as="Universal/Http/PutHandle.php"/>
       <install name="src/Universal/Requirement/Requirement.php" as="Universal/Requirement/Requirement.php"/>
