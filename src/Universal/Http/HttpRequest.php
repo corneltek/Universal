@@ -20,16 +20,49 @@ class HttpRequest
     private $requestVars = array();
 
     /**
-     * get
-     * post
-     * session
-     * cookie
+     * ->get->key
+     * ->post->key
+     * ->session->key
+     * ->cookie->key
      */
     function __get( $name )
     {
         return $this->getParameters( $name );
     }
 
+
+
+    /**
+     * Get request body 
+     *
+     * @return string
+     */
+    function getInput()
+    {
+        return file_get_contents('php://input');
+    }
+
+
+    /**
+     * Parse submited body content return parameters
+     *
+     * @return array parameters
+     */
+    function getInputParams()
+    {
+        $params = array();
+        parse_str( $this->getInput() , $params );
+        return $params;
+    }
+
+
+
+
+    /**
+     * Check if we have the parameter
+     *
+     * @param string $name parameter name
+     */
     function hasParam($name)
     {
         return isset($_REQUEST[$name]);
@@ -97,6 +130,6 @@ class HttpRequest
     {
         unset($_REQUEST[$name]);
     }
-    
 
 }
+
