@@ -8,15 +8,26 @@ namespace Universal\Http;
  */
 class Cookie
 {
-	var $domain;
-	var $expired;
-	var $secure;
-	var $path;
+    public $domain;
 
-	function set($name,$value)
-	{
-		setcookie( $name, $value , $this->expired , $this->path , $this->domain, $this->secure );
-	}
+    public $expired;
+
+    public $secure;
+
+    public $path;
+
+    public function path($path) { $this->path = $path; }
+
+    public function secure($secure) { $this->secure = $secure; }
+
+    public function expired($expired) { $this->expired = $expired; }
+
+    public function domain($domain) { $this->domain = $domain; }
+
+    function set($name,$value)
+    {
+        setcookie( $name, $value , $this->expired , $this->path , $this->domain, $this->secure );
+    }
 }
 
 
