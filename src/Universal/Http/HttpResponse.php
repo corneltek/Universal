@@ -9,6 +9,12 @@ class HttpResponse
 
     public $contentType;
 
+    public $cacheControl;
+
+
+    /* cache-expires */
+    public $expires;
+
     public $body;
 
     public function __construct($code = 200, $msg = 'OK') 
@@ -83,7 +89,6 @@ class HttpResponse
     public function contentType($contentType)
     {
         $this->contentType = $contentType;
-        header( "Content-type: $contentType" );
     }
 
     public function body($body)
@@ -99,7 +104,7 @@ class HttpResponse
      */
     public function cacheControl($desc) 
     {
-        header('Cache-Control: '  . $desc); // HTTP/1.1
+        $this->cacheControl = $desc;
     }
 
 
@@ -108,18 +113,17 @@ class HttpResponse
      */
     public function noCache() 
     {
-        header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+        $this->cacheControl = 'no-cache, must-revalidate';
     }
 
     /**
      * Set cache expiry time
+     *
+     * @param integer $seconds
      */
     public function cacheExpiryTime($seconds) 
     {
-        $time = time() + $seconds;
-        $datestr = gmdate(DATE_RFC822, $time );
-        // header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-        header( "Expires: $datestr" );
+        $this->expires = time() + $seconds;
     }
 
 
@@ -140,7 +144,6 @@ class HttpResponse
 
     public function codeCreated()
     {
-        header('HTTP/1.1 201 Created');
         $this->code = 201;
         $this->status = 'Created';
     }
@@ -175,13 +178,29 @@ class HttpResponse
         $this->status = 'Not found';
     }
 
-    public function __toString() 
+
+    public function finalize()
     {
-        header('HTTP/1.1 ' . $this->code . ' ' . $this->status );
+        if( $this->code ) {
+            header('HTTP/1.1 ' . $this->code . ' ' . $this->status );
+        }
         if( $this->contentType ) {
             header("Content-type: " . $this->contentType );
         }
-        echo $this->body;
+        if( $this->cacheControl ) {
+            header('Cache-Control: '  . $this->cacheControl); // HTTP/1.1
+        }
+        if( $this->expires ) {
+            $datestr = gmdate(DATE_RFC822, $this->expires );
+            // header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+            header( "Expires: $datestr" );
+        }
+        return $this->body;
+    }
+
+    public function __toString() 
+    {
+        return $this->finalize();
     }
 
 }
