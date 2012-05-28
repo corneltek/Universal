@@ -3,37 +3,86 @@ namespace Universal\Http;
 
 class HttpResponse
 {
+
+    /**
+     * @var integer
+     */
     public $code;
 
+
+    /**
+     * @var string
+     */
     public $status; /* status message for Code */
 
+
+    /**
+     * @var string
+     */
     public $contentType;
 
+
+    /**
+     * @var string 
+     */
     public $cacheControl;
 
-
-    /* cache-expires */
+    /**
+     * @var integer time
+     *
+     * Cache-Expires 
+     */
     public $expires;
 
+
+    /**
+     * @var string
+     */
     public $body;
 
-    public function __construct($code = 200, $msg = 'OK') 
+
+
+    /**
+     * @param integer $code status code
+     * @param string $status status message
+     */
+    public function __construct($code = 200, $status = 'OK') 
     {
         $this->code = $code;
-        $this->status = $msg;
+        $this->status = $status;
     }
 
 
+
+    /**
+     * Set status code
+     *
+     * @param string $code set status code.
+     */
     public function code($code)
     {
         $this->code = $code;
     }
 
+
+
+    /**
+     * Set status message
+     *
+     * @param string $status Status message.
+     */
     public function status($status)
     {
         $this->status = $status;
     }
 
+
+    /**
+     * Send location to header
+     *
+     * @param string $url
+     *
+     */
     public function location($url)
     {
         header( 'Location: ' . $url );
