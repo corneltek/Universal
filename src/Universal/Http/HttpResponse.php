@@ -182,18 +182,18 @@ class HttpResponse
     public function finalize()
     {
         if( $this->code ) {
-            header('HTTP/1.1 ' . $this->code . ' ' . $this->status );
+            @header('HTTP/1.1 ' . $this->code . ' ' . $this->status );
         }
         if( $this->contentType ) {
-            header("Content-type: " . $this->contentType );
+            @header("Content-type: " . $this->contentType );
         }
         if( $this->cacheControl ) {
-            header('Cache-Control: '  . $this->cacheControl); // HTTP/1.1
+            @header('Cache-Control: '  . $this->cacheControl); // HTTP/1.1
         }
         if( $this->expires ) {
             $datestr = gmdate(DATE_RFC822, $this->expires );
             // header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-            header( "Expires: $datestr" );
+            @header( "Expires: $datestr" );
         }
         return $this->body;
     }
