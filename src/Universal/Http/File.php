@@ -97,9 +97,8 @@ class File extends Parameter
 
 
     /**
-     * get tmp_name filepath
+     * Get tmp_name filepath
      */
-
     public function getFilepath()
     {
         return $this->hash['tmp_name'];
@@ -180,7 +179,9 @@ class File extends Parameter
     }
 
     /**
-     * return pretty format size
+     * Return pretty format size
+     *
+     * TODO: Move this to pretty size.
      */
     public function getPrettySize()
     {
