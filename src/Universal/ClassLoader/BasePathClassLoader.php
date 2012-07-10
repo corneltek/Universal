@@ -1,8 +1,6 @@
 <?php 
 namespace Universal\ClassLoader;
 
-if( ! class_exists('\Universal\ClassLoader\BasePathClassLoader') ) {
-
 /**
  * Base Path Classloader:
  *
@@ -132,8 +130,5 @@ class BasePathClassLoader
     {
         $this->useIncludePath = $bool;
     }
-
 }
 
-
-}
