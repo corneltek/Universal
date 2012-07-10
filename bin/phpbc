@@ -1,4 +1,8 @@
+#!/usr/bin/env php
 <?php
+if( ! extension_loaded('bcompiler') ) {
+    die('bcompiler extension is required.');
+}
 
 if( count($argv) < 2 ) {
     die("Usage: phpbc [path1 path2 path3 ...]\n");
