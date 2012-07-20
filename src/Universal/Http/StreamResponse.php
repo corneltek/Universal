@@ -10,7 +10,7 @@ class StreamResponse
      * Currently implements MXHR interface
      */
     function __construct() {
-        $this->boundary = md5(rand(1000) . time());
+        $this->boundary = md5(mt_rand() . time());
 
         // prevent error reporting
         set_error_handler(function() { return false; });
