@@ -55,7 +55,8 @@ class StreamResponse
         flush();
     }
 
-    public function finish() {
+    public function finalize()
+    {
         echo "\n--{$this->boundary}--\n";
     }
 }
