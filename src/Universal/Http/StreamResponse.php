@@ -10,13 +10,16 @@ class StreamResponse
      * Currently implements MXHR interface
      */
     function __construct() {
-        $this->boundary = md5(time());
+        $this->boundary = md5(rand(1000) . time());
 
         // prevent error reporting
         set_error_handler(function() { return false; });
 
         header("Content-Type: multipart/mixed; boundary=\"{$this->boundary}\"");
-        apache_setenv('no-gzip', 1);
+
+        if( function_exists('apache_setenv') ) {
+            apache_setenv('no-gzip', 1);
+        }
         ini_set('zlib.output_compression', 0);
         ini_set('implicit_flush', 1);
         set_time_limit(0);
@@ -27,14 +30,8 @@ class StreamResponse
             ob_end_flush(); 
         }
         ob_implicit_flush(1);
-
         restore_error_handler();
     }
-
-
-    for( $i = 0 ; $i < 30000 ; $i++ ) {
-    }
-
 
 
     /**
