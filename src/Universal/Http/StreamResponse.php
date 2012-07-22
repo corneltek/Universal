@@ -42,14 +42,19 @@ class StreamResponse
      */
     public function write($content, $headers = array() ) {
         echo "--{$this->boundary}\n";
-        foreach( $headers as $k => $v ) {
-            echo $k . ':';
-            if( is_array($v) ) {
-                echo join(';',$v);
-            } else {
-                echo $v;
+
+        if( is_array($headers) ) {
+            foreach( $headers as $k => $v ) {
+                echo $k . ':';
+                if( is_array($v) ) {
+                    echo join(';',$v);
+                } else {
+                    echo $v;
+                }
+                echo "\n";
             }
-            echo "\n";
+        } else {
+            echo $headers;
         }
         echo $content;
         echo PHP_EOL;
