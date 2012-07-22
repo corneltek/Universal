@@ -52,12 +52,13 @@ class StreamResponse
             echo "\n";
         }
         echo $content;
+        echo PHP_EOL;
         flush();
     }
 
     public function finalize()
     {
-        echo "\n--{$this->boundary}--\n";
+        echo "--{$this->boundary}--\n";
     }
 }
 
