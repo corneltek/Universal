@@ -51,10 +51,11 @@ class StreamResponse
                 } else {
                     echo $v;
                 }
-                echo "\n";
+                echo "\n\n";
             }
         } else {
             echo $headers;
+            echo "\n";
         }
         echo $content;
         echo PHP_EOL;
