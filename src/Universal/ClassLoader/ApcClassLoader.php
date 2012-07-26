@@ -6,7 +6,7 @@ class ApcClassLoader extends SplClassLoader
 {
     public $apcprefix = 'apc';
 
-    public function __construct($namespaces = null, $prefix = '_apc')
+    public function __construct($prefix = '_apc', $namespaces = null)
     {
         parent::__construct( $namespaces );
         $this->apcPrefix = $prefix;
