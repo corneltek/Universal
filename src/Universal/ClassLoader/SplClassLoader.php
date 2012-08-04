@@ -24,6 +24,7 @@
  */
 namespace Universal\ClassLoader;
 use Exception;
+use InvalidArgumentException;
 
 if( ! class_exists('\Universal\ClassLoader\SplClassLoader') ) {
 
@@ -103,8 +104,9 @@ class SplClassLoader
                 $this->namespaces[ $args[0] ] = (array) $args[1];
                 return;
             }
+            
         }
-        throw new Exception;
+        throw new InvalidArgumentException;
     }
 
 

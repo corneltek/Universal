@@ -42,7 +42,24 @@ Include Path manipulator
     $includer->add( 'path/to/lib' );
     $includer->setup();   // write set_include_path
 
-## HttpRequest
+## Http
+
+### StreamResponse
+
+MXHR support
+
+```php
+    $response = new Universal\Http\StreamResponse;
+    for( $i = 0 ; $i < 30000 ; $i++ ) {
+        $response->write(json_encode(array('i' => $i)), array(
+            'Content-Type' => 'application/json',
+        ));
+        usleep(200000);
+    }
+    $response->finish();
+```
+
+### HttpRequest
 
 For multiple files:
 

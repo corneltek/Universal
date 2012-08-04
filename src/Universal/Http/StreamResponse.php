@@ -10,7 +10,7 @@ class StreamResponse
      * Currently implements MXHR interface
      */
     function __construct() {
-        $this->boundary = md5(rand(1000) . time());
+        $this->boundary = md5(mt_rand() . time());
 
         // prevent error reporting
         set_error_handler(function() { return false; });
@@ -42,21 +42,29 @@ class StreamResponse
      */
     public function write($content, $headers = array() ) {
         echo "--{$this->boundary}\n";
-        foreach( $headers as $k => $v ) {
-            echo $k . ':';
-            if( is_array($v) ) {
-                echo join(';',$v);
-            } else {
-                echo $v;
+
+        if( is_array($headers) ) {
+            foreach( $headers as $k => $v ) {
+                echo $k . ':';
+                if( is_array($v) ) {
+                    echo join(';',$v);
+                } else {
+                    echo $v;
+                }
+                echo "\n\n";
             }
+        } else {
+            echo $headers;
             echo "\n";
         }
         echo $content;
+        echo PHP_EOL;
         flush();
     }
 
-    public function finish() {
-        echo "\n--{$this->boundary}--\n";
+    public function finalize()
+    {
+        echo "--{$this->boundary}--\n";
     }
 }
 
