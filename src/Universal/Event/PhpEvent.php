@@ -19,7 +19,6 @@ namespace Universal\Event;
  */
 class PhpEvent
 {
-
     /**
      * Event pool
      *
@@ -42,22 +41,22 @@ class PhpEvent
 
 
     /**
-     * trigger event with event name
+     * Trigger event with event name
      *
-     * @param string $ev event name
+     * @param string $evname event name
+     * @param mixed extra parameters
      */
-    public function trigger($ev)
+    public function trigger($evname)
     {
         $results = array();
-        if( isset( $this->eventPool[ $ev ] ) ) {
+        if( isset( $this->eventPool[ $evname ] ) ) {
             $args = func_get_args();
             array_shift( $args );
-            foreach( $this->eventPool[ $ev ] as $cb ) {
+            foreach( $this->eventPool[ $evname ] as $cb ) {
                 /**
                  * to break the event trigger, just return false.
                  */
-                $ret = call_user_func_array( $cb , $args );
-                if( $ret === false )
+                if( ($ret = call_user_func_array( $cb , $args )) === false ) 
                     break;
                 $results[] = $ret;
             }
