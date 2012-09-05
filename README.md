@@ -120,17 +120,21 @@ Register a object builder for lazy building.
         return new YourMailer;
     };
 
-To retrieve object as singleton object via __get magic method:
+To get singleton object via __get magic method:
 
     $mailer = $container->mailer;
 
-Or retrieve singleton object from `instance` method:
+Or get singleton object from `instance` method:
 
     $mailer = $container->instance('mailer');
 
-Or to get instance (build new object everytime)
+To build a new object:
 
     $mailer = $container->build('mailer');
+
+To build a new object with arguments:
+
+    $mailer = $container->build('mailer', array( ... ));
 
 ## Session
 
