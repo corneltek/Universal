@@ -10,11 +10,16 @@
  */
 namespace Universal\Container;
 use Exception;
+
+class ObjectContainerException extends Exception {  }
+
 class ObjectContainer 
 {
     public $builders = array();
 
     public $_singletonObjects = array();
+
+    public $throwIfNotFound = false;
 
     public function has($key)
     {
@@ -30,7 +35,9 @@ class ObjectContainer
             return $this->_singletonObjects[ $key ] = $this->instance($key);
         }
         else {
-            throw new Exception("Builder not found: $key");
+            if( $this->throwIfNotFound ) {
+                throw new ObjectContainerException("object builder not found: $key");
+            }
         }
     }
 
