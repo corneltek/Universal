@@ -120,7 +120,7 @@ Register a object builder for lazy building.
         return new YourMailer;
     };
 
-To get singleton object via __get magic method:
+To get singleton object via `__get` magic method:
 
     $mailer = $container->mailer;
 
