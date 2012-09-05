@@ -31,7 +31,7 @@ class ObjectContainer
         if( isset( $this->_singletonObjects[ $key ] ) ) {
             return $this->_singletonObjects[ $key ];
         }
-        elseif( isset( $this->builders[ $key ] ) ) {
+        elseif( $this->has($key) ) {
             return $this->_singletonObjects[ $key ] = $this->instance($key);
         }
         else {
@@ -41,14 +41,35 @@ class ObjectContainer
         }
     }
 
+    protected function _buildObject($builder)
+    {
+        if( is_callable($b) ) {
+            return call_user_func($b);
+        } 
+        elseif( is_array($b) ) {
+            return call_user_func_array($b,array());
+        }
+        elseif( is_string($b) ) {
+            $args = explode('#',$b);
+            $class = $args[0];
+            if( class_exists($class,true) ) {
+                if( isset($args[1]) ) {
+                    return call_user_func_array($args);
+                } else {
+                    return new $b;
+                }
+            }
+            else {
+                throw new ObjectContainerException("Can not build object from $b");
+            }
+        }
+        return $b;
+    }
+
     public function instance($key)
     {
-        if( $b = $this->getBuilder($key) ) {
-            if( is_callable($b) ) {
-                return call_user_func($b);
-            } else {
-                return $b;
-            }
+        if( $builder $this->getBuilder($key) ) {
+            return $this->_buildObject($builder);
         }
     }
 
@@ -59,6 +80,11 @@ class ObjectContainer
         }
     }
 
+    public function setBuilder($key,$builder)
+    {
+        $this->builders[ $key ] = $builder;
+    }
+
     public function __get($key)
     {
         return $this->singletonInstance($key);
@@ -66,7 +92,7 @@ class ObjectContainer
 
     public function __set($key,$builder) 
     {
-        $this->builders[ $key ] = $builder;
+        $this->setBuilder($key,$builder);
     }
 
     public function __isset($key)
