@@ -11,10 +11,10 @@
     <active>yes</active>
   </lead>
   <date>2012-09-05</date>
-  <time>11:29:25</time>
+  <time>11:46:10</time>
   <version>
-    <release>1.2.1</release>
-    <api>1.2.1</api>
+    <release>1.2.2</release>
+    <api>1.2.2</api>
   </version>
   <stability>
     <release>stable</release>
@@ -41,7 +41,7 @@
       <file name="src/Universal/ClassLoader/BytecodeClassLoader.php" role="php" md5sum="f31ffb9b57d5453de621f0b8a6b29686"/>
       <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="dc8c2c90c8ae9e87fa78f776a4b7f508"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="617f0811a259a2986a5148a541a18f57"/>
-      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="cc3254fb4c2f0b41f379193de6ae9aae"/>
+      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="ce07452f9e13c51ccd4d61766d87490e"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="02e646f2ea2b87c1cdbf0fa9c6e292e4"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="91c0c341683b82f7997363fee165a3bb"/>
       <file name="src/Universal/Http/Cookie.php" role="php" md5sum="7d8d76ec1f505a73042c5c37b25dc463"/>
@@ -54,7 +54,7 @@
       <file name="src/Universal/Http/StreamResponse.php" role="php" md5sum="ac18b31f078ab62c48da795a93474a8e"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="a9e849c39b0eb5a75ea7acb864148ea8"/>
+      <file name="README.md" role="doc" md5sum="fcf340490301b43dd4be13f9fa3b2af4"/>
       <file name="REF.md" role="doc" md5sum="ad778c0a94993cf81fd02d03eef3952a"/>
     </dir>
   </contents>
