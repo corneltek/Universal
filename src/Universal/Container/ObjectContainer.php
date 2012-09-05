@@ -26,13 +26,13 @@ class ObjectContainer
         return isset($this->builders[ $key ]);
     }
 
-    public function singletonInstance($key)
+    public function instance($key,$args = array())
     {
         if( isset( $this->_singletonObjects[ $key ] ) ) {
             return $this->_singletonObjects[ $key ];
         }
         elseif( $this->has($key) ) {
-            return $this->_singletonObjects[ $key ] = $this->instance($key);
+            return $this->_singletonObjects[ $key ] = $this->build($key,$args);
         }
         else {
             if( $this->throwIfNotFound ) {
@@ -41,20 +41,20 @@ class ObjectContainer
         }
     }
 
-    protected function _buildObject($b)
+    protected function _buildObject($b,$args = array())
     {
         if( is_callable($b) ) {
-            return call_user_func($b);
+            return call_user_func_array($b,$args);
         } 
         elseif( is_array($b) ) {
-            return call_user_func_array($b,array());
+            return call_user_func_array($b,$args);
         }
         elseif( is_string($b) ) {
-            $args = explode('#',$b);
-            $class = $args[0];
+            $callable = explode('#',$b);
+            $class = $callable[0];
             if( class_exists($class,true) ) {
-                if( isset($args[1]) ) {
-                    return call_user_func_array($args);
+                if( isset($callable[1]) ) {
+                    return call_user_func_array($callable,$args);
                 } else {
                     return new $b;
                 }
@@ -66,10 +66,10 @@ class ObjectContainer
         return $b;
     }
 
-    public function instance($key)
+    public function build($key,$args = array())
     {
         if( $builder = $this->getBuilder($key) ) {
-            return $this->_buildObject($builder);
+            return $this->_buildObject($builder, $args);
         }
     }
 
@@ -87,7 +87,7 @@ class ObjectContainer
 
     public function __get($key)
     {
-        return $this->singletonInstance($key);
+        return $this->instance($key);
     }
 
     public function __set($key,$builder) 

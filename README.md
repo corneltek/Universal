@@ -108,6 +108,30 @@ Foreach file:
     }
 
 
+## ObjectContainer
+
+Construct a $container object or inherit from it:
+
+    $container = new Universal\Container\ObjectContainer;
+
+Register a object builder for lazy building.
+
+    $container->mailer = function() {
+        return new YourMailer;
+    };
+
+To retrieve object as singleton object via __get magic method:
+
+    $mailer = $container->mailer;
+
+Or retrieve singleton object from `instance` method:
+
+    $mailer = $container->instance('mailer');
+
+Or to get instance (build new object everytime)
+
+    $mailer = $container->build('mailer');
+
 ## Session
 
 Supported Session Storage backend:
