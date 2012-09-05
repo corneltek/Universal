@@ -41,7 +41,7 @@ class ObjectContainer
         }
     }
 
-    protected function _buildObject($builder)
+    protected function _buildObject($b)
     {
         if( is_callable($b) ) {
             return call_user_func($b);
@@ -68,7 +68,7 @@ class ObjectContainer
 
     public function instance($key)
     {
-        if( $builder $this->getBuilder($key) ) {
+        if( $builder = $this->getBuilder($key) ) {
             return $this->_buildObject($builder);
         }
     }
