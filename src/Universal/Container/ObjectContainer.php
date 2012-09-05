@@ -14,14 +14,7 @@ class ObjectContainer
 {
     public $builders = array();
 
-    public $_cachedObjects = array();
-
-    private $_cache = true;
-
-    public function setCache($bool)
-    {
-        $this->_cache = $bool;
-    }
+    public $_singletonObjects = array();
 
     public function has($key)
     {
@@ -30,11 +23,11 @@ class ObjectContainer
 
     public function singletonInstance($key)
     {
-        if( $this->_cache && isset( $this->_cachedObjects[ $key ] ) ) {
-            return $this->_cachedObjects[ $key ];
+        if( isset( $this->_singletonObjects[ $key ] ) ) {
+            return $this->_singletonObjects[ $key ];
         }
         elseif( isset( $this->builders[ $key ] ) ) {
-            return $this->_cachedObjects[ $key ] = $this->instance($key);
+            return $this->_singletonObjects[ $key ] = $this->instance($key);
         }
         else {
             throw new Exception("Builder not found: $key");
