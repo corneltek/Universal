@@ -13,41 +13,65 @@ use Exception;
 class ObjectContainer 
 {
     public $builders = array();
+
     public $_cachedObjects = array();
 
     private $_cache = true;
 
-    function setCache($bool)
+    public function setCache($bool)
     {
         $this->_cache = $bool;
     }
 
-    function __set($key,$builder) 
-    {
-        $this->builders[ $key ] = $builder;
-    }
-
-    function __isset($key)
+    public function has($key)
     {
         return isset($this->builders[ $key ]);
     }
 
-    function __get($key)
+    public function singletonInstance($key)
     {
         if( $this->_cache && isset( $this->_cachedObjects[ $key ] ) ) {
             return $this->_cachedObjects[ $key ];
         }
         elseif( isset( $this->builders[ $key ] ) ) {
-            $b = $this->builders[ $key ];
-            if( is_callable($b) ) {
-                return $this->_cachedObjects[ $key ] = call_user_func($b);
-            } else {
-                return $this->_cachedObjects[ $key ] = $b;
-            }
+            return $this->_cachedObjects[ $key ] = $this->instance($key);
         }
         else {
             throw new Exception("Builder not found: $key");
         }
+    }
+
+    public function instance($key)
+    {
+        if( $b = $this->getBuilder($key) ) {
+            if( is_callable($b) ) {
+                return call_user_func($b);
+            } else {
+                return $b;
+            }
+        }
+    }
+
+    public function getBuilder($key)
+    {
+        if( isset($this->builders[$key]) ) {
+            return $this->builders[ $key ];
+        }
+    }
+
+    public function __get($key)
+    {
+        return $this->singletonInstance($key);
+    }
+
+    public function __set($key,$builder) 
+    {
+        $this->builders[ $key ] = $builder;
+    }
+
+    public function __isset($key)
+    {
+        return $this->has($key);
     }
 
 }
