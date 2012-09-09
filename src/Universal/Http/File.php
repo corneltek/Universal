@@ -97,6 +97,18 @@ class File extends Parameter
     }
 
 
+    public function getKBytes() 
+    {
+        return (int) $this->hash['size'] / 1024;
+    }
+    
+
+    public function validateExtension( $exts )
+    {
+        $ext = strtolower($this->getExtension());
+        return in_array( $ext, $exts );
+    }
+
     /**
      * Get tmp_name filepath
      */
@@ -201,7 +213,7 @@ class File extends Parameter
         return $size / $gb . ' GB';
     }
 
-    public function exceedSize( $limitSize )
+    public function isSizeExceed( $limitSize )
     {
         if( is_string( $limitSize ) ) {
             // parse size string
