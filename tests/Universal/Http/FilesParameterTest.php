@@ -1,10 +1,10 @@
 <?php 
 
-function create_file_hash($files) {
+function create_file_hash() {
     if( ! extension_loaded('Fileinfo') ) {
         throw new Exception('Fileinfo extension is required.');
     }
-
+    $files = func_get_args();
     $name     = array();
     $tmp_name = array();
     $size     = array();
@@ -54,12 +54,9 @@ class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
     function testFunc2()
     {
         $_FILES = array( );
-        $_FILES['uploaded'] = array( 
-            'name' => array( 'File1' , 'File2' ),
-            'type' => array( 'text/plain', 'text/plain'),
-            'size' => array( 100, 200 ),
-            'error' => array( 0 , 0 ),
-            'tmp_name' => array(  '/tmp/file1' , '/tmp/file2' ),
+        $_FILES['uploaded'] = create_file_hash(
+            'tests/data/cat.txt',
+            'tests/data/cat2.txt'
         );
 
         $req = new Universal\Http\HttpRequest;
