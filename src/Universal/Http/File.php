@@ -123,7 +123,7 @@ class File extends Parameter
 
 
     /**
-     * convert current tempfile to SplFileInfo object
+     * Convert current tempfile to SplFileInfo object
      */
     public function asSplFileInfo()
     {

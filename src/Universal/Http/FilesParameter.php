@@ -3,6 +3,7 @@ namespace Universal\Http;
 use ArrayAccess;
 use ArrayIterator;
 use IteratorAggregate;
+use SplFileInfo;
 
 class FilesParameter extends Parameter
         implements ArrayAccess, IteratorAggregate
@@ -26,13 +27,14 @@ class FilesParameter extends Parameter
                         'size' => $hash[$name]['size'][ $i ],
                         'type' => $hash[$name]['type'][ $i ],
                         'error' => $hash[$name]['error'][ $i ],
-                        'tmp_name' => $hash[$name]['tmp_name'][ $i ],
+                        'tmp_name' => new SplFileInfo($hash[$name]['tmp_name'][ $i ]),
                     );
                     $files[ $name ][] = new File($attrs);
                 }
             }
             else {
                 // single file
+                $hash[$name]['tmp_name'] = new SplFileInfo( $hash[$name]['tmp_name'] );
                 $files[ $name ] = new File( $hash[ $name ] );
             }
         }
