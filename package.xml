@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-09-05</date>
-  <time>11:51:28</time>
+  <date>2012-09-09</date>
+  <time>18:56:34</time>
   <version>
-    <release>1.2.2</release>
-    <api>1.2.2</api>
+    <release>1.2.3</release>
+    <api>1.2.3</api>
   </version>
   <stability>
     <release>stable</release>
@@ -25,6 +25,9 @@
   <contents>
     <dir name="/">
       <file name="tests/bootstrap.php" role="test" md5sum="bbba1757577fcdde93c35ec0143b7a53"/>
+      <file name="tests/data/cat.jpg" role="test" md5sum="8ac0c103985355e168a8a82ae0aa6c02"/>
+      <file name="tests/data/cat.txt" role="test" md5sum="cae78661f93d71cb9c8063d20eb49614"/>
+      <file name="tests/data/cat2.txt" role="test" md5sum="2feb58ce968973263c41aa937529bc5b"/>
       <file name="tests/helpers.php" role="test" md5sum="b5e0733acd23bf976409fbe22191062f"/>
       <file name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
@@ -32,7 +35,7 @@
       <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="f1f4070bec46c7190ea6d25a27fe789b"/>
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
       <file name="tests/Universal/Http/CookieTest.php" role="test" md5sum="9437019ee969e96e1d919fb520040315"/>
-      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="2d7509c37811c0614b36f57e1b6a7dd5"/>
+      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="325ed9e2b0ed871bbd0aea00e1a84dba"/>
       <file name="tests/Universal/Http/HttpResponseTest.php" role="test" md5sum="68b6b54cd1977475871eb0c12863ad21"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="ae823109f36b73a103cf20de49b2bc86"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="ce71c53629c0b5f8098fb54ba23dd9f6"/>
@@ -45,16 +48,16 @@
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="02e646f2ea2b87c1cdbf0fa9c6e292e4"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="91c0c341683b82f7997363fee165a3bb"/>
       <file name="src/Universal/Http/Cookie.php" role="php" md5sum="7d8d76ec1f505a73042c5c37b25dc463"/>
-      <file name="src/Universal/Http/File.php" role="php" md5sum="ebce64dfbf964ce2d9a601aa60a67c33"/>
-      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="ec73fab20ba20650e3b6b386d856f45d"/>
+      <file name="src/Universal/Http/File.php" role="php" md5sum="ec2ce37bcfdeeb4b89f4b573e455bace"/>
+      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="d4e9cc078a2224466608a46666e340b1"/>
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="9729a986980e03fd90ff03bd61217909"/>
       <file name="src/Universal/Http/HttpResponse.php" role="php" md5sum="a129d6ddbd0837bf6e58459842821efc"/>
-      <file name="src/Universal/Http/Parameter.php" role="php" md5sum="19e6c6ec4772ed612d424b82f7fd63ee"/>
+      <file name="src/Universal/Http/Parameter.php" role="php" md5sum="300657c52c4bde8db82d4160e2b65282"/>
       <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="b689e8c38911d88802b96eeffc70da99"/>
       <file name="src/Universal/Http/StreamResponse.php" role="php" md5sum="ac18b31f078ab62c48da795a93474a8e"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
       <file name="Changes.md" role="doc" md5sum="d5cec2699ab64aa81a49695a88305a6a"/>
-      <file name="README.md" role="doc" md5sum="fcf340490301b43dd4be13f9fa3b2af4"/>
+      <file name="README.md" role="doc" md5sum="26534a78b2b912c027544bda387e3940"/>
       <file name="REF.md" role="doc" md5sum="ad778c0a94993cf81fd02d03eef3952a"/>
     </dir>
   </contents>
@@ -71,6 +74,9 @@
   <phprelease>
     <filelist>
       <install name="tests/bootstrap.php" as="bootstrap.php"/>
+      <install name="tests/data/cat.jpg" as="data/cat.jpg"/>
+      <install name="tests/data/cat.txt" as="data/cat.txt"/>
+      <install name="tests/data/cat2.txt" as="data/cat2.txt"/>
       <install name="tests/helpers.php" as="helpers.php"/>
       <install name="tests/lib/Foo/Bar.php" as="lib/Foo/Bar.php"/>
       <install name="tests/lib/Foo/Foo.php" as="lib/Foo/Foo.php"/>
