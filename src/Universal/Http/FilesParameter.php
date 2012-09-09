@@ -2,14 +2,20 @@
 namespace Universal\Http;
 use ArrayAccess;
 use ArrayIterator;
+use IteratorAggregate;
 
 class FilesParameter extends Parameter
         implements ArrayAccess, IteratorAggregate
 {
-    public $hash;
+    public $hash = array();
 
-    function __construct( $hash )
+
+    function __construct( $hash = null )
     {
+        if( !$hash && isset($_FILES) ) {
+            $hash = $_FILES;
+        }
+
         $files = array();
         foreach( array_keys($hash) as $name ) {
 
