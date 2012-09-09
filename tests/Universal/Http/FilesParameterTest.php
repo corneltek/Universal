@@ -1,18 +1,32 @@
 <?php 
 
-function create_file_hash($file) {
+function create_file_hash($files) {
     if( ! extension_loaded('Fileinfo') ) {
         throw new Exception('Fileinfo extension is required.');
     }
-    $finfo = new finfo(FILEINFO_MIME);
-    $type = $finfo->file($file);
-    $mime = substr($type, 0, strpos($type, ';'));
+
+    $name     = array();
+    $tmp_name = array();
+    $size     = array();
+    $type     = array();
+    $error    = array();
+    foreach( (array) $files as $file ) {
+        $finfo = new finfo(FILEINFO_MIME);
+        $ftype  = $finfo->file($file);
+        $mime  = substr($ftype, 0, strpos($ftype, ';'));
+
+        $name[]     = basename($file);
+        $tmp_name[] = realpath($file);
+        $size[]     = filesize($file);
+        $type[]     = $mime;
+        $error[]    = 0;
+    }
     return array(
-        'name'     => basename($file),
-        'tmp_name' => realpath($file),
-        'size'     => filesize($file),
-        'type'     => $mime,
-        'error'    => 0,
+        'name'     => count($name) == 1 ? $name[0] : $name,
+        'tmp_name' => count($tmp_name) == 1 ? $tmp_name[0] : $tmp_name,
+        'size'     => count($size) == 1 ? $size[0] : $size,
+        'type'     => count($type) == 1 ? $type[0] : $type,
+        'error'    => count($error) == 1 ? $error[0] : $error,
     );
 }
 
