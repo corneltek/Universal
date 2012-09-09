@@ -5,9 +5,10 @@ use SplFileInfo;
 class File extends Parameter
 {
 
-
     /**
      * If there is a file and no error
+     *
+     * @return boolean
      */
     public function hasFile()
     {

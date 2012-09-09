@@ -1,14 +1,10 @@
 <?php 
 namespace Universal\Http;
 use ArrayAccess;
+use ArrayIterator;
 
-/**
- * $req = new HttpRequest;
- * $req->files->uploaded_file->name;
- * $req->files->uploaded_file->size;
- */
 class FilesParameter extends Parameter
-        implements ArrayAccess
+        implements ArrayAccess, IteratorAggregate
 {
     public $hash;
 
@@ -37,6 +33,11 @@ class FilesParameter extends Parameter
             }
         }
         $this->hash = $files;
+    }
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->hash);
     }
     
     public function offsetSet($name,$value)
