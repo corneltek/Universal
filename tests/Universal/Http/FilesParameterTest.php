@@ -1,27 +1,33 @@
 <?php 
-namespace Universal\Http;
-use PHPUnit_Framework_TestCase;
-use Exception;
 
-class FilesParameterTest extends PHPUnit_Framework_TestCase
+function create_file_hash($file) {
+    if( ! extension_loaded('Fileinfo') ) {
+        throw new Exception('Fileinfo extension is required.');
+    }
+    $finfo = new finfo(FILEINFO_MIME);
+    $type = $finfo->file($file);
+    $mime = substr($type, 0, strpos($type, ';'));
+    return array(
+        'name'     => basename($file),
+        'tmp_name' => realpath($file),
+        'size'     => filesize($file),
+        'type'     => $mime,
+        'error'    => 0,
+    );
+}
+
+class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
 {
     function testFunc()
     {
-
         $_FILES = array( );
-        $_FILES['uploaded'] = array( 
-            'name' => 'File1',
-            'type' => 'text/plain',
-            'size' => 100,
-            'tmp_name' => '/tmp/file1',
-            'error' => 0
-        );
+        $_FILES['uploaded'] = create_file_hash('tests/data/cat.txt');
 
-        $req = new HttpRequest;
+        $req = new Universal\Http\HttpRequest;
         ok( $req );
         ok( $_FILES );
         ok( $req->files->uploaded );
-        is( 100, $req->files->uploaded->size );
+        is( 11, $req->files->uploaded->size );
         is( 'text/plain', $req->files->uploaded->type );
         is( 0, $req->files->uploaded->error );
 
@@ -42,7 +48,7 @@ class FilesParameterTest extends PHPUnit_Framework_TestCase
             'tmp_name' => array(  '/tmp/file1' , '/tmp/file2' ),
         );
 
-        $req = new HttpRequest;
+        $req = new Universal\Http\HttpRequest;
         ok( $req );
         ok( is_array( $req->files->uploaded ) );
 

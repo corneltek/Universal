@@ -67,7 +67,7 @@ For multiple files:
 <?php
 
 $req = new HttpRequest;
-foreach( $req->files->uploaded as $f ) {
+foreach( $req->files as $f ) {
     $extname = $f->getExtension();
     $filename = $f->getPathname();
 }

@@ -4,7 +4,7 @@ use ArrayAccess;
 
 class Parameter implements ArrayAccess
 {
-    public $hash;
+    public $hash = array();
 
     public function __construct( & $hash = array() )
     {

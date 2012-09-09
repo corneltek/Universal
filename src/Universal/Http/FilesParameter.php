@@ -7,8 +7,6 @@ use IteratorAggregate;
 class FilesParameter extends Parameter
         implements ArrayAccess, IteratorAggregate
 {
-    public $hash = array();
-
 
     function __construct( $hash = null )
     {
@@ -23,14 +21,14 @@ class FilesParameter extends Parameter
             if( is_array($hash[ $name ][ 'error' ]) ) {
                 $files[ $name ] = array();
                 for( $i = 0 ; $i < count( $hash[ $name ]['error'] ) ; ++$i ) {
-                    $attributes = array( 
+                    $attrs = array(
                         'name' => $hash[$name]['name'][ $i ],
                         'size' => $hash[$name]['size'][ $i ],
                         'type' => $hash[$name]['type'][ $i ],
                         'error' => $hash[$name]['error'][ $i ],
                         'tmp_name' => $hash[$name]['tmp_name'][ $i ],
                     );
-                    $files[ $name ][] = new File( $attributes );
+                    $files[ $name ][] = new File($attrs);
                 }
             }
             else {
