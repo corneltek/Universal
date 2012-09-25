@@ -15,23 +15,34 @@ class ObjectContainerException extends Exception {  }
 
 class ObjectContainer 
 {
-    public $builders = array();
+    public $_builders = array();
 
     public $_singletonObjects = array();
 
     public $throwIfNotFound = false;
 
-    public function has($key)
+
+    /** 
+     * Check if we have a builder.
+     *
+     * @param string $key builder key.
+     */
+    public function hasBuilder($key)
     {
-        return isset($this->builders[ $key ]);
+        return isset($this->_builders[ $key ]);
     }
 
+
+    /**
+     * Register a singleton object builder
+     *
+     */
     public function instance($key,$args = array())
     {
         if( isset( $this->_singletonObjects[ $key ] ) ) {
             return $this->_singletonObjects[ $key ];
         }
-        elseif( $this->has($key) ) {
+        elseif( $this->hasBuilder($key) ) {
             return $this->_singletonObjects[ $key ] = $this->build($key,$args);
         }
         else {
@@ -73,16 +84,29 @@ class ObjectContainer
         }
     }
 
+
+    /**
+     * Get builder
+     *
+     * @param string $key
+     */
     public function getBuilder($key)
     {
-        if( isset($this->builders[$key]) ) {
-            return $this->builders[ $key ];
+        if( isset($this->_builders[$key]) ) {
+            return $this->_builders[ $key ];
         }
     }
 
+
+    /**
+     * Set object builder
+     *
+     * @param string $key
+     * @param closure $builder
+     */
     public function setBuilder($key,$builder)
     {
-        $this->builders[ $key ] = $builder;
+        $this->_builders[ $key ] = $builder;
     }
 
     public function __get($key)
@@ -97,7 +121,7 @@ class ObjectContainer
 
     public function __isset($key)
     {
-        return $this->has($key);
+        return $this->hasBuilder($key);
     }
 
 }
