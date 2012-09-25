@@ -39,7 +39,7 @@ class ObjectContainer
      * @param string $key
      * @param array $args
      */
-    public function getInstance($key,$args = array())
+    public function getObject($key,$args = array())
     {
         if( isset( $this->_singletonObjects[ $key ] ) ) {
             return $this->_singletonObjects[ $key ];
@@ -135,7 +135,7 @@ class ObjectContainer
 
     public function __get($key)
     {
-        return $this->getInstance($key);
+        return $this->getObject($key);
     }
 
     public function __set($key,$builder) 
