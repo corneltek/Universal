@@ -8,8 +8,19 @@
  * file that was distributed with this source code.
  *
  */
-namespace Universal\Container;
-use PHPUnit_Framework_TestCase;
+
+class FooObjectBuilder
+{
+    public $i = 1;
+
+    public function __invoke()
+    {
+        return 'foo' . $this->i++;
+    }
+}
+
+use Universal\Container\ObjectContainer;
+
 class ObjectContainerTest extends PHPUnit_Framework_TestCase 
 {
     public function testSingletonBuilder() 
@@ -28,7 +39,6 @@ class ObjectContainerTest extends PHPUnit_Framework_TestCase
         $container->registerFactory('std',function($args) { 
             return $args;
         });
-
         $a = $container->getInstance('std',array(1));
         ok($a);
 
@@ -37,6 +47,16 @@ class ObjectContainerTest extends PHPUnit_Framework_TestCase
 
         is(1,$a);
         is(2,$b);
+    }
+
+    public function testCallableObject()
+    {
+        $container = new ObjectContainer;
+        $container->registerFactory('foo', new FooObjectBuilder);
+        $foo = $container->getInstance('foo');
+        is('foo1',$foo);
+        is('foo2',$container->foo);
+        is('foo3',$container->foo);
     }
 }
 
