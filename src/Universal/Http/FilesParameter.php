@@ -5,40 +5,18 @@ use ArrayIterator;
 use IteratorAggregate;
 use SplFileInfo;
 
+
+
+
 class FilesParameter extends Parameter
         implements ArrayAccess, IteratorAggregate
 {
-
-    function __construct( $hash = null )
+    public function __construct( $hash = null )
     {
         if( !$hash && isset($_FILES) ) {
             $hash = $_FILES;
         }
-
-        $files = array();
-        foreach( array_keys($hash) as $name ) {
-
-            // multiple files
-            if( is_array($hash[ $name ][ 'error' ]) ) {
-                $files[ $name ] = array();
-                for( $i = 0 ; $i < count( $hash[ $name ]['error'] ) ; ++$i ) {
-                    $attrs = array(
-                        'name' => $hash[$name]['name'][ $i ],
-                        'size' => $hash[$name]['size'][ $i ],
-                        'type' => $hash[$name]['type'][ $i ],
-                        'error' => $hash[$name]['error'][ $i ],
-                        'tmp_name' => new SplFileInfo($hash[$name]['tmp_name'][ $i ]),
-                    );
-                    $files[ $name ][] = new File($attrs);
-                }
-            }
-            else {
-                // single file
-                $hash[$name]['tmp_name'] = new SplFileInfo( $hash[$name]['tmp_name'] );
-                $files[ $name ] = new File( $hash[ $name ] );
-            }
-        }
-        $this->hash = $files;
+        $this->hash = fix_files_array($hash);
     }
 
     public function getIterator()
@@ -65,5 +43,41 @@ class FilesParameter extends Parameter
     {
         unset($this->hash[$name]);
     }
-    
+
+
+    public static function _move_indexes_right($files) {
+        if( ! is_array($files['name']) )
+            return $files;
+        $results = array(); 
+        foreach($files['name'] as $index => $name) { 
+            $reordered = array( 
+                'name' => $files['name'][$index], 
+                'tmp_name' => $files['tmp_name'][$index], 
+                'size' => $files['size'][$index], 
+                'type' => $files['type'][$index], 
+                'error' => $files['error'][$index], 
+            ); 
+            
+            // If this is not leaf do it recursivly 
+            if (is_array($name))  {
+                $reordered = self::_move_indexes_right($reordered); 
+            }
+            $results[$index] = $reordered; 
+        } 
+        return $results; 
+    }
+
+
+    public static function fix_files_array($files)
+    {
+        // Multiple values for post-keys indexes 
+        if (isset($files['name'], $files['tmp_name'], $files['size'], $files['type'], $files['error'])){ 
+            return self::_move_indexes_right($files); 
+        }
+        // Re order pre-keys indexes            
+        array_walk($files, function(&$sub) {
+            $sub = self::fix_files_array($sub); 
+        });
+        return $files;
+    }
 }
