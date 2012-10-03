@@ -40,15 +40,16 @@ class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
         $req = new Universal\Http\HttpRequest;
         ok( $req );
         ok( $_FILES );
-        ok( $req->files->uploaded );
-        is( 11, $req->files->uploaded->size );
-        is( 'text/plain', $req->files->uploaded->type );
-        is( 0, $req->files->uploaded->error );
+        ok( $req->files->uploaded, 'Got uploaded file field' );
+
+        is( 11, $req->files->uploaded['size'] );
+        is( 'text/plain', $req->files->uploaded['type'] );
+        is( 0, $req->files->uploaded['error'] );
 
         ok( isset( $req->files['uploaded'] ) );
         $file = $req->files['uploaded'];
         ok( $file );
-        isa_ok( 'Universal\Http\File' , $file );
+        // isa_ok( 'Universal\Http\File' , $file );
     }
 
     function testFunc2()
@@ -65,7 +66,7 @@ class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
 
         foreach( $req->files->uploaded as $f ) {
             ok( $f );
-            isa_ok( 'Universal\Http\File' , $f );
+            // isa_ok( 'Universal\Http\File' , $f );
         }
 
         isa_ok( 'Universal\Http\Parameter', $req->post );

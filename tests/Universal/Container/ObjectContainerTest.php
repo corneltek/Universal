@@ -39,10 +39,10 @@ class ObjectContainerTest extends PHPUnit_Framework_TestCase
         $container->registerFactory('std',function($args) { 
             return $args;
         });
-        $a = $container->getInstance('std',array(1));
+        $a = $container->getObject('std',array(1));
         ok($a);
 
-        $b = $container->getInstance('std',array(2));
+        $b = $container->getObject('std',array(2));
         ok($b);
 
         is(1,$a);
@@ -53,7 +53,7 @@ class ObjectContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new ObjectContainer;
         $container->registerFactory('foo', new FooObjectBuilder);
-        $foo = $container->getInstance('foo');
+        $foo = $container->getObject('foo');
         is('foo1',$foo);
         is('foo2',$container->foo);
         is('foo3',$container->foo);

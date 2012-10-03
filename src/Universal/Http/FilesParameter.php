@@ -16,7 +16,12 @@ class FilesParameter extends Parameter
         if( !$hash && isset($_FILES) ) {
             $hash = $_FILES;
         }
-        $this->hash = fix_files_array($hash);
+        $this->hash = self::fix_files_array($hash);
+
+        // rebase hash as File object.
+#          array_walk($this->hash, function(& $item) {
+#              $item = new File($item);
+#          });
     }
 
     public function getIterator()
@@ -44,7 +49,6 @@ class FilesParameter extends Parameter
         unset($this->hash[$name]);
     }
 
-
     public static function _move_indexes_right($files) {
         if( ! is_array($files['name']) )
             return $files;
@@ -66,7 +70,6 @@ class FilesParameter extends Parameter
         } 
         return $results; 
     }
-
 
     public static function fix_files_array($files)
     {

@@ -23,7 +23,9 @@ class Parameter implements ArrayAccess
 
     public function __get( $name )
     {
-        return @$this->hash[ $name ];
+        if( isset($this->hash[$name]) ) {
+            return $this->hash[ $name ];
+        }
     }
 
     public function __set( $name , $value )
