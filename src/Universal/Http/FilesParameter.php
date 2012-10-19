@@ -64,7 +64,7 @@ class FilesParameter extends Parameter
             
             // If this is not leaf do it recursivly 
             if (is_array($name))  {
-                $reordered = self::_move_indexes_right($reordered); 
+                $reordered = FilesParameter::_move_indexes_right($reordered); 
             }
             $results[$index] = $reordered; 
         } 
@@ -75,11 +75,11 @@ class FilesParameter extends Parameter
     {
         // Multiple values for post-keys indexes 
         if (isset($files['name'], $files['tmp_name'], $files['size'], $files['type'], $files['error'])){ 
-            return self::_move_indexes_right($files); 
+            return FilesParameter::_move_indexes_right($files); 
         }
         // Re order pre-keys indexes            
         array_walk($files, function(&$sub) {
-            $sub = self::fix_files_array($sub); 
+            $sub = FilesParameter::fix_files_array($sub); 
         });
         return $files;
     }
