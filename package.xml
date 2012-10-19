@@ -10,11 +10,11 @@
     <email>cornelius.howl@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2012-09-25</date>
-  <time>21:40:16</time>
+  <date>2012-10-20</date>
+  <time>00:22:47</time>
   <version>
-    <release>1.3.0</release>
-    <api>1.3.0</api>
+    <release>1.3.1</release>
+    <api>1.3.1</api>
   </version>
   <stability>
     <release>stable</release>
@@ -32,10 +32,10 @@
       <file name="tests/lib/Foo/Bar.php" role="test" md5sum="5f8f23b743db5afaeffc09002c2913eb"/>
       <file name="tests/lib/Foo/Foo.php" role="test" md5sum="c0de68180ed4c4d58791dfcf50b72da3"/>
       <file name="tests/Universal/ClassLoader/BasePathClassLoaderTest.php" role="test" md5sum="a16187aac04bfd9c9cc7b1e35bd6e396"/>
-      <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="a7053595bc22b6b97530374bc807dcd6"/>
+      <file name="tests/Universal/Container/ObjectContainerTest.php" role="test" md5sum="eae22a9b5bca27ac7cce76c66012be21"/>
       <file name="tests/Universal/Event/PhpEventTest.php" role="test" md5sum="66b4e6a331c81a42a50c16dd04b50a18"/>
       <file name="tests/Universal/Http/CookieTest.php" role="test" md5sum="9437019ee969e96e1d919fb520040315"/>
-      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="325ed9e2b0ed871bbd0aea00e1a84dba"/>
+      <file name="tests/Universal/Http/FilesParameterTest.php" role="test" md5sum="1a478a204ad3420a4730d813391ee321"/>
       <file name="tests/Universal/Http/HttpResponseTest.php" role="test" md5sum="68b6b54cd1977475871eb0c12863ad21"/>
       <file name="tests/Universal/Requirement/RequirementTest.php" role="test" md5sum="ae823109f36b73a103cf20de49b2bc86"/>
       <file name="tests/UniversalClassLoader/SplClassLoaderTest.php" role="test" md5sum="ce71c53629c0b5f8098fb54ba23dd9f6"/>
@@ -44,15 +44,15 @@
       <file name="src/Universal/ClassLoader/BytecodeClassLoader.php" role="php" md5sum="f31ffb9b57d5453de621f0b8a6b29686"/>
       <file name="src/Universal/ClassLoader/PathIncluder.php" role="php" md5sum="dc8c2c90c8ae9e87fa78f776a4b7f508"/>
       <file name="src/Universal/ClassLoader/SplClassLoader.php" role="php" md5sum="617f0811a259a2986a5148a541a18f57"/>
-      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="d1f2fcc7b53c669af3b3b89927e05327"/>
+      <file name="src/Universal/Container/ObjectContainer.php" role="php" md5sum="aed4a79e95e1e3952fb55cfb54a9e106"/>
       <file name="src/Universal/Event/PhpEvent.php" role="php" md5sum="02e646f2ea2b87c1cdbf0fa9c6e292e4"/>
       <file name="src/Universal/FileSystem/PathUtils.php" role="php" md5sum="91c0c341683b82f7997363fee165a3bb"/>
       <file name="src/Universal/Http/Cookie.php" role="php" md5sum="7d8d76ec1f505a73042c5c37b25dc463"/>
       <file name="src/Universal/Http/File.php" role="php" md5sum="a6317b8b0d08018446a15c00223dc2fb"/>
-      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="d4e9cc078a2224466608a46666e340b1"/>
+      <file name="src/Universal/Http/FilesParameter.php" role="php" md5sum="84b0bc73cea3f558ca802a42701ba185"/>
       <file name="src/Universal/Http/HttpRequest.php" role="php" md5sum="9729a986980e03fd90ff03bd61217909"/>
       <file name="src/Universal/Http/HttpResponse.php" role="php" md5sum="a129d6ddbd0837bf6e58459842821efc"/>
-      <file name="src/Universal/Http/Parameter.php" role="php" md5sum="300657c52c4bde8db82d4160e2b65282"/>
+      <file name="src/Universal/Http/Parameter.php" role="php" md5sum="4715fa1f1998b0ec0f12ba2bb52cf21a"/>
       <file name="src/Universal/Http/PutHandle.php" role="php" md5sum="b689e8c38911d88802b96eeffc70da99"/>
       <file name="src/Universal/Http/StreamResponse.php" role="php" md5sum="ac18b31f078ab62c48da795a93474a8e"/>
       <file name="src/Universal/Requirement/Requirement.php" role="php" md5sum="d4994ed4847e02d4af06b9a542d384c7"/>
