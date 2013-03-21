@@ -1,14 +1,14 @@
 language: php
 php:
-  - 5.3.2
   - 5.3
   - 5.4
 
 before_script:
   - pyrus install pear.php.net/PEAR
+  - pyrus install pear.corneltek.com/PHPUnit_TestMore
   - "curl -O https://raw.github.com/c9s/Onion/master/onion"
   - phpenv rehash
-  - php onion -d bundle
-  - php onion -d build
+  - php onion install
+  - php onion build
 
 script: phpunit
