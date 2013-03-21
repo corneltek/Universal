@@ -7,7 +7,7 @@
         "corneltek/fileutil": "dev-master"
     },
     "require-dev": {
-        "corneltek/phpunit-testmore": "*"
+        "corneltek/phpunit-testmore": "dev-master"
     },
     "license": "MIT",
     "authors": [
