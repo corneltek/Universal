@@ -6,6 +6,9 @@
         "php": ">=5.3.0",
         "corneltek/fileutil": "dev-master"
     },
+    "require-dev": {
+        "corneltek/phpunit-testmore": "*"
+    },
     "license": "MIT",
     "authors": [
         { "name": "Yo-An Lin", "email": "cornelius.howl@gmail.com", "homepage": "http://c9s.me" }

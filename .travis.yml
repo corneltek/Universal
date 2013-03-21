@@ -5,7 +5,6 @@ php:
 
 before_script:
   - pyrus install pear.php.net/PEAR
-  - pyrus install pear.corneltek.com/PHPUnit_TestMore
   - "curl -O https://raw.github.com/c9s/Onion/master/onion"
   - phpenv rehash
   - php onion install
