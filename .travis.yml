@@ -5,8 +5,9 @@ php:
 
 before_script:
   - pyrus install pear.php.net/PEAR
-  - "curl -O https://raw.github.com/c9s/Onion/master/onion"
   - phpenv rehash
+  - composer install --dev
+  - "curl -O https://raw.github.com/c9s/Onion/master/onion"
   - php onion install
   - php onion build
 
