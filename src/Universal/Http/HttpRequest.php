@@ -25,7 +25,7 @@ class HttpRequest
      * ->session->key
      * ->cookie->key
      */
-    function __get( $name )
+    public function __get( $name )
     {
         return $this->getParameters( $name );
     }
@@ -37,7 +37,7 @@ class HttpRequest
      *
      * @return string
      */
-    function getInput()
+    public function getInput()
     {
         return file_get_contents('php://input');
     }
@@ -48,7 +48,7 @@ class HttpRequest
      *
      * @return array parameters
      */
-    function getInputParams()
+    public function getInputParams()
     {
         $params = array();
         parse_str( $this->getInput() , $params );
@@ -63,18 +63,19 @@ class HttpRequest
      *
      * @param string $name parameter name
      */
-    function hasParam($name)
+    public function hasParam($name)
     {
         return isset($_REQUEST[$name]);
     }
 
-    function param($name)
+    public function param($name)
     {
-        if( isset($_REQUEST[ $name ]) )
+        if (isset($_REQUEST[ $name ])) {
             return $_REQUEST[ $name ];
+        }
     }
 
-    function getParameters( & $name )
+    public function getParameters( & $name )
     {
         if( isset($this->requestVars[ $name ]) ){
             return $this->requestVars[ $name ];
@@ -107,9 +108,6 @@ class HttpRequest
         }
         return $this->requestVars[ $name ] = $vars;
     }
-
-    
-
 
     public function offsetSet($name,$value)
     {
