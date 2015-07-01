@@ -1,6 +1,7 @@
 <?php 
 namespace Universal\Http;
 use ArrayAccess;
+use Universal\Http\FilesParameter;
 
 /**
  * $req = new HttpRequest;
@@ -17,7 +18,21 @@ use ArrayAccess;
 class HttpRequest
     implements ArrayAccess
 {
-    private $requestVars = array();
+    protected $requestVars = array();
+
+    protected $files = array();
+
+
+    public function __construct(array $files = null)
+    {
+        if ($files) {
+            $this->files = FilesParameter::fix_files_array($files);
+        } else {
+            $this->files = FilesParameter::fix_files_array($_FILES);
+        }
+    }
+
+
 
     /**
      * ->get->key
@@ -72,8 +87,13 @@ class HttpRequest
     {
         if (isset($_REQUEST[ $name ])) {
             return $_REQUEST[ $name ];
+        } else if (isset($_POST[ $name ])) {
+            return $_POST[ $name ];
+        } else if (isset($_GET[ $name ])) {
+            return $_GET[ $name ];
         }
     }
+
 
     public function getParameters( & $name )
     {
