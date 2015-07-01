@@ -22,9 +22,17 @@ class HttpRequest
 
     protected $files = array();
 
+    protected $parameters = array();
 
-    public function __construct(array $files = null)
+    public function __construct(array $parameters = null, array $files = null)
     {
+        if ($parameters) {
+            $this->parameters = $parameters;
+        } else if (isset($_REQUEST)) {
+            $this->parameters = $_REQUEST;
+        } else {
+            $this->parameters = array();
+        }
         if ($files) {
             $this->files = FilesParameter::fix_files_array($files);
         } else {
@@ -44,8 +52,6 @@ class HttpRequest
     {
         return $this->getParameters( $name );
     }
-
-
 
     /**
      * Get request body 
