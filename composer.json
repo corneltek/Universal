@@ -17,8 +17,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Universal": "src"
+        "psr-4": {
+            "Universal\\": "src/Universal/"
         }
     },
     "version": "1.3.4"
