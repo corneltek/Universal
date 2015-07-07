@@ -214,6 +214,22 @@ class UploadedFile
         return $newPath;
     }
 
+    public function copy($targetPath)
+    {
+        return copy($this->tmpName, $targetPath);
+    }
+
+    public function copyTo($targetDir)
+    {
+        // if targetFilename is not given,
+        // we should take the filename from original filename by using basename.
+        $targetFileName = basename($this->originalFileName);
+
+        // relative file path.
+        $newPath = $targetDir . DIRECTORY_SEPARATOR . $targetFileName;
+        return $this->copy($newPath);
+    }
+
     /**
      * moveTo method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
