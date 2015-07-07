@@ -10,7 +10,7 @@ install:
 before_script:
 - phpenv rehash
 script:
-- phpunit -c phpunit.xml
+- phpunit --debug -c phpunit.xml.dist
 after_success:
 - php vendor/bin/coveralls -v
 cache:
