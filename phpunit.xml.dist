@@ -8,6 +8,12 @@
          stopOnFailure="false"
          verbose="true">
 
+  <filter>
+    <whitelist>
+        <directory suffix=".php">src/</directory>
+    </whitelist>
+  </filter>
+
   <testsuites>
     <testsuite name="Universal">
       <directory suffix="Test.php">tests</directory>
