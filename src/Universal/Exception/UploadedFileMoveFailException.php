@@ -1,6 +1,6 @@
 <?php
 namespace Universal\Exception;
-use RuntimeException;
+use Universal\Exception\UploadException;
 
 class UploadedFileMoveFailException extends UploadException
 {
