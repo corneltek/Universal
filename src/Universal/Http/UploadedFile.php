@@ -167,6 +167,11 @@ class UploadedFile implements ArrayAccess
         return $this->size;
     }
 
+    public function isUploadedFile()
+    {
+        return is_uploaded_file($this->tmpName);
+    }
+
     /**
      * move method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
