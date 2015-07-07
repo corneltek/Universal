@@ -6,7 +6,7 @@
          stopOnError="true"
          verbose="true">
   <testsuites>
-    <testsuite name="PHPUnit">
+    <testsuite name="Universal">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
