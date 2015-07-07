@@ -1,6 +1,9 @@
 <?php
 namespace Universal\Http;
 use Exception;
+use Universal\Exception\InvalidUploadFileException;
+use Universal\Exception\UploadedFileMoveFailException;
+use Universal\Exception\UploadErrorException;
 
 /**
     $f = new Universal\Http\UploadedFile(array( 
@@ -186,11 +189,15 @@ class UploadedFile
             return false;
         }
         if ($this->stash['error'] != 0 ) {
-            throw new Exception('File Upload Error:' . $this->getErrorMessage() );
+            throw new UploadErrorException("An error occured when uploading file {$this->tmpName}.");
+        }
+        if (!is_uploaded_file($this->tmpName)) {
+            throw new InvalidUploadFileException("File {$this->tmpName} is not an uploaded file.");
         }
         if (false === move_uploaded_file($this->tmpName, $target)) {
-            throw new Exception('File upload error: move uploaded file failed.');
+            throw new UploadedFileMoveFailException("File {$this->tmpName} upload failed.");
         }
+        // Update stash value
         return $this->savedPath = $this->stash['saved_path'] = $moveTo;
     }
 
