@@ -57,6 +57,8 @@ class UploadedFileTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Universal\Http\UploadedFile
+     * @group upload
      * @expectedException Universal\Exception\InvalidUploadFileException
      */
     public function testInvalidUpload()
@@ -77,6 +79,8 @@ class UploadedFileTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers Universal\Http\UploadedFile
+     * @group upload
      * @expectedException Universal\Exception\UploadErrorException
      */
     public function testUploadError()
