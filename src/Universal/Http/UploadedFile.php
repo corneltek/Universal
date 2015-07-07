@@ -5,6 +5,7 @@ use Universal\Exception\UploadedFileMoveFailException;
 use Universal\Exception\UploadErrorException;
 use Exception;
 use SplFileObject;
+use ArrayAccess;
 
 /**
     $file = new Universal\Http\UploadedFile(array(
@@ -16,7 +17,7 @@ use SplFileObject;
     ));
     $file->moveTo( "file_dirs" );
 */
-class UploadedFile
+class UploadedFile implements ArrayAccess
 {
     /**
      * The original filename in $_FILES
@@ -336,4 +337,26 @@ class UploadedFile
                 return "Unknown Error.";
         }
     }
+
+
+    public function offsetSet($name,$value)
+    {
+        $this->stash[ $name ] = $value;
+    }
+    
+    public function offsetExists($name)
+    {
+        return isset($this->stash[ $name ]);
+    }
+    
+    public function offsetGet($name)
+    {
+        return $this->stash[ $name ];
+    }
+    
+    public function offsetUnset($name)
+    {
+        unset($this->stash[$name]);
+    }
+
 }
