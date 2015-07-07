@@ -13,14 +13,6 @@ use Exception;
 */
 class UploadedFile
 {
-
-    /**
-     * The form field name of $_FILES
-     *
-     * @var string
-     */
-    public $fieldName;
-
     /**
      * The original filename in $_FILES
      *
