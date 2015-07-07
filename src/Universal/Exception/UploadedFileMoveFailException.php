@@ -2,7 +2,7 @@
 namespace Universal\Exception;
 use RuntimeException;
 
-class UploadedFileMoveFailException extends RuntimeException
+class UploadedFileMoveFailException extends UploadException
 {
 }
 

@@ -2,7 +2,7 @@
 namespace Universal\Exception;
 use RuntimeException;
 
-class UploadErrorException extends RuntimeException
+class UploadErrorException extends UploadException
 {
 }
 
