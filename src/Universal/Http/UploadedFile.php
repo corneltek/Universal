@@ -166,7 +166,7 @@ class UploadedFile
     }
 
     /**
-     * moveAs method doesn't modify tmp_name attribute
+     * move method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
      * for location of these moved files.
      *
@@ -181,7 +181,7 @@ class UploadedFile
      *
      * return path string if the operation succeeded.
      */
-    public function moveAs($newPath, $rename = false)
+    public function move($newPath, $rename = false)
     {
         if ($this->savedPath) {
             return $this->savedPath;
@@ -203,7 +203,7 @@ class UploadedFile
         if ($rename) {
             $ret = rename($tmpFile, $newPath);
         } else {
-            $ret = $this->move($tmpFile, $newPath );
+            $ret = $this->moveUploadedFile($tmpFile, $newPath );
         }
         $this->savedPath = $this->stash['saved_path'] = $newPath;
 
@@ -232,10 +232,10 @@ class UploadedFile
 
         // relative file path.
         $newPath = $targetDir . DIRECTORY_SEPARATOR . $targetFileName;
-        return $this->moveAs($newPath, $rename);
+        return $this->move($newPath, $rename);
     }
 
-    public function move($target)
+    public function moveUploadedFile($target)
     {
         // if the tmp file is already moved
         if (isset($this->savedPath)) {
