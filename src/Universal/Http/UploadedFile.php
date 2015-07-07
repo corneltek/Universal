@@ -1,9 +1,10 @@
 <?php
 namespace Universal\Http;
-use Exception;
 use Universal\Exception\InvalidUploadFileException;
 use Universal\Exception\UploadedFileMoveFailException;
 use Universal\Exception\UploadErrorException;
+use Exception;
+use SplFileObject;
 
 /**
     $f = new Universal\Http\UploadedFile(array( 
@@ -84,6 +85,12 @@ class UploadedFile
         return $this->stash;
     }
 
+    public function getSplFileObject()
+    {
+        $path = $this->getCurrentPath();
+        return new SplFileObject($path);
+    }
+
     /**
      * getCurrentPath returns the current target file.
      *
@@ -104,21 +111,37 @@ class UploadedFile
         return $this->originalFileName;
     }
 
+
+    /**
+     * Return the temporary file name
+     *
+     * @return string temporary file name
+     */
     public function getTmpName()
     {
         return $this->tmpName;
     }
 
+    /**
+     * Return the extension name from originalFileName
+     *
+     * @return string file extension
+     */
     public function getExtension()
     {
         $parts = explode('.',$this->originalFileName);
         return end($parts);
     }
 
-    /* size: kbytes */
-    public function validateSize($size)
+    /**
+     * Validate file size by K bytes
+     *
+     * @param integer $limitSize file size in K bytes
+     * @return boolean true if the file size is under the limitSize.
+     */
+    public function validateSize($limitSize)
     {
-        return ($this->size / 1024) < $size;
+        return ($this->size / 1024) < $limitSize;
     }
 
     public function validateExtension(array $exts)
