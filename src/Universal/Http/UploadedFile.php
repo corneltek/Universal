@@ -7,11 +7,12 @@ use Exception;
 use SplFileObject;
 
 /**
-    $file = new Universal\Http\UploadedFile(array( 
+    $file = new Universal\Http\UploadedFile(array(
         'name' => 'filename',
         'tmp_name' => '/tmp/123fbffef',
         'type' => 'image/jpg',
         'size' => 33300,
+        'error' => 0,
     ));
     $file->moveTo( "file_dirs" );
 */
@@ -53,7 +54,7 @@ class UploadedFile
 
     }
 
-    static public function createFromArray(array & $stash) 
+    static public function createFromArray(array & $stash)
     {
         $file = new self;
         if (isset($stash['tmp_name'])) {
@@ -189,7 +190,7 @@ class UploadedFile
 
         $tmpFile = $this->tmpName;
 
-        // Avoid file name duplication 
+        // Avoid file name duplication
         /*
         $fileCnt = 1;
         while (file_exists($newPath)) {
