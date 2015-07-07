@@ -79,7 +79,9 @@ class FilesParameter extends Parameter
         }
         // Re order pre-keys indexes            
         array_walk($files, function(&$sub) {
-            $sub = FilesParameter::fix_files_array($sub); 
+            if (is_array($sub)) {
+                $sub = FilesParameter::fix_files_array($sub); 
+            }
         });
         return $files;
     }
