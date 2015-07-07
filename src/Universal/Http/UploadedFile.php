@@ -7,13 +7,13 @@ use Exception;
 use SplFileObject;
 
 /**
-    $f = new Universal\Http\UploadedFile(array( 
+    $file = new Universal\Http\UploadedFile(array( 
         'name' => 'filename',
         'tmp_name' => '/tmp/123fbffef',
         'type' => 'image/jpg',
         'size' => 33300,
     ));
-    $f->putIn( "file_dirs" );
+    $file->moveTo( "file_dirs" );
 */
 class UploadedFile
 {
@@ -166,6 +166,54 @@ class UploadedFile
     }
 
     /**
+     * moveAs method doesn't modify tmp_name attribute
+     * rather than that, we set the saved_path attribute
+     * for location of these moved files.
+     *
+     * Just like moveTo, but instead of passing directory, it only accept
+     * filepath.
+     *
+     * @param string $newPath
+     * @param boolean $rename
+     * @return path|boolean
+     *
+     * return FALSE when operation failed.
+     *
+     * return path string if the operation succeeded.
+     */
+    public function moveAs($newPath, $rename = false)
+    {
+        if ($this->savedPath) {
+            return $this->savedPath;
+        }
+
+        $tmpFile = $this->tmpName;
+
+        // Avoid file name duplication 
+        /*
+        $fileCnt = 1;
+        while (file_exists($newPath)) {
+            $newPath =
+                $targetDir . DIRECTORY_SEPARATOR . 
+                    FileUtils::filename_suffix( $newPath , '_' . $fileCnt++ );
+        }
+        */
+
+        $ret = false;
+        if ($rename) {
+            $ret = rename($tmpFile, $newPath);
+        } else {
+            $ret = $this->move($tmpFile, $newPath );
+        }
+        $this->savedPath = $this->stash['saved_path'] = $newPath;
+
+        if ($ret === false) {
+            return $ret;
+        }
+        return $newPath;
+    }
+
+    /**
      * moveTo method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
      * for location of these moved files.
@@ -178,42 +226,13 @@ class UploadedFile
      */
     public function moveTo($targetDir, $rename = false)
     {
-        if ($this->savedPath) {
-            return $this->savedPath;
-        }
-
-        $tmpFile = $this->tmpName;
-
         // if targetFilename is not given,
         // we should take the filename from original filename by using basename.
         $targetFileName = basename($this->originalFileName);
 
         // relative file path.
         $newPath = $targetDir . DIRECTORY_SEPARATOR . $targetFileName;
-
-        // Avoid file name duplication 
-        /*
-        $fileCnt = 1;
-        while (file_exists($newPath)) {
-            $newPath = 
-                $targetDir . DIRECTORY_SEPARATOR . 
-                    FileUtils::filename_suffix( $targetFileName , '_' . $fileCnt++ );
-        }
-         */
-        $ret = false;
-        if ($rename) {
-            $ret = rename($tmpFile, $newPath);
-        } else {
-            $ret = $this->move($tmpFile, $newPath );
-        }
-        $this->savedPath = $this->stash['saved_path'] = $newPath;
-
-        if ($ret === false) {
-            return $ret;
-        }
-
-        // $_FILES[ $this->column ]['saved_path'] = $newPath;
-        return $newPath;
+        return $this->moveAs($newPath, $rename);
     }
 
     public function move($target)
