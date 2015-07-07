@@ -21,7 +21,7 @@ class UploadedFile
      *
      * @var string
      */
-    public $originalFileName;
+    protected $originalFileName;
 
 
     /**
@@ -29,15 +29,21 @@ class UploadedFile
      *
      * @var string
      */
-    public $tmpName;
+    protected $tmpName;
 
-    public $type;
 
-    public $size;
+    /**
+     * Mime type of the file
+     *
+     * @var string
+     */
+    protected $type;
 
-    public $error;
+    protected $size;
 
-    public $savedPath;
+    protected $error;
+
+    protected $savedPath;
 
     protected $stash = array();
 
@@ -95,7 +101,12 @@ class UploadedFile
 
     public function getOriginalFileName()
     {
-        return $this->originalFileName; 
+        return $this->originalFileName;
+    }
+
+    public function getTmpName()
+    {
+        return $this->tmpName;
     }
 
     public function getExtension()
@@ -121,12 +132,12 @@ class UploadedFile
         return $this->savedPath;
     }
 
-    public function getType() 
-    { 
+    public function getType()
+    {
         return $this->type;
     }
 
-    public function getSize() 
+    public function getSize()
     {
         return $this->size;
     }
@@ -184,12 +195,12 @@ class UploadedFile
 
     public function move($target)
     {
-        // file already moved
+        // if the tmp file is already moved
         if (isset($this->savedPath)) {
-            return false;
+            return $this->savedPath;
         }
-        if ($this->stash['error'] != 0 ) {
-            throw new UploadErrorException($this->stash,"An error occured when uploading file {$this->tmpName}.");
+        if ($this->stash['error'] != 0) {
+            throw new UploadErrorException($this->stash,"An error occured when uploading file {$this->tmpName}.", $this->stash['error']);
         }
         if (!is_uploaded_file($this->tmpName)) {
             throw new InvalidUploadFileException($this->stash, "File {$this->tmpName} is not an uploaded file.");
@@ -203,7 +214,7 @@ class UploadedFile
 
     public function deleteTmp()
     {
-        unlink( $this->tmpName );
+        unlink($this->tmpName);
     }
 
     public function found()
@@ -213,52 +224,57 @@ class UploadedFile
 
     public function hasError()
     {
-        return (bool) $this->error;
+        return $this->error != 0;
     }
 
-    public function getErrorMessage()
+    public function getUserErrorMessage()
     {
-        $error = $this->error;
-
         // error messages for normal users.
-        switch ($error) {
+        switch ($this->error) {
             case UPLOAD_ERR_OK:
-                return _("No Error");
+                return "OK";
             case UPLOAD_ERR_INI_SIZE || UPLOAD_ERR_FORM_SIZE:
-                return _("The upload file exceeds the limit.");
+                return "The upload file exceeds the limit.";
             case UPLOAD_ERR_PARTIAL:
-                return _("The uploaded file was only partially uploaded.");
+                return "The uploaded file was only partially uploaded.";
             case UPLOAD_ERR_NO_FILE:
-                return _("No file was uploaded.");
+                return "No file was uploaded.";
             case UPLOAD_ERR_CANT_WRITE:
-                return _("Failed to write file to disk.");
+                return "Failed to write file to disk.";
             case UPLOAD_ERR_EXTENSION:
-                return _("A PHP extension stopped the file upload.");
+                return "A PHP extension stopped the file upload.";
             default:
-                return _("Unknown Error.");
-        }
-
-        // built-in php error description
-        switch ($error) {
-            case UPLOAD_ERR_OK:
-                return _("There is no error, the file uploaded with success.");
-            case UPLOAD_ERR_INI_SIZE:
-                return _("The uploaded file exceeds the upload_max_filesize directive in php.ini.");
-            case UPLOAD_ERR_FORM_SIZE:
-                return _("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.");
-            case UPLOAD_ERR_PARTIAL:
-                return _("The uploaded file was only partially uploaded.");
-            case UPLOAD_ERR_NO_FILE:
-                return _("No file was uploaded.");
-            case UPLOAD_ERR_NO_TMP_DIR:
-                return _("Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.");
-            case UPLOAD_ERR_CANT_WRITE:
-                return _("Failed to write file to disk. Introduced in PHP 5.1.0.");
-            case UPLOAD_ERR_EXTENSION:
-                return _("A PHP extension stopped the file upload. PHP does not provide a way to ascertain which extension caused the file upload to stop; examining the list of loaded extensions with phpinfo() may help. Introduced in PHP 5.2.0.");
-            default:
-                return _("Unknown Error.");
+                return "Unknown error.";
         }
     }
 
+    /**
+     * getSystemErrorMessage returns the system built-in error message.
+     *
+     * @return string
+     */
+    public function getSystemErrorMessage()
+    {
+        // built-in php error description
+        switch ($this->error) {
+            case UPLOAD_ERR_OK:
+                return "There is no error, the file uploaded with success.";
+            case UPLOAD_ERR_INI_SIZE:
+                return "The uploaded file exceeds the upload_max_filesize directive in php.ini.";
+            case UPLOAD_ERR_FORM_SIZE:
+                return "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.";
+            case UPLOAD_ERR_PARTIAL:
+                return "The uploaded file was only partially uploaded.";
+            case UPLOAD_ERR_NO_FILE:
+                return "No file was uploaded.";
+            case UPLOAD_ERR_NO_TMP_DIR:
+                return "Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.";
+            case UPLOAD_ERR_CANT_WRITE:
+                return "Failed to write file to disk. Introduced in PHP 5.1.0.";
+            case UPLOAD_ERR_EXTENSION:
+                return "A PHP extension stopped the file upload. PHP does not provide a way to ascertain which extension caused the file upload to stop; examining the list of loaded extensions with phpinfo() may help. Introduced in PHP 5.2.0.";
+            default:
+                return "Unknown Error.";
+        }
+    }
 }
