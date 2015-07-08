@@ -195,6 +195,8 @@ class UploadedFile implements ArrayAccess
     }
 
     /**
+     * move method moves file from 'tmp_name' to a new path.
+     *
      * move method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
      * for location of these moved files.
@@ -242,11 +244,22 @@ class UploadedFile implements ArrayAccess
         return $newPath;
     }
 
+    /**
+     * copy method copies the file from 'tmp_name' to a new path.
+     *
+     * @return boolean
+     */
     public function copy($targetPath)
     {
         return copy($this->tmpName, $targetPath);
     }
 
+
+    /**
+     * copyTo method calls 'copy' method to copy the file.
+     *
+     * @return boolean
+     */
     public function copyTo($targetDir)
     {
         // if targetFilename is not given,
