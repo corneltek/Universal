@@ -50,10 +50,11 @@ class UploadedFile implements ArrayAccess
 
     protected $stash = array();
 
-    public function __construct($tmpName, $originalFileName = null, $savedPath = null)
+    public function __construct($tmpName, $originalFileName = null, $type = null, $savedPath = null)
     {
         $this->tmpName = $tmpName;
         $this->originalFileName = $originalFileName ?: $this->tmpName;
+        $this->type = $type;
         $this->savedPath = $savedPath;
         $file = $this->savedPath ?: $this->tmpName;
         if (file_exists($file)) {
@@ -63,19 +64,7 @@ class UploadedFile implements ArrayAccess
 
     static public function createFromArray(array & $stash)
     {
-        $file = new self;
-        if (isset($stash['tmp_name'])) {
-            $file->tmpName = $stash['tmp_name'];
-        }
-        if (isset($stash['name'])) {
-            $file->originalFileName = $stash['name'];
-        }
-        if (isset($stash['type'])) {
-            $file->type = $stash['type'];
-        }
-        if (isset($stash['size'])) {
-            $file->size = $stash['size'];
-        }
+        $file = new self($stash['tmp_name'], $stash['name'], $stash['type']);
         if (isset($stash['saved_path'])) {
             $file->savedPath = $stash['saved_path'];
         }
