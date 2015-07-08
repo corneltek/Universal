@@ -65,6 +65,11 @@ class HttpRequest
         }
     }
 
+    public function getFiles() 
+    {
+        return $this->files;
+    }
+
     public function file($field)
     {
         if (isset($this->files[$field])) {
