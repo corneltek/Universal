@@ -162,11 +162,33 @@ class UploadedFile implements ArrayAccess
         return $this->type;
     }
 
+
+    /**
+     * @return integer file size in bytes
+     */
     public function getSize()
     {
         return $this->size;
     }
 
+
+    /**
+     * isMoved checked 'saved_path' param, if the file is already moved, it
+     * return true, otherwise it returns falsec:w
+     *
+     * @return boolean
+     */
+    public function isMoved()
+    {
+        return $this->getSavedPath() ? true : false;
+    }
+
+    /**
+     * isUploadedFile calls is_uploaded_file function to confirm that the file
+     * is uploaded through HTTPS? prototol
+     *
+     * @return boolean
+     */
     public function isUploadedFile()
     {
         return is_uploaded_file($this->tmpName);
