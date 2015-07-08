@@ -50,9 +50,15 @@ class UploadedFile implements ArrayAccess
 
     protected $stash = array();
 
-    public function __construct()
+    public function __construct($tmpName, $originalFileName = null, $savedPath = null)
     {
-
+        $this->tmpName = $tmpName;
+        $this->originalFileName = $originalFileName ?: $this->tmpName;
+        $this->savedPath = $savedPath;
+        $file = $this->savedPath ?: $this->tmpName;
+        if (file_exists($file)) {
+            $this->size = filesize($file);
+        }
     }
 
     static public function createFromArray(array & $stash)
