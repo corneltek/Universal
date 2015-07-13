@@ -32,12 +32,29 @@ class PhpEvent
      * @param string $ev
      * @param closure $cb callable function
      */
-    function register($ev,$cb)
+    public function register($ev,$cb)
     {
-        if( ! isset($this->eventPool[ $ev ] ) )
+        if (! isset($this->eventPool[ $ev ] )) {
             $this->eventPool[ $ev ] = array();
+        }
         $this->eventPool[ $ev ][] = $cb;
     }
+
+    /**
+     * This is an alias of register method.
+     *
+     * @param string $ev
+     * @param closure $cb callable function
+     */
+    public function bind($ev,$cb)
+    {
+        if (! isset($this->eventPool[ $ev ] )) {
+            $this->eventPool[ $ev ] = array();
+        }
+        $this->eventPool[ $ev ][] = $cb;
+    }
+
+
 
 
     /**
