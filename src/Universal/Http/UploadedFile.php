@@ -50,26 +50,21 @@ class UploadedFile implements ArrayAccess
 
     protected $stash = array();
 
-    public function __construct()
+    public function __construct($tmpName, $originalFileName = null, $type = null, $savedPath = null)
     {
-
+        $this->tmpName = $tmpName;
+        $this->originalFileName = $originalFileName ?: $this->tmpName;
+        $this->type = $type;
+        $this->savedPath = $savedPath;
+        $file = $this->savedPath ?: $this->tmpName;
+        if (file_exists($file)) {
+            $this->size = filesize($file);
+        }
     }
 
     static public function createFromArray(array & $stash)
     {
-        $file = new self;
-        if (isset($stash['tmp_name'])) {
-            $file->tmpName = $stash['tmp_name'];
-        }
-        if (isset($stash['name'])) {
-            $file->originalFileName = $stash['name'];
-        }
-        if (isset($stash['type'])) {
-            $file->type = $stash['type'];
-        }
-        if (isset($stash['size'])) {
-            $file->size = $stash['size'];
-        }
+        $file = new self($stash['tmp_name'], $stash['name'], $stash['type']);
         if (isset($stash['saved_path'])) {
             $file->savedPath = $stash['saved_path'];
         }
@@ -162,17 +157,41 @@ class UploadedFile implements ArrayAccess
         return $this->type;
     }
 
+
+    /**
+     * @return integer file size in bytes
+     */
     public function getSize()
     {
         return $this->size;
     }
 
+
+    /**
+     * isMoved checked 'saved_path' param, if the file is already moved, it
+     * return true, otherwise it returns falsec:w
+     *
+     * @return boolean
+     */
+    public function isMoved()
+    {
+        return $this->getSavedPath() ? true : false;
+    }
+
+    /**
+     * isUploadedFile calls is_uploaded_file function to confirm that the file
+     * is uploaded through HTTPS? prototol
+     *
+     * @return boolean
+     */
     public function isUploadedFile()
     {
         return is_uploaded_file($this->tmpName);
     }
 
     /**
+     * move method moves file from 'tmp_name' to a new path.
+     *
      * move method doesn't modify tmp_name attribute
      * rather than that, we set the saved_path attribute
      * for location of these moved files.
@@ -220,11 +239,22 @@ class UploadedFile implements ArrayAccess
         return $newPath;
     }
 
+    /**
+     * copy method copies the file from 'tmp_name' to a new path.
+     *
+     * @return boolean
+     */
     public function copy($targetPath)
     {
         return copy($this->tmpName, $targetPath);
     }
 
+
+    /**
+     * copyTo method calls 'copy' method to copy the file.
+     *
+     * @return boolean
+     */
     public function copyTo($targetDir)
     {
         // if targetFilename is not given,

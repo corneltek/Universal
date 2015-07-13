@@ -17,11 +17,6 @@ class FilesParameter extends Parameter
             $hash = $_FILES;
         }
         $this->hash = self::fix_files_array($hash);
-
-        // rebase hash as File object.
-#          array_walk($this->hash, function(& $item) {
-#              $item = new File($item);
-#          });
     }
 
     public function getIterator()
