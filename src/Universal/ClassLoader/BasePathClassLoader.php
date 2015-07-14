@@ -1,5 +1,6 @@
 <?php 
 namespace Universal\ClassLoader;
+use Universal\ClassLoader\ClassLoader;
 
 /**
  * Base Path Classloader:
@@ -12,7 +13,7 @@ namespace Universal\ClassLoader;
  * $loader->register();
  *
  */
-class BasePathClassLoader 
+class BasePathClassLoader implements ClassLoader
 {
 
     static $instance;
@@ -45,8 +46,7 @@ class BasePathClassLoader
      */
     public function useEnvPhpLib()
     {
-        $lib = getenv('PHP5LIB');
-        if( $lib ) {
+        if ($lib = getenv('PHP5LIB')) {
             $paths = explode( ':' , $lib );
             foreach( $paths as $path )
                 $this->paths[] = $path;
@@ -58,7 +58,7 @@ class BasePathClassLoader
      *
      * @param string $fullclass
      */
-    public function findClassFile($fullclass)
+    public function resolveClass($fullclass)
     {
         $fullclass = ltrim($fullclass,'\\');
         # echo "Fullclass: " . $fullclass . "\n";
@@ -94,7 +94,7 @@ class BasePathClassLoader
 
     public function loadClass($class)
     {
-        if ($file = $this->findClassFile($class)) {
+        if ($file = $this->resolveClass($class)) {
             # echo "File: $file.\n";
             require $file;
         }

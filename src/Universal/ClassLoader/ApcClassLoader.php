@@ -1,5 +1,6 @@
 <?php
 namespace Universal\ClassLoader;
+use Universal\ClassLoader\ClassLoader;
 use Exception;
 
 class ApcClassLoader extends SplClassLoader
@@ -24,7 +25,7 @@ class ApcClassLoader extends SplClassLoader
             return true;
         }
 
-        if ($file = $this->findClassFile($class)) {
+        if ($file = $this->resolveClass($class)) {
             apc_store( $this->apcPrefix . $class , $file );
             require $file;
             return true;

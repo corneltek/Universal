@@ -25,6 +25,7 @@
 namespace Universal\ClassLoader;
 use Exception;
 use InvalidArgumentException;
+use Universal\ClassLoader\ClassLoader;
 
 if( ! class_exists('\Universal\ClassLoader\SplClassLoader') ) {
 
@@ -33,7 +34,7 @@ if( ! class_exists('\Universal\ClassLoader\SplClassLoader') ) {
  *
  * PSR-0 Auto ClassLoader
  */
-class SplClassLoader
+class SplClassLoader implements ClassLoader
 {
     static $instance;
 
@@ -117,7 +118,12 @@ class SplClassLoader
      */
     public function addPrefix($ps = array())
     {
-        foreach ($ps as $prefix => $dirs) {
+        if (is_array($ps)) {
+            foreach ($ps as $prefix => $dirs) {
+                $this->prefixes[$prefix] = (array) $dirs;
+            }
+        } else {
+            list($prefix, $dirs) = func_get_args();
             $this->prefixes[$prefix] = (array) $dirs;
         }
     }
@@ -162,7 +168,7 @@ class SplClassLoader
      *
      * @param string $fullclass
      */
-    public function findClassFile($fullclass)
+    public function resolveClass($fullclass)
     {
         $fullclass = ltrim($fullclass,'\\');
         # echo "Fullclass: " . $fullclass . "\n";
@@ -213,7 +219,7 @@ class SplClassLoader
 
     public function loadClass($class)
     {
-        if ($file = $this->findClassFile($class)) {
+        if ($file = $this->resolveClass($class)) {
             # echo "File: $file.\n";
             require $file;
         }
