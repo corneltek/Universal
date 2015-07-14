@@ -2,8 +2,9 @@
 
 ## 1.5.0
 
-- Added Psr4 class loader.
-- Added Psr0 class loader.
+- Added Psr4ClassLoader.
+- Added Psr0ClassLoader.
+- Added ChainedClassLoader.
 - Added ClassLoader interface.
 
 ## 1.4.0
