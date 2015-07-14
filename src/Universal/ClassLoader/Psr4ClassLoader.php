@@ -25,6 +25,14 @@ class Psr4ClassLoader
     }
 
 
+    public function addPrefixes(array $prefixes)
+    {
+        foreach ($prefixes as $prefix => $dirs) {
+            $this->prefixes[] = [$prefix, $dirs];
+        }
+    }
+
+
     /**
      * find class file path
      *
