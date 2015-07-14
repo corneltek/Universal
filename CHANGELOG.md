@@ -1,6 +1,12 @@
 # Changes
 
-## 2.0.0
+## 1.5.0
+
+- Added Psr4 class loader.
+- Added Psr0 class loader.
+- Added ClassLoader interface.
+
+## 1.4.0
 
 - Rewrite UploadedFile class for handling file upload operation.
 
