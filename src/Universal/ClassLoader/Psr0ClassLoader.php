@@ -11,6 +11,12 @@ class Psr0ClassLoader implements ClassLoader
      */
     protected $namespaces = array();
 
+    public function __construct(array $namespaces = array()) 
+    {
+        $this->namespaces = $namespaces;
+    }
+
+
     public function addNamespace($ns, $dirs)
     {
         $this->namespaces[$ns] = (array) $dirs;
