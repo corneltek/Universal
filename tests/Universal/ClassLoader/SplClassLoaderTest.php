@@ -1,17 +1,16 @@
 <?php
-/*
- * This file is part of the UniversalClassLoader package.
- *
- * (c) Yo-An Lin <cornelius.howl@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- */
 
-class SplClassLoaderTest extends PHPUnit_Framework_TestCase 
+class SplClassLoaderTest extends PHPUnit_Framework_TestCase
 {
-    function test()
+    public function testAddPrefix()
+    {
+        $loader = new \Universal\ClassLoader\SplClassLoader( array(  
+            'CLIFramework' => 'vendor/corneltek/cliframework',
+        ));
+        $loader->addPrefix('CLIFramework\\', 'src/CLIFramework/');
+    }
+
+    public function testAddNamespace()
     {
         $loader = new \Universal\ClassLoader\SplClassLoader;
         ok( $loader );
@@ -27,11 +26,10 @@ class SplClassLoaderTest extends PHPUnit_Framework_TestCase
         $loader->unregister();
     }
 
-    function testReloadGuard()
+    public function testReloadGuard()
     {
         require 'src/Universal/ClassLoader/SplClassLoader.php';
         require 'src/Universal/ClassLoader/SplClassLoader.php';
     }
 }
-
 
