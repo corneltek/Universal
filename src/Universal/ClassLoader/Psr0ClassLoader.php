@@ -47,6 +47,13 @@ class Psr0ClassLoader implements ClassLoader
         }
     }
 
+    public function loadClass($class)
+    {
+        if ($file = $this->resolveClass($class)) {
+            require $file;
+        }
+    }
+
     /**
      * register to spl_autoload_register
      *

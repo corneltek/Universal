@@ -38,6 +38,12 @@ class Psr4ClassLoader
         }
     }
 
+    public function loadClass($class)
+    {
+        if ($file = $this->resolveClass($class)) {
+            require $file;
+        }
+    }
 
 
     /**
