@@ -42,8 +42,11 @@ class Psr4ClassLoader
     {
         if ($file = $this->resolveClass($class)) {
             require $file;
+            return true;
         }
+        return false;
     }
+
 
 
     /**

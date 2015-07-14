@@ -222,7 +222,9 @@ class SplClassLoader implements ClassLoader
     {
         if ($file = $this->resolveClass($class)) {
             require $file;
+            return true;
         }
+        return false;
     }
 
 }
