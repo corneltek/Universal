@@ -180,7 +180,7 @@ class SplClassLoader implements ClassLoader
             $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace )
                     . DIRECTORY_SEPARATOR . str_replace( '_' , DIRECTORY_SEPARATOR , $classname ) 
                     . '.php';
-            foreach( $this->namespaces as $ns => $dirs ) {
+            foreach ($this->namespaces as $ns => $dirs) {
 
                 # echo "namespace: $ns in $namespace\n";
                 if( strpos($namespace,$ns) !== 0 )
@@ -213,14 +213,14 @@ class SplClassLoader implements ClassLoader
                 return $file;
         }
 
-        if ($this->useIncludePath && $file = stream_resolve_include_path($subpath))
+        if ($this->useIncludePath && $file = stream_resolve_include_path($subpath)) {
             return $file;
+        }
     }
 
     public function loadClass($class)
     {
         if ($file = $this->resolveClass($class)) {
-            # echo "File: $file.\n";
             require $file;
         }
     }

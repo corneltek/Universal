@@ -9,6 +9,8 @@ interface ClassLoader {
 
     public function resolveClass($fullclass);
 
+    public function loadClass($class);
+
 }
 
 
