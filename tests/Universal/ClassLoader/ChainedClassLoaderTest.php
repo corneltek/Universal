@@ -1,4 +1,13 @@
 <?php
+/**
+ * This file is part of the Universal package.
+ *
+ * (c) Yo-An Lin <yoanlin93@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Universal\ClassLoader\Psr0ClassLoader;
 use Universal\ClassLoader\Psr4ClassLoader;
 use Universal\ClassLoader\ChainedClassLoader;
