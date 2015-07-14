@@ -19,16 +19,20 @@ class Psr4ClassLoader
         $this->prefixes = $prefixes;
     }
 
-    public function addPrefix($prefix, $dir)
+    public function addPrefix($prefix, $baseDir, $trim = false)
     {
-        $this->prefixes[] = [$prefix, $dir];
+        if ($trim) {
+            $prefix = trim($prefix, '\\') . '\\';
+            $baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        }
+        $this->prefixes[] = [$prefix, $baseDir];
     }
 
 
-    public function addPrefixes(array $prefixes)
+    public function addPrefixes(array $prefixes, $trim = false)
     {
-        foreach ($prefixes as $prefix => $dirs) {
-            $this->prefixes[] = [$prefix, $dirs];
+        foreach ($prefixes as $prefix => $baseDir) {
+            $this->addPrefix($prefix, $baseDir, $trim);
         }
     }
 
