@@ -29,7 +29,7 @@ class Psr4ClassLoader
             if (strpos($fullclass, $prefix) === 0) {
                 $len = strlen($prefix);
                 $classSuffix = substr($fullclass, $len);
-                $subpath = str_replace('/','\\', $classSuffix) . '.php';
+                $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $classSuffix) . '.php';
                 $classPath = $dir . $subpath;
                 if (file_exists($classPath)) {
                     return $classPath;
@@ -48,6 +48,11 @@ class Psr4ClassLoader
     public function register($prepend = false)
     {
         spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+    }
+
+    public function unregister()
+    {
+        spl_autoload_unregister(array($this, 'loadClass'));
     }
 
 }
