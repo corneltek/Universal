@@ -9,8 +9,9 @@
  */
 
 namespace Universal\ClassLoader;
+use Universal\ClassLoader\ClassLoader;
 
-class Psr4ClassLoader
+class Psr4ClassLoader implements ClassLoader
 {
     protected $prefixes = array();
 
