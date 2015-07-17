@@ -5,6 +5,7 @@
 - Added Psr4ClassLoader.
 - Added Psr0ClassLoader.
 - Added ChainedClassLoader.
+- Added MapClassLoader.
 - Added ClassLoader interface.
 
 ## 1.4.0
