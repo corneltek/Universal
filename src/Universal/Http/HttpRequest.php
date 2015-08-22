@@ -19,7 +19,21 @@ class HttpRequest
     implements ArrayAccess
 {
 
+    protected $_parameterBags = [];
 
+
+    static $httpHeaderMapping = array(
+        'HTTP_ACCEPT'                    => 'Accept',
+        'HTTP_ACCEPT_CHARSET'            => 'Accept-Charset',
+        'HTTP_ACCEPT_ENCODING'           => 'Accept-Encoding',
+        'HTTP_ACCEPT_LANGUAGE'           => 'Accept-Language',
+        'HTTP_CONNECTION'                => 'Connection',
+        'HTTP_CACHE_CONTROL'             => 'Cache-Control',
+        'HTTP_UPGRADE_INSECURE_REQUESTS' => 'Upgrade-Insecure-Requests',
+        'HTTP_HOST'                      => 'Host',
+        'HTTP_REFERER'                   => 'Referer',
+        'HTTP_USER_AGENT'                => 'User-Agent',
+    );
 
     /**
      * @var array parameters from $_FILES
@@ -44,13 +58,16 @@ class HttpRequest
     public $queryParameters = array();
 
 
-    public $cookies = array();
+    public $cookieParameters = array();
 
 
     /**
      * @var array parameters created from $_SERVER
      */
     public $serverParameters = array();
+
+    public $sessionParameters = array();
+
 
     /**
      * When $parameters is defined, HttpRequest uses $parameters instead of the default $_REQUEST
@@ -106,17 +123,6 @@ class HttpRequest
         }
     }
 
-
-    /**
-     * ->get->key
-     * ->post->key
-     * ->session->key
-     * ->cookie->key
-     */
-    public function __get($name)
-    {
-        return $this->param($name);
-    }
 
     /**
      * Get request body if any
@@ -178,6 +184,61 @@ class HttpRequest
     }
 
 
+    public function __get($key)
+    {
+        if (isset($_parameterBags[$key])) {
+            return $_parameterBags[$key];
+        }
+
+        // create parameter bag object and save it in cache
+        switch($key)
+        {
+            case 'files':
+                return $this->_parameterBags[$key]  = new FilesParameter($this->files);
+            case 'post':
+                return $this->_parameterBags[$key]  = new Parameter($this->bodyParameters);
+            case 'get':
+                return $this->_parameterBags[$key]  = new Parameter($this->queryParameters);
+            case 'session':
+                return $this->_parameterBags[$key]  = new Parameter($this->sessionParameters);
+            case 'server':
+                return $this->_parameterBags[$key]  = new Parameter($this->serverParameters);
+            case 'request':
+                return $this->_parameterBags[$key] = new Parameter($this->parameters);
+            case 'cookie':
+                return $this->_parameterBags[$key] = new Parameter($this->cookieParameters);
+        }
+    }
+
+
+
+    /**
+     * Converts global $_SERVER variables to header values.
+     *
+     * @return array
+     */
+    public static function createHeadersFromServerGlobal(array $server)
+    {
+        $headers = array();
+        foreach (self::$httpHeaderMapping as $serverKey => $headerKey) {
+            if (isset($server[$serverKey])) {
+                $headers[$headerKey] = $server[$serverKey];
+            }
+        }
+        // For extra http header fields
+        foreach ($server as $key => $value) {
+            if (isset(self::$httpHeaderMapping[$key])) {
+                continue;
+            }
+            if ('HTTP_' === substr($key,0,5)) {
+                $headerField = join('-',array_map('ucfirst',explode('_', strtolower(substr($key,5)))));
+                $headers[$headerField] = $value;
+            }
+        }
+        return $headers;
+    }
+
+
     /**
      * Create request object from superglobal $GLOBALS
      *
@@ -197,7 +258,10 @@ class HttpRequest
             $request->parameters = $globals['_REQUEST'];
         }
         if (isset($globals['_COOKIE'])) {
-            $request->cookies = $globals['_COOKIE'];
+            $request->cookieParameters = $globals['_COOKIE'];
+        }
+        if (isset($globals['_SESSION'])) {
+            $request->sessionParameters = $globals['_SESSION'];
         }
         if (isset($globals['_FILES'])) {
             $request->files = FilesParameter::fix_files_array($globals['_FILES']);
@@ -207,6 +271,7 @@ class HttpRequest
         }
         return $request;
     }
+
 
 
 

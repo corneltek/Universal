@@ -5,18 +5,16 @@ use ArrayIterator;
 use IteratorAggregate;
 use SplFileInfo;
 
-
-
-
 class FilesParameter extends Parameter
         implements ArrayAccess, IteratorAggregate
 {
-    public function __construct( $hash = null )
+    public function __construct($hash = null)
     {
-        if( !$hash && isset($_FILES) ) {
-            $hash = $_FILES;
+        if ($hash) {
+            $this->hash = $hash;
+        } else if (isset($_FILES)) {
+            $this->hash = self::fix_files_array($_FILES);
         }
-        $this->hash = self::fix_files_array($hash);
     }
 
     public function getIterator()
