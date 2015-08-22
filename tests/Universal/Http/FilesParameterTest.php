@@ -1,4 +1,5 @@
 <?php 
+use Universal\Http\HttpRequest;
 
 function create_file_hash() {
     if( ! extension_loaded('Fileinfo') ) {
@@ -32,45 +33,35 @@ function create_file_hash() {
 
 class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
 {
-    function testFunc()
+    public function testFunc()
     {
-        $_FILES = array( );
-        $_FILES['uploaded'] = create_file_hash('tests/data/cat.txt');
+        $files = array( );
+        $files['uploaded'] = create_file_hash('tests/data/cat.txt');
 
-        $req = new Universal\Http\HttpRequest;
-        ok( $req );
-        ok( $_FILES );
-        ok( $req->files->uploaded, 'Got uploaded file field' );
+        $req = new HttpRequest([], $files);
+        ok($req->files['uploaded'], 'Got uploaded file field' );
 
-        is( 11, $req->files->uploaded['size'] );
-        is( 'text/plain', $req->files->uploaded['type'] );
-        is( 0, $req->files->uploaded['error'] );
+        is( 11, $req->files['uploaded']['size'] );
+        is( 'text/plain', $req->files['uploaded']['type'] );
+        is( 0, $req->files['uploaded']['error'] );
 
-        ok( isset( $req->files['uploaded'] ) );
+        ok(isset($req->files['uploaded']));
         $file = $req->files['uploaded'];
-        ok( $file );
-        // isa_ok( 'Universal\Http\File' , $file );
     }
 
     function testFunc2()
     {
-        $_FILES = array( );
-        $_FILES['uploaded'] = create_file_hash(
+        $files = array( );
+        $files['uploaded'] = create_file_hash(
             'tests/data/cat.txt',
             'tests/data/cat2.txt'
         );
 
-        $req = new Universal\Http\HttpRequest;
-        ok( $req );
-        ok( is_array( $req->files->uploaded ) );
-
-        foreach( $req->files->uploaded as $f ) {
-            ok( $f );
-            // isa_ok( 'Universal\Http\File' , $f );
+        $req = new HttpRequest([], $files);
+        ok( is_array( $req->files['uploaded'] ) );
+        foreach( $req->files['uploaded'] as $f ) {
+            ok($f);
         }
-
-        isa_ok( 'Universal\Http\Parameter', $req->post );
-        isa_ok( 'Universal\Http\Parameter', $req->get );
     }
 }
 
