@@ -1,5 +1,10 @@
 # Changes
 
+## 1.6.0
+
+- Added more request parameters
+- Added ::createFromGlobals factory method to HttpRequest
+
 ## 1.5.0
 
 - Added Psr4ClassLoader.
