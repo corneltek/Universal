@@ -24,33 +24,33 @@ class HttpRequest
     /**
      * @var array parameters from $_FILES
      */
-    protected $files = array();
+    public $files = array();
 
 
     /**
      * @var array parameters from $_REQUEST
      */
-    protected $parameters = array();
+    public $parameters = array();
 
 
     /**
      * @var array parameters parsed from POST request method
      */
-    protected $bodyParameters = array();
+    public $bodyParameters = array();
 
     /**
      * @var array parameters parsed from query string
      */
-    protected $queryParameters = array();
+    public $queryParameters = array();
 
 
-    protected $cookies = array();
+    public $cookies = array();
 
 
     /**
      * @var array parameters created from $_SERVER
      */
-    protected $serverParameters = array();
+    public $serverParameters = array();
 
     /**
      * When $parameters is defined, HttpRequest uses $parameters instead of the default $_REQUEST
@@ -113,9 +113,9 @@ class HttpRequest
      * ->session->key
      * ->cookie->key
      */
-    public function __get( $name )
+    public function __get($name)
     {
-        return $this->getParameters( $name );
+        return $this->param($name);
     }
 
     /**
@@ -142,41 +142,6 @@ class HttpRequest
     }
 
 
-
-    public function getParameters( & $name )
-    {
-        if (isset($this->requestVars[ $name ])) {
-            return $this->requestVars[ $name ];
-        }
-
-        $vars = null;
-        switch( $name )
-        {
-            case 'files':
-                $vars = new FilesParameter($_FILES);
-                break;
-            case 'post':
-                $vars = new Parameter($_POST);
-                break;
-            case 'get':
-                $vars = new Parameter($_GET);
-                break;
-            case 'session':
-                $vars = new Parameter($_SESSION);
-                break;
-            case 'server':
-                $vars = new Parameter($_SERVER);
-                break;
-            case 'request':
-                $vars = new Parameter($_REQUEST);
-                break;
-            case 'cookie':
-                $vars = new Parameter($_COOKIE);
-                break;
-        }
-        return $this->requestVars[ $name ] = $vars;
-    }
-
     public function offsetSet($name,$value)
     {
         $this->parameters[ $name ] = $value;
@@ -197,12 +162,6 @@ class HttpRequest
         unset($this->paramemters[$name]);
     }
 
-
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
-
     public function getQueryParameters()
     {
         return $this->queryParameters;
@@ -211,6 +170,11 @@ class HttpRequest
     public function getBodyParameters()
     {
         return $this->bodyParameters;
+    }
+
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 
 
