@@ -39,9 +39,9 @@ class HttpFilesParameterTest extends PHPUnit_Framework_TestCase
         $files['uploaded'] = create_file_hash('tests/data/cat.txt');
 
         $req = new HttpRequest([], $files);
-        ok($req->files['uploaded'], 'Got uploaded file field' );
+        ok(isset($req->files['uploaded']), 'Got uploaded file field' );
 
-        is( 11, $req->files['uploaded']['size'] );
+        is(11, $req->files['uploaded']['size'] );
         is( 'text/plain', $req->files['uploaded']['type'] );
         is( 0, $req->files['uploaded']['error'] );
 
