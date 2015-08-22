@@ -20,9 +20,33 @@ class HttpRequest
 {
     protected $requestVars = array();
 
+
+    /**
+     * @var array parameters from $_FILES
+     */
     protected $files = array();
 
+
+    /**
+     * @var array parameters from $_REQUEST
+     */
     protected $parameters = array();
+
+
+    /**
+     * @var array parameters parsed from POST request method
+     */
+    protected $bodyParameters = array();
+
+    /**
+     * @var array parameters parsed from query string
+     */
+    protected $queryParameters = array();
+
+
+    protected $cookies = array();
+
+
 
 
     /**
@@ -38,12 +62,10 @@ class HttpRequest
             $this->parameters = $parameters;
         } else if (isset($_REQUEST)) {
             $this->parameters = $_REQUEST;
-        } else {
-            $this->parameters = array();
         }
         if ($files) {
             $this->files = FilesParameter::fix_files_array($files);
-        } else {
+        } else if (isset($_FILES)) {
             $this->files = FilesParameter::fix_files_array($_FILES);
         }
     }
@@ -167,6 +189,55 @@ class HttpRequest
     {
         unset($this->paramemters[$name]);
     }
+
+
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    public function getQueryParameters()
+    {
+        return $this->queryParameters;
+    }
+
+    public function getBodyParameters()
+    {
+        return $this->bodyParameters;
+    }
+
+
+    /**
+     * Create request object from superglobal $GLOBALS
+     *
+     * @param $globals The $GLOBALS
+     * @return HttpRequest
+     */
+    static public function createFromGlobals(array $globals)
+    {
+        $request = new self;
+        if (isset($globals['_POST'])) {
+            $request->bodyParameters = $globals['_POST'];
+        }
+        if (isset($globals['_GET'])) {
+            $request->queryParameters = $globals['_GET'];
+        }
+        if (isset($globals['_REQUEST'])) {
+            $request->parameters = $globals['_REQUEST'];
+        }
+        if (isset($globals['_COOKIE'])) {
+            $request->cookies = $globals['_COOKIE'];
+        }
+        if (isset($globals['_FILES'])) {
+            $request->files = FilesParameter::fix_files_array($globals['_FILES']);
+        }
+        return $request;
+    }
+
+
+
+
+
 
 }
 
