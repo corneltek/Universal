@@ -18,7 +18,7 @@ use Universal\Http\FilesParameter;
 class HttpRequest
     implements ArrayAccess
 {
-    protected $requestVars = array();
+
 
 
     /**
@@ -47,7 +47,10 @@ class HttpRequest
     protected $cookies = array();
 
 
-
+    /**
+     * @var array parameters created from $_SERVER
+     */
+    protected $serverParameters = array();
 
     /**
      * When $parameters is defined, HttpRequest uses $parameters instead of the default $_REQUEST
@@ -74,12 +77,16 @@ class HttpRequest
      * Check if we have the parameter
      *
      * @param string $name parameter name
+     * @return boolean
      */
     public function hasParam($name)
     {
         return isset($this->parameters[$name]);
     }
 
+    /**
+     * @param string $field parameter field name
+     */
     public function param($field)
     {
         if (isset($this->parameters[$field])) {
@@ -230,6 +237,9 @@ class HttpRequest
         }
         if (isset($globals['_FILES'])) {
             $request->files = FilesParameter::fix_files_array($globals['_FILES']);
+        }
+        if (isset($globals['_SERVER'])) {
+            $request->serverParameters = $globals['_SERVER'];
         }
         return $request;
     }
