@@ -90,6 +90,21 @@ class HttpRequest
         }
     }
 
+
+    /**
+     * If request method is defined in $_SERVER, we return the request method
+     * respectively, otherwise we return 'GET' by default.
+     *
+     * @return string the request method string.
+     */
+    public function getRequestMethod()
+    {
+        if (isset($this->serverParameters['REQUEST_METHOD'])) {
+            return $this->serverParameters['REQUEST_METHOD'];
+        }
+        return 'GET';
+    }
+
     /**
      * Check if we have the parameter
      *
