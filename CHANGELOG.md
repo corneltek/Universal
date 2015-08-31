@@ -1,5 +1,13 @@
 # Changes
 
+
+## 1.7.0
+
+HttpRequest:
+
+- Added request body related methods: `getRequestBody()`, `openRequestBody()`, `closeRequestBody()`.
+- Added `getRequestMethod()` method
+
 ## 1.6.0
 
 - Added more request parameters
