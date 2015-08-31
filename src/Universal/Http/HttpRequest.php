@@ -18,6 +18,7 @@ use Universal\Http\FilesParameter;
 class HttpRequest
     implements ArrayAccess
 {
+    protected $_requestBodyFp;
 
     protected $_parameterBags = [];
 
@@ -90,6 +91,31 @@ class HttpRequest
         }
     }
 
+
+    public function openRequestBodyStream()
+    {
+        $input = 'php://input';
+        if (isset($this->serverParameters['phpsgi.input'])) {
+            $input = $this->serverParameters['phpsgi.input'];
+        }
+        return $this->_requestBodyFp = fopen($input);
+    }
+
+    public function closeRequestBodyStream()
+    {
+        if ($this->_requestBodyFp) {
+            fclose($this->_requestBodyFp);
+        }
+    }
+
+    public function getRequestBody()
+    {
+        $input = 'php://input';
+        if (isset($this->serverParameters['phpsgi.input'])) {
+            $input = $this->serverParameters['phpsgi.input'];
+        }
+        return file_get_contents($input);
+    }
 
     /**
      * If request method is defined in $_SERVER, we return the request method
@@ -251,6 +277,18 @@ class HttpRequest
             }
         }
         return $headers;
+    }
+
+
+
+
+    public function __destruct()
+    {
+        // If the request body stream is opened,
+        // We should close it when this request object not needed anymore.
+        if ($this->_requestBodyFp) {
+            $this->closeRequestBodyStream();
+        }
     }
 
 
