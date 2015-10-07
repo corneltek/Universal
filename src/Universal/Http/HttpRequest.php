@@ -142,6 +142,12 @@ class HttpRequest
         return isset($this->parameters[$name]);
     }
 
+    public function existsParam($name)
+    {
+        return array_key_exists($name, $this->parameters);
+    }
+
+
     /**
      * @param string $field parameter field name
      */
