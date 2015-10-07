@@ -1,5 +1,10 @@
 # Changes
 
+## 1.7.1
+
+HttpRequest:
+
+- Added `existsParam` method.
 
 ## 1.7.0
 
