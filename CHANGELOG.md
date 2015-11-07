@@ -1,6 +1,12 @@
 # Changes
 
 
+## 1.7.2
+
+ClassLoader:
+
+- Always cast psr0 directory to array when iterating the directory list.
+
 ## 1.7.0
 
 HttpRequest:
