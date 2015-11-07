@@ -26,7 +26,7 @@ class Psr4ClassLoader implements ClassLoader
             $prefix = trim($prefix, '\\') . '\\';
             $baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         }
-        $this->prefixes[] = [$prefix, $baseDir];
+        $this->prefixes[] = array($prefix, $baseDir);
     }
 
 
