@@ -49,7 +49,7 @@ class Psr0ClassLoader implements ClassLoader
             $subpath = strtr($fullclass, '\\', DIRECTORY_SEPARATOR) . '.php';
             foreach ($this->namespaces as $ns => $dirs) {
                 if (strpos($namespace,$ns) === 0) {
-                    foreach ($dirs as $dir) {
+                    foreach ((array) $dirs as $dir) {
                         $path = $dir . DIRECTORY_SEPARATOR . $subpath;
                         if (file_exists($path)) {
                             return $path;
