@@ -304,7 +304,7 @@ class UploadedFile implements ArrayAccess
             throw new UploadedFileMoveFailException($this->stash, "File {$this->tmpName} upload failed.");
         }
         // Update stash value
-        return $this->savedPath = $this->stash['saved_path'] = $moveTo;
+        return $this->savedPath = $this->stash['saved_path'] = $target;
     }
 
     public function deleteTmp()
