@@ -213,8 +213,6 @@ class UploadedFile implements ArrayAccess
             return $this->savedPath;
         }
 
-        $tmpFile = $this->tmpName;
-
         // Avoid file name duplication
         /*
         $fileCnt = 1;
@@ -227,9 +225,10 @@ class UploadedFile implements ArrayAccess
 
         $ret = false;
         if ($rename) {
+            $tmpFile = $this->tmpName;
             $ret = rename($tmpFile, $newPath);
         } else {
-            $ret = $this->moveUploadedFile($tmpFile, $newPath );
+            $ret = $this->moveUploadedFile($newPath);
         }
         $this->savedPath = $this->stash['saved_path'] = $newPath;
 
