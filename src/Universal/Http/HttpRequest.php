@@ -257,6 +257,12 @@ class HttpRequest
         }
     }
 
+    public function cookieParam($name)
+    {
+        if (isset($this->cookieParameters[$name])) {
+            return $this->cookieParameters[$name];
+        }
+    }
 
 
     /**
