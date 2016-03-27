@@ -245,6 +245,9 @@ class UploadedFile implements ArrayAccess
      */
     public function copy($targetPath)
     {
+        if ($this->savedPath) {
+            return copy($this->savedPath, $targetPath);
+        }
         return copy($this->tmpName, $targetPath);
     }
 
@@ -290,7 +293,7 @@ class UploadedFile implements ArrayAccess
     public function moveUploadedFile($target)
     {
         // if the tmp file is already moved
-        if (isset($this->savedPath)) {
+        if ($this->savedPath) {
             return $this->savedPath;
         }
         if ($this->stash['error'] != 0) {
@@ -318,7 +321,7 @@ class UploadedFile implements ArrayAccess
 
     public function hasError()
     {
-        return $this->error != 0;
+        return intval($this->error) != 0;
     }
 
     public function getUserErrorMessage()
