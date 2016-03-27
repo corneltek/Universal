@@ -77,18 +77,10 @@ class HttpRequest
      * @param array|null $parameters The array of request parameter, usually $_REQUEST
      * @param array|null $files The array of files, usually $_FILES
      */
-    public function __construct(array $parameters = null, array $files = null)
+    public function __construct(array $parameters = array(), array $files = array())
     {
-        if ($parameters) {
-            $this->parameters = $parameters;
-        } else if (isset($_REQUEST)) {
-            $this->parameters = $_REQUEST;
-        }
-        if ($files) {
-            $this->files = FilesParameter::fix_files_array($files);
-        } else if (isset($_FILES)) {
-            $this->files = FilesParameter::fix_files_array($_FILES);
-        }
+        $this->parameters = $parameters;
+        $this->files = FilesParameter::fix_files_array($files);
     }
 
 
