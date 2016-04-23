@@ -15,7 +15,7 @@ class Psr4ClassLoader implements ClassLoader
 {
     protected $prefixes = array();
 
-    public function __construct(array $prefixes = array()) 
+    public function __construct(array $prefixes = array())
     {
         $this->prefixes = $prefixes;
     }
@@ -26,9 +26,8 @@ class Psr4ClassLoader implements ClassLoader
             $prefix = trim($prefix, '\\') . '\\';
             $baseDir = rtrim($baseDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         }
-        $this->prefixes[] = array($prefix, $baseDir);
+        $this->prefixes[] = array($prefix, (array) $baseDir);
     }
-
 
     public function addPrefixes(array $prefixes, $trim = false)
     {
@@ -47,14 +46,17 @@ class Psr4ClassLoader implements ClassLoader
     {
         # echo "Fullclass: " . $fullclass . "\n";
         foreach ($this->prefixes as $prefixMap) {
-            list($prefix, $dir) = $prefixMap;
+            list($prefix, $dirs) = $prefixMap;
             if (strpos($fullclass, $prefix) === 0) {
                 $len = strlen($prefix);
                 $classSuffix = substr($fullclass, $len);
                 $subpath = str_replace('\\', DIRECTORY_SEPARATOR, $classSuffix) . '.php';
-                $classPath = $dir . $subpath;
-                if (file_exists($classPath)) {
-                    return $classPath;
+
+                foreach ($dirs as $dir) {
+                    $classPath = $dir . $subpath;
+                    if (file_exists($classPath)) {
+                        return $classPath;
+                    }
                 }
             }
         }
