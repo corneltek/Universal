@@ -11,11 +11,7 @@
     },
     "license": "MIT",
     "authors": [
-        {
-            "name": "Yo-An Lin",
-            "email": "cornelius.howl@gmail.com",
-            "homepage": "http://c9s.me"
-        }
+        { "name": "Yo-An Lin", "email": "yoanlin93@gmail.com" }
     ],
     "autoload": {
         "psr-4": {
