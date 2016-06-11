@@ -3,7 +3,7 @@ Universal
 
 Universal is a general proprose PHP library.
 
-[![Build Status](https://travis-ci.org/c9s/Universal.svg?branch=master)](https://travis-ci.org/c9s/Universal)
+[![Build Status](https://travis-ci.org/corneltek/Universal.svg?branch=master)](https://travis-ci.org/corneltek/Universal)
 
 # Components
 
