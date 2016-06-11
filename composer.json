@@ -1,6 +1,6 @@
 {
     "name": "corneltek/universal",
-    "homepage": "http://github.com/c9s/Universal",
+    "homepage": "http://github.com/corneltek/Universal",
     "description": "Universal library for PHP",
     "require": {
         "php": ">=5.3.0"
