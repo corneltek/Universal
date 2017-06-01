@@ -1,11 +1,9 @@
 language: php
 php:
-- 5.4
-- 5.5
 - 5.6
 - 7.0
+- 7.1
 install:
-- travis_retry composer self-update
 - travis_retry composer require satooshi/php-coveralls "^1" --no-update --dev
 - travis_retry composer install
 before_script:
@@ -18,6 +16,6 @@ cache:
   apt: true
   directories:
   - vendor
-# notifications:
-# slack:
-# secure: PY+hWesXVU3HfLgnjpfEAnBOw2Q4AIzZNoqvwBVsLO+fkXumCICan9MGhV9m0oSDx7FFP+0fyAKXoH0AFHAE6Suf3EkV9jjFis4bFsKqp4E9dtrHOB7oA1GInHgkKjt75nAdOyyOcyhxgcrZFJUyMn+EtUdetCPHehbYE1n7+Ok=
+notifications:
+  slack:
+    secure: TODp1zNi6k5PGJajxfmql4TpnXJeyyyySdk5l03VA1O3IOrUtCXVyj+rjdXG2wqZzAP+kR7rPcpM29ejlo+seI9uwPx5/iSHQ0SXudx9RPZRVL5vlo49BlJdIpXEUUhCTMOSUY92xwwoVfZRl8adnjvVWPCzXNmq+ofWNtRFpZU=
